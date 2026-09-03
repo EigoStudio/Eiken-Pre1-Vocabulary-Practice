@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>英検準1級 大問1 予想問題 #1 (Day 1 - Day 3)</title>
+<script src="auth.js"></script>
+<style>
+  :root {
+    --primary-color: #1a365d;
+    --secondary-color: #2b6cb0;
+    --bg-color: #f7fafc;
+    --card-bg: #ffffff;
+    --text-color: #2d3748;
+    --border-color: #e2e8f0;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 20px;
+  }
+
+  .control-panel {
+    max-width: 900px;
+    margin: 0 auto 15px auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: #edf2f7;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+  }
+
+  .zoom-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #4a5568;
+  }
+
+  .zoom-btn {
+    background: white;
+    border: 1px solid #cbd5e0;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .zoom-btn:hover { background: #e2e8f0; }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transform-origin: top center;
+    transition: transform 0.2s ease;
+  }
+
+  .tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--border-color);
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    flex: 1;
+    min-width: 100px;
+    padding: 12px 8px;
+    background: #edf2f7;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: #4a5568;
+    border-radius: 8px 8px 0 0;
+    transition: all 0.2s ease;
+    text-align: center;
+  }
+
+  .tab-btn:hover { background: #e2e8f0; }
+  .tab-btn.active { background: var(--secondary-color); color: white; }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .day-header {
+    border-bottom: 3px solid var(--secondary-color);
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+  }
+
+  .day-header h2 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .day-header .subtitle {
+    text-align: center;
+    color: #4a5568;
+    font-size: 0.9rem;
+    margin-top: 4px;
+  }
+
+  .question-card {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-left: 5px solid var(--secondary-color);
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 22px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  }
+
+  .question-title {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--primary-color);
+    margin-bottom: 12px;
+  }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .option-btn {
+    background: #f8fafc;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    padding: 10px 14px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    transition: all 0.2s ease;
+  }
+
+  .option-btn:hover { background: #ebf8ff; border-color: var(--secondary-color); }
+  .option-btn.correct { background-color: #c6f6d5 !important; border-color: #38a169 !important; color: #22543d; font-weight: bold; }
+  .option-btn.incorrect { background-color: #fed7d7 !important; border-color: #e53e3e !important; color: #742a2a; }
+
+  .explanation {
+    display: none;
+    margin-top: 15px;
+    padding: 14px;
+    background-color: #ebf8ff;
+    border-radius: 6px;
+    font-size: 0.92rem;
+    border-left: 4px solid var(--secondary-color);
+  }
+
+  .explanation span.label { font-weight: bold; color: var(--primary-color); font-size: 0.98rem; }
+  .vocab-list { margin-top: 10px; font-size: 0.88rem; color: #2d3748; background: rgba(255, 255, 255, 0.85); padding: 10px 14px; border-radius: 4px; line-height: 1.6; border: 1px solid #e2e8f0; }
+
+  /* 🖨 印刷時（改ページ設定） */
+  @media print {
+    body { background-color: white !important; padding: 0 !important; color: black !important; }
+    .control-panel, .tabs { display: none !important; }
+    .container { box-shadow: none !important; padding: 0 !important; max-width: 100% !important; transform: none !important; }
+
+    .tab-content {
+      display: block !important;
+      page-break-before: always !important;
+      break-before: page !important;
+    }
+
+    .tab-content:first-of-type {
+      page-break-before: avoid !important;
+      break-before: auto !important;
+    }
+
+    .day-header h2 { font-size: 1.3rem !important; }
+    .question-card { border: none !important; border-bottom: 1px solid #ddd !important; padding: 6px 0 !important; margin-bottom: 6px !important; page-break-inside: avoid; }
+    .question-title { color: black !important; font-size: 0.92rem !important; margin-bottom: 4px !important; }
+    .options-grid { display: flex !important; flex-wrap: wrap !important; gap: 15px !important; margin-top: 2px !important; }
+    .option-btn { background: none !important; border: none !important; padding: 0 !important; font-size: 0.9rem !important; color: black !important; display: inline-block !important; }
+    .explanation { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="control-panel">
+  <div class="zoom-controls">
+    <span>表示サイズ:</span>
+    <button class="zoom-btn" onclick="changeZoom(-10)">-</button>
+    <span id="zoom-val">100%</span>
+    <button class="zoom-btn" onclick="changeZoom(10)">+</button>
+  </div>
+</div>
+
+<div class="container" id="main-container">
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="openTab(event, 'day1')">Day 1</button>
+    <button class="tab-btn" onclick="openTab(event, 'day2')">Day 2</button>
+    <button class="tab-btn" onclick="openTab(event, 'day3')">Day 3</button>
+  </div>
+
+  <!-- DAY 1 -->
+  <div id="day1" class="tab-content active">
+    <div class="day-header">
+      <h2>英検準1級 大問1 予想問題 #1 Day1</h2>
+      <div class="subtitle">【短文の語句空所補充問題】 (1問〜18問)</div>
+    </div>
+
+    <div class="question-card" id="q1-1">
+      <div class="question-title">(1) The company decided to ( ) the contract after discovering several violations of safety regulations.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q1-1', '1')">1 endorse</button>
+        <button class="option-btn" onclick="checkAnswer('q1-1', '2')">2 cherish</button>
+        <button class="option-btn" onclick="checkAnswer('q1-1', '3')">3 rescind</button>
+        <button class="option-btn" onclick="checkAnswer('q1-1', '4')">4 reconcile</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 3 rescind</span><br>
+        【文脈】会社は安全規制の複数の違反を発見した後、契約を<strong>撤回する（無効にする）</strong>ことに決定した。<br>
+        <div class="vocab-list">
+          ・1 endorse: 支持する、推奨する<br>・2 cherish: 大切にする<br>・3 rescind: （契約・法律などを）撤回する、無効にする<br>・4 reconcile: 和解させる、調和させる
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q1-2">
+      <div class="question-title">(2) Due to continuous heavy rain, the river broke its banks and caused ( ) damage to agricultural fields.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q1-2', '1')">1 catastrophic</button>
+        <button class="option-btn" onclick="checkAnswer('q1-2', '2')">2 meticulous</button>
+        <button class="option-btn" onclick="checkAnswer('q1-2', '3')">3 lenient</button>
+        <button class="option-btn" onclick="checkAnswer('q1-2', '4')">4 plausible</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 catastrophic</span><br>
+        【文脈】長引く大雨のため川が決壊し、農地に<strong>壊滅的な（悲惨な）</strong>被害をもたらした。<br>
+        <div class="vocab-list">
+          ・1 catastrophic: 壊滅的な、大惨事の<br>・2 meticulous: 細部まで行き届いた<br>・3 lenient: 寛大な<br>・4 plausible: もっともらしい
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q1-3">
+      <div class="question-title">(3) The CEO made an official announcement to ( ) rumors regarding the company's impending bankruptcy.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q1-3', '1')">1 foster</button>
+        <button class="option-btn" onclick="checkAnswer('q1-3', '2')">2 aggravate</button>
+        <button class="option-btn" onclick="checkAnswer('q1-3', '3')">3 accumulate</button>
+        <button class="option-btn" onclick="checkAnswer('q1-3', '4')">4 dispel</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 4 dispel</span><br>
+        【文脈】CEOは破産危機に関する噂を<strong>払拭する（消し去る）</strong>ため、公式発表を行った。<br>
+        <div class="vocab-list">
+          ・1 foster: 促進する、育む<br>・2 aggravate: 悪化させる<br>・3 accumulate: 蓄積する<br>・4 dispel: （不安・噂などを）払拭する
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q1-4">
+      <div class="question-title">(4) Scientists are studying how ancient civilizations managed to survive in such ( ) environmental conditions.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q1-4', '1')">1 hospitable</button>
+        <button class="option-btn" onclick="checkAnswer('q1-4', '2')">2 hostile</button>
+        <button class="option-btn" onclick="checkAnswer('q1-4', '3')">3 impartial</button>
+        <button class="option-btn" onclick="checkAnswer('q1-4', '4')">4 submissive</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 hostile</span><br>
+        【文脈】古代文明がこれほど<strong>過酷な（厳しい）</strong>環境下でいかに生存し得たかが研究されている。<br>
+        <div class="vocab-list">
+          ・1 hospitable: 居住に適した<br>・2 hostile: （環境などが）厳しい、敵意のある<br>・3 impartial: 公平な<br>・4 submissive: 服従的な
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q1-5">
+      <div class="question-title">(5) The museum curator took extraordinary precautions to preserve the highly ( ) ancient manuscripts.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q1-5', '1')">1 sturdy</button>
+        <button class="option-btn" onclick="checkAnswer('q1-5', '2')">2 fragile</button>
+        <button class="option-btn" onclick="checkAnswer('q1-5', '3')">3 perpetual</button>
+        <button class="option-btn" onclick="checkAnswer('q1-5', '4')">4 monotonous</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 fragile</span><br>
+        【文脈】学芸員は非常に<strong>壊れやすい（脆い）</strong>古代の手稿を保存するため、格別の予防措置を講じた。<br>
+        <div class="vocab-list">
+          ・1 sturdy: 頑丈な<br>・2 fragile: 壊れやすい、脆い<br>・3 perpetual: 永続する<br>・4 monotonous: 単調な
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q1-6">
+      <div class="question-title">(6) After months of negotiation, both sides finally reached a ( ) agreement that satisfied all parties.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q1-6', '1')">1 tentative</button>
+        <button class="option-btn" onclick="checkAnswer('q1-6', '2')">2 superficial</button>
+        <button class="option-btn" onclick="checkAnswer('q1-6', '3')">3 mutual</button>
+        <button class="option-btn" onclick="checkAnswer('q1-6', '4')">4 detrimental</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 3 mutual</span><br>
+        【文脈】数ヶ月の交渉を経て、双方は関係者全員が満足する<strong>相互の（共通の）</strong>合意に達した。<br>
+        <div class="vocab-list">
+          ・1 tentative: 仮の、試験的な<br>・2 superficial: 表面的な<br>・3 mutual: 相互の、共通の<br>・4 detrimental: 有害な
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q1-7">
+      <div class="question-title">(7) The mayor emphasized that economic development should not come at the ( ) of environmental preservation.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q1-7', '1')">1 prospect</button>
+        <button class="option-btn" onclick="checkAnswer('q1-7', '2')">2 expense</button>
+        <button class="option-btn" onclick="checkAnswer('q1-7', '3')">3 discretion</button>
+        <button class="option-btn" onclick="checkAnswer('q1-7', '4')">4 verdict</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 expense</span><br>
+        【文脈】市長は、経済発展が環境保全を<strong>犠牲にして（at the expense of）</strong>なされるべきでないと強調した。<br>
+        <div class="vocab-list">
+          ・1 prospect: 見通し<br>・2 expense: 費用、犠牲 (at the expense of)<br>・3 discretion: 裁量、思慮<br>・4 verdict: 評決
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q1-8">
+      <div class="question-title">(8) The new legislation was designed to ( ) small business owners who suffered significant financial losses.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q1-8', '1')">1 intimidate</button>
+        <button class="option-btn" onclick="checkAnswer('q1-8', '2')">2 contemplate</button>
+        <button class="option-btn" onclick="checkAnswer('q1-8', '3')">3 compensate</button>
+        <button class="option-btn" onclick="checkAnswer('q1-8', '4')">4 deteriorate</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 3 compensate</span><br>
+        【文脈】損失を被った中小企業主を<strong>補償する（埋め合わせる）</strong>ための新法が制定された。<br>
+        <div class="vocab-list">
+          ・1 intimidate: 脅迫する<br>・2 contemplate: 熟考する<br>・3 compensate: 補償する、埋め合わせる<br>・4 deteriorate: 悪化する
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q1-9">
+      <div class="question-title">(9) Dr. Evans gave a ( ) explanation of the genetic process, making it easy for non-experts to understand.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q1-9', '1')">1 dubious</button>
+        <button class="option-btn" onclick="checkAnswer('q1-9', '2')">2 lucid</button>
+        <button class="option-btn" onclick="checkAnswer('q1-9', '3')">3 clandestine</button>
+        <button class="option-btn" onclick="checkAnswer('q1-9', '4')">4 rigid</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 lucid</span><br>
+        【文脈】博士は遺伝子の仕組みについて<strong>明快な（分かりやすい）</strong>説明をした。<br>
+        <div class="vocab-list">
+          ・1 dubious: 疑わしい<br>・2 lucid: 明快な、分かりやすい<br>・3 clandestine: 秘密の<br>・4 rigid: 厳格な
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q1-10">
+      <div class="question-title">(10) The government introduced strict measures to ( ) the spread of the infectious disease across the nation.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q1-10', '1')">1 curb</button>
+        <button class="option-btn" onclick="checkAnswer('q1-10', '2')">2 instigate</button>
+        <button class="option-btn" onclick="checkAnswer('q1-10', '3')">3 amplify</button>
+        <button class="option-btn" onclick="checkAnswer('q1-10', '4')">4 prolong</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 curb</span><br>
+        【文脈】政府は全国的な感染症の拡大を<strong>抑制する（抑え込む）</strong>ために厳しい措置を導入した。<br>
+        <div class="vocab-list">
+          ・1 curb: 抑制する、規制する<br>・2 instigate: 扇動する<br>・3 amplify: 増幅する<br>・4 prolong: 延長する
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q1-11">
+      <div class="question-title">(11) Although the two theories seem contradictory at first glance, they are actually quite ( ) with each other.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q1-11', '1')">1 vulnerable</button>
+        <button class="option-btn" onclick="checkAnswer('q1-11', '2')">2 incompatible</button>
+        <button class="option-btn" onclick="checkAnswer('q1-11', '3')">3 apprehensive</button>
+        <button class="option-btn" onclick="checkAnswer('q1-11', '4')">4 compatible</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 4 compatible</span><br>
+        【文脈】一見すると2つの理論は矛盾しているように見えるが、実際には互いにかなり<strong>適合する（両立できる）</strong>。<br>
+        <div class="vocab-list">
+          ・1 vulnerable: 脆弱な<br>・2 incompatible: 不適合な<br>・3 apprehensive: 不安な<br>・4 compatible: 適合する、両立できる
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q1-12">
+      <div class="question-title">(12) The witness gave a detailed and ( ) account of the event, which helped police identify the primary suspect.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q1-12', '1')">1 opaque</button>
+        <button class="option-btn" onclick="checkAnswer('q1-12', '2')">2 vivid</button>
+        <button class="option-btn" onclick="checkAnswer('q1-12', '3')">3 frivolous</button>
+        <button class="option-btn" onclick="checkAnswer('q1-12', '4')">4 tedious</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 vivid</span><br>
+        【文脈】目撃者は事件に関する詳細で<strong>鮮明な（生き生きとした）</strong>証言をし、容疑者特定に貢献した。<br>
+        <div class="vocab-list">
+          ・1 opaque: 不透明な<br>・2 vivid: 鮮明な、生き生きとした<br>・3 frivolous: 軽はずみな<br>・4 tedious: 退屈な
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q1-13">
+      <div class="question-title">(13) The manager was known for his ( ) attitude toward employees who repeatedly arrived late for morning meetings.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q1-13', '1')">1 cordial</button>
+        <button class="option-btn" onclick="checkAnswer('q1-13', '2')">2 lenient</button>
+        <button class="option-btn" onclick="checkAnswer('q1-13', '3')">3 stern</button>
+        <button class="option-btn" onclick="checkAnswer('q1-13', '4')">4 gullible</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 3 stern</span><br>
+        【文脈】マネージャーは、遅刻を繰り返す社員に対して<strong>厳格な（厳しい）</strong>態度をとることで知られていた。<br>
+        <div class="vocab-list">
+          ・1 cordial: 心からの<br>・2 lenient: 寛大な<br>・3 stern: 厳格な、厳しい<br>・4 gullible: 騙されやすい
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q1-14">
+      <div class="question-title">(14) Construction of the new subway line was delayed due to ( ) opposition from local community groups.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q1-14', '1')">1 fierce</button>
+        <button class="option-btn" onclick="checkAnswer('q1-14', '2')">2 negligible</button>
+        <button class="option-btn" onclick="checkAnswer('q1-14', '3')">3 obsolete</button>
+        <button class="option-btn" onclick="checkAnswer('q1-14', '4')">4 subtle</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 fierce</span><br>
+        【文脈】新しい地下鉄路線の建設は、地域住民からの<strong>激しい（強烈な）</strong>反対のために遅れた。<br>
+        <div class="vocab-list">
+          ・1 fierce: 激しい、猛烈な<br>・2 negligible: 無視できるほどの<br>・3 obsolete: 時代遅れの<br>・4 subtle: 微妙な
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q1-15">
+      <div class="question-title">(15) The company decided to ( ) its plan to expand into foreign markets due to unfavorable economic conditions.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q1-15', '1')">1 bring about</button>
+        <button class="option-btn" onclick="checkAnswer('q1-15', '2')">2 call off</button>
+        <button class="option-btn" onclick="checkAnswer('q1-15', '3')">3 take over</button>
+        <button class="option-btn" onclick="checkAnswer('q1-15', '4')">4 look into</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 call off</span><br>
+        【文脈】不調な経済状況のため、会社は海外市場進出の計画を<strong>中止する（取りやめる）</strong>ことにした。<br>
+        <div class="vocab-list">
+          ・1 bring about: もたらす<br>・2 call off: 中止する、取りやめる<br>・3 take over: 引き継ぐ<br>・4 look into: 調査する
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q1-16">
+      <div class="question-title">(16) When the lead actor suddenly fell ill, his understudy had to ( ) for him at the last minute.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q1-16', '1')">1 pass out</button>
+        <button class="option-btn" onclick="checkAnswer('q1-16', '2')">2 turn down</button>
+        <button class="option-btn" onclick="checkAnswer('q1-16', '3')">3 break out</button>
+        <button class="option-btn" onclick="checkAnswer('q1-16', '4')">4 step in</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 4 step in</span><br>
+        【文脈】主演俳優が突然体調を崩した際、代役が土壇場で彼の<strong>代役を務めなければ（介入しなければ）</strong>ならなかった。<br>
+        <div class="vocab-list">
+          ・1 pass out: 気絶する<br>・2 turn down: 断る<br>・3 break out: 発生する<br>・4 step in: 割って入る、代役を務める
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q1-17">
+      <div class="question-title">(17) Negotiations progressed smoothly until a disagreement over funding ( ) the whole process.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q1-17', '1')">1 set back</button>
+        <button class="option-btn" onclick="checkAnswer('q1-17', '2')">2 phased out</button>
+        <button class="option-btn" onclick="checkAnswer('q1-17', '3')">3 brushed off</button>
+        <button class="option-btn" onclick="checkAnswer('q1-17', '4')">4 carried through</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 set back</span><br>
+        【文脈】資金面での不一致がプロセス全体を<strong>遅らせる（妨げる）</strong>まで、交渉はスムーズに進んでいた。<br>
+        <div class="vocab-list">
+          ・1 set back: 遅らせる、妨げる<br>・2 phase out: 段階的に廃止する<br>・3 brush off: 無視する<br>・4 carry through: 成し遂げる
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q1-18">
+      <div class="question-title">(18) It took the research team several months to ( ) a workable solution to the complex software error.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q1-18', '1')">1 run out of</button>
+        <button class="option-btn" onclick="checkAnswer('q1-18', '2')">2 come up with</button>
+        <button class="option-btn" onclick="checkAnswer('q1-18', '3')">3 get away with</button>
+        <button class="option-btn" onclick="checkAnswer('q1-18', '4')">4 make up for</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 come up with</span><br>
+        【文脈】研究チームがバグに対する現実的な解決策を<strong>考案する（思いつく）</strong>のに数ヶ月かかった。<br>
+        <div class="vocab-list">
+          ・1 run out of: 使い果たす<br>・2 come up with: 思いつく、考案する<br>・3 get away with: うまく逃れる<br>・4 make up for: 埋め合わせをする
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div id="day2" class="tab-content">
+    <div class="day-header">
+      <h2>英検準1級 大問1 予想問題 #1 Day2</h2>
+      <div class="subtitle">【短文の語句空所補充問題】 (1問〜18問)</div>
+    </div>
+
+    <div class="question-card" id="q2-1">
+      <div class="question-title">(1) The board of directors voted unanimously to ( ) the controversial proposal to downsize the workforce.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q2-1', '1')">1 ratify</button>
+        <button class="option-btn" onclick="checkAnswer('q2-1', '2')">2 reject</button>
+        <button class="option-btn" onclick="checkAnswer('q2-1', '3')">3 cherish</button>
+        <button class="option-btn" onclick="checkAnswer('q2-1', '4')">4 simulate</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 reject</span><br>
+        【文脈】取締役会は人員削減の提案を満場一致で<strong>拒絶する（却下する）</strong>決議を行った。<br>
+        <div class="vocab-list">
+          ・1 ratify: 批准する、承認する<br>・2 reject: 拒絶する、却下する<br>・3 cherish: 大切にする<br>・4 simulate: 模擬実験する
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q2-2">
+      <div class="question-title">(2) The engineer discovered a flaw in the security system that made user data ( ) to cyberattacks.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q2-2', '1')">1 vulnerable</button>
+        <button class="option-btn" onclick="checkAnswer('q2-2', '2')">2 impervious</button>
+        <button class="option-btn" onclick="checkAnswer('q2-2', '3')">3 resilient</button>
+        <button class="option-btn" onclick="checkAnswer('q2-2', '4')">4 autonomous</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 vulnerable</span><br>
+        【文脈】サイバー攻撃に対してユーザーデータが<strong>脆弱である（隙がある）</strong>深刻な欠陥が見つかった。<br>
+        <div class="vocab-list">
+          ・1 vulnerable: 脆弱な、傷つきやすい<br>・2 impervious: 影響を受けない<br>・3 resilient: 回復力がある<br>・4 autonomous: 自律的な
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q2-3">
+      <div class="question-title">(3) Despite initial skepticism, the innovative marketing strategy produced ( ) results within three months.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q2-3', '1')">1 trivial</button>
+        <button class="option-btn" onclick="checkAnswer('q2-3', '2')">2 hazardous</button>
+        <button class="option-btn" onclick="checkAnswer('q2-3', '3')">3 remarkable</button>
+        <button class="option-btn" onclick="checkAnswer('q2-3', '4')">4 obsolete</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 3 remarkable</span><br>
+        【文脈】当初の懐疑論にもかかわらず、革新的な戦略は3ヶ月で<strong>注目すべき（驚くべき）</strong>成果を上げた。<br>
+        <div class="vocab-list">
+          ・1 trivial: ささいな<br>・2 hazardous: 危険な<br>・3 remarkable: 注目すべき、顕著な<br>・4 obsolete: 廃れた
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q2-4">
+      <div class="question-title">(4) The government announced tax incentives designed to ( ) investment in renewable energy projects.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q2-4', '1')">1 dampen</button>
+        <button class="option-btn" onclick="checkAnswer('q2-4', '2')">2 jeopardize</button>
+        <button class="option-btn" onclick="checkAnswer('q2-4', '3')">3 alleviate</button>
+        <button class="option-btn" onclick="checkAnswer('q2-4', '4')">4 stimulate</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 4 stimulate</span><br>
+        【文脈】政府は再生可能エネルギー分野への投資を<strong>刺激する（促進する）</strong>ための優遇税制を発表した。<br>
+        <div class="vocab-list">
+          ・1 dampen: くじく<br>・2 jeopardize: 危険にさらす<br>・3 alleviate: 軽減する<br>・4 stimulate: 刺激する、活性化する
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q2-5">
+      <div class="question-title">(5) The professor praised the student for her ( ) research, which drew upon dozens of academic journals.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q2-5', '1')">1 thorough</button>
+        <button class="option-btn" onclick="checkAnswer('q2-5', '2')">2 cursory</button>
+        <button class="option-btn" onclick="checkAnswer('q2-5', '3')">3 superficial</button>
+        <button class="option-btn" onclick="checkAnswer('q2-5', '4')">4 dubious</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 thorough</span><br>
+        【文脈】教授は、多数の学術誌を参照した彼女の<strong>徹底的な（細部まで行き届いた）</strong>研究を評価した。<br>
+        <div class="vocab-list">
+          ・1 thorough: 徹底的な<br>・2 cursory: 大雑把な<br>・3 superficial: 表面的な<br>・4 dubious: 疑わしい
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q2-6">
+      <div class="question-title">(6) Heavy fog made visibility extremely poor, posing a severe ( ) to ships navigating through the strait.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q2-6', '1')">1 asset</button>
+        <button class="option-btn" onclick="checkAnswer('q2-6', '2')">2 hazard</button>
+        <button class="option-btn" onclick="checkAnswer('q2-6', '3')">3 solace</button>
+        <button class="option-btn" onclick="checkAnswer('q2-6', '4')">4 remedy</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 hazard</span><br>
+        【文脈】濃霧により視界が著しく悪化し、海峡を航行する船に重大な<strong>危険（障害）</strong>をもたらした。<br>
+        <div class="vocab-list">
+          ・1 asset: 資産<br>・2 hazard: 危険、障害物<br>・3 solace: 慰め<br>・4 remedy: 救済策
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q2-7">
+      <div class="question-title">(7) The new employee was commended for her ( ) approach to solving client complaints quickly and efficiently.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q2-7', '1')">1 reluctant</button>
+        <button class="option-btn" onclick="checkAnswer('q2-7', '2')">2 indifferent</button>
+        <button class="option-btn" onclick="checkAnswer('q2-7', '3')">3 proactive</button>
+        <button class="option-btn" onclick="checkAnswer('q2-7', '4')">4 hasty</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 3 proactive</span><br>
+        【文脈】新入社員は、クレームを迅速に解決する<strong>先を見越した（積極的な）</strong>姿勢を称賛された。<br>
+        <div class="vocab-list">
+          ・1 reluctant: 気が進まない<br>・2 indifferent: 無関心な<br>・3 proactive: 先を見越した、積極的な<br>・4 hasty: 焦った
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q2-8">
+      <div class="question-title">(8) To maintain public trust, government officials must maintain complete ( ) regarding financial records.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q2-8', '1')">1 ambiguity</button>
+        <button class="option-btn" onclick="checkAnswer('q2-8', '2')">2 secrecy</button>
+        <button class="option-btn" onclick="checkAnswer('q2-8', '3')">3 hostility</button>
+        <button class="option-btn" onclick="checkAnswer('q2-8', '4')">4 transparency</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 4 transparency</span><br>
+        【文脈】国民の信頼を維持するため、政府高官は財務記録の完全な<strong>透明性（情報公開）</strong>を保たねばならない。<br>
+        <div class="vocab-list">
+          ・1 ambiguity: 曖昧さ<br>・2 secrecy: 秘密主義<br>・3 hostility: 敵意<br>・4 transparency: 透明性、情報公開
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q2-9">
+      <div class="question-title">(9) The local community center offers free literacy classes to help adult learners ( ) basic reading skills.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q2-9', '1')">1 acquire</button>
+        <button class="option-btn" onclick="checkAnswer('q2-9', '2')">2 forfeit</button>
+        <button class="option-btn" onclick="checkAnswer('q2-9', '3')">3 dispel</button>
+        <button class="option-btn" onclick="checkAnswer('q2-9', '4')">4 squander</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 acquire</span><br>
+        【文脈】公民館では、成人学習者が基礎的な読解力を<strong>習得する（獲得する）</strong>ための無料講座を開講している。<br>
+        <div class="vocab-list">
+          ・1 acquire: 習得する、獲得する<br>・2 forfeit: 没収される<br>・3 dispel: 払拭する<br>・4 squander: 浪費する
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q2-10">
+      <div class="question-title">(10) The earthquake caused ( ) damage to historical landmarks, prompting urgent calls for restoration.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q2-10', '1')">1 negligible</button>
+        <button class="option-btn" onclick="checkAnswer('q2-10', '2')">2 extensive</button>
+        <button class="option-btn" onclick="checkAnswer('q2-10', '3')">3 transient</button>
+        <button class="option-btn" onclick="checkAnswer('q2-10', '4')">4 aesthetic</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 extensive</span><br>
+        【文脈】地震は歴史的建造物に<strong>広範な（甚大な）</strong>被害を与え、修復への声が高まった。<br>
+        <div class="vocab-list">
+          ・1 negligible: わずかな<br>・2 extensive: 広範囲に及ぶ、大規模な<br>・3 transient: 一時的な<br>・4 aesthetic: 美的な
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q2-11">
+      <div class="question-title">(11) The university board decided to ( ) tuition fees for low-income students to ensure equal educational access.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q2-11', '1')">1 confiscate</button>
+        <button class="option-btn" onclick="checkAnswer('q2-11', '2')">2 augment</button>
+        <button class="option-btn" onclick="checkAnswer('q2-11', '3')">3 subsidize</button>
+        <button class="option-btn" onclick="checkAnswer('q2-11', '4')">4 penalize</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 3 subsidize</span><br>
+        【文脈】大学の理事会は、低所得世帯の学生の学費を<strong>補助する（助成する）</strong>ことに決定した。<br>
+        <div class="vocab-list">
+          ・1 confiscate: 没収する<br>・2 augment: 増大させる<br>・3 subsidize: 補助金を支給する<br>・4 penalize: 処罰する
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q2-12">
+      <div class="question-title">(12) After an exhaustive investigation, police officers finally gathered ( ) proof of the suspect's guilt.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q2-12', '1')">1 tentative</button>
+        <button class="option-btn" onclick="checkAnswer('q2-12', '2')">2 ambiguous</button>
+        <button class="option-btn" onclick="checkAnswer('q2-12', '3')">3 vague</button>
+        <button class="option-btn" onclick="checkAnswer('q2-12', '4')">4 conclusive</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 4 conclusive</span><br>
+        【文脈】徹底的な捜査の末、警察は容疑者の有罪を示す<strong>決定的な（確証的な）</strong>証拠を集めた。<br>
+        <div class="vocab-list">
+          ・1 tentative: 仮の<br>・2 ambiguous: 曖昧な<br>・3 vague: 漠然とした<br>・4 conclusive: 決定的な、確証的な
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q2-13">
+      <div class="question-title">(13) The speaker's eloquent words managed to ( ) the anxious crowd and restore order during the rally.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q2-13', '1')">1 soothe</button>
+        <button class="option-btn" onclick="checkAnswer('q2-13', '2')">2 provoke</button>
+        <button class="option-btn" onclick="checkAnswer('q2-13', '3')">3 baffle</button>
+        <button class="option-btn" onclick="checkAnswer('q2-13', '4')">4 disrupt</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 soothe</span><br>
+        【文脈】弁士の巧みな言葉は不安に包まれた群衆を<strong>なだめ（落ち着かせ）</strong>、秩序を取り戻した。<br>
+        <div class="vocab-list">
+          ・1 soothe: なだめる、落ち着かせる<br>・2 provoke: 挑発する<br>・3 baffle: 困惑させる<br>・4 disrupt: 混乱させる
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q2-14">
+      <div class="question-title">(14) Despite facing numerous setbacks, the team displayed remarkable ( ) and eventually won the championship.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q2-14', '1')">1 apathy</button>
+        <button class="option-btn" onclick="checkAnswer('q2-14', '2')">2 perseverance</button>
+        <button class="option-btn" onclick="checkAnswer('q2-14', '3')">3 arrogance</button>
+        <button class="option-btn" onclick="checkAnswer('q2-14', '4')">4 negligence</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 perseverance</span><br>
+        【文脈】幾多の挫折に直面しながらも、チームは見事な<strong>忍耐力（不屈の努力）</strong>を見せ優勝を果たした。<br>
+        <div class="vocab-list">
+          ・1 apathy: 無関心<br>・2 perseverance: 不屈の努力、忍耐<br>・3 arrogance: 傲慢<br>・4 negligence: 怠慢
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q2-15">
+      <div class="question-title">(15) The team members worked late into the night to ( ) lost time caused by the equipment failure.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q2-15', '1')">1 cut down on</button>
+        <button class="option-btn" onclick="checkAnswer('q2-15', '2')">2 look down on</button>
+        <button class="option-btn" onclick="checkAnswer('q2-15', '3')">3 make up for</button>
+        <button class="option-btn" onclick="checkAnswer('q2-15', '4')">4 run out of</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 3 make up for</span><br>
+        【文脈】機材トラブルで生じた遅れを<strong>取り戻す（埋め合わせる）</strong>ため、深夜まで作業した。<br>
+        <div class="vocab-list">
+          ・1 cut down on: 減らす<br>・2 look down on: 見下す<br>・3 make up for: 埋め合わせをする<br>・4 run out of: 使い果たす
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q2-16">
+      <div class="question-title">(16) The board decided to ( ) the old policy and introduce a much more flexible working arrangement.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q2-16', '1')">1 keep up with</button>
+        <button class="option-btn" onclick="checkAnswer('q2-16', '2')">2 do away with</button>
+        <button class="option-btn" onclick="checkAnswer('q2-16', '3')">3 stand up for</button>
+        <button class="option-btn" onclick="checkAnswer('q2-16', '4')">4 catch up on</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 do away with</span><br>
+        【文脈】取締役会は古い規程を<strong>廃止し（なくし）</strong>、柔軟な勤務制度を導入することに決定した。<br>
+        <div class="vocab-list">
+          ・1 keep up with: ついて行く<br>・2 do away with: 廃止する<br>・3 stand up for: 擁護する<br>・4 catch up on: 遅れを取り戻す
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q2-17">
+      <div class="question-title">(17) The new regulations are expected to ( ) significant changes in how financial institutions handle private data.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q2-17', '1')">1 bring about</button>
+        <button class="option-btn" onclick="checkAnswer('q2-17', '2')">2 rule out</button>
+        <button class="option-btn" onclick="checkAnswer('q2-17', '3')">3 give in to</button>
+        <button class="option-btn" onclick="checkAnswer('q2-17', '4')">4 take after</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 bring about</span><br>
+        【文脈】新規制は金融機関の個人データ管理に大きな変化を<strong>もたらす（引き起こす）</strong>と期待されている。<br>
+        <div class="vocab-list">
+          ・1 bring about: もたらす、引き起こす<br>・2 rule out: 除外する<br>・3 give in to: 屈する<br>・4 take after: 似ている
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q2-18">
+      <div class="question-title">(18) Investigators are continuing to ( ) the cause of the sudden industrial explosion at the chemical factory.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q2-18', '1')">1 pass off</button>
+        <button class="option-btn" onclick="checkAnswer('q2-18', '2')">2 pull through</button>
+        <button class="option-btn" onclick="checkAnswer('q2-18', '3')">3 turn down</button>
+        <button class="option-btn" onclick="checkAnswer('q2-18', '4')">4 look into</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 4 look into</span><br>
+        【文脈】調査官らは化学工場で起きた突然の爆発事故の原因を<strong>調査し（調べ）</strong>続けている。<br>
+        <div class="vocab-list">
+          ・1 pass off: ごまかす<br>・2 pull through: 乗り切る<br>・3 turn down: 断る<br>・4 look into: 調査する、調べる
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div id="day3" class="tab-content">
+    <div class="day-header">
+      <h2>英検準1級 大問1 予想問題 #1 Day3</h2>
+      <div class="subtitle">【短文の語句空所補充問題】 (1問〜18問)</div>
+    </div>
+
+    <div class="question-card" id="q3-1">
+      <div class="question-title">(1) Government assistance helped ( ) the severe hardship faced by families living in poverty.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q3-1', '1')">1 aggravate</button>
+        <button class="option-btn" onclick="checkAnswer('q3-1', '2')">2 alleviate</button>
+        <button class="option-btn" onclick="checkAnswer('q3-1', '3')">3 contemplate</button>
+        <button class="option-btn" onclick="checkAnswer('q3-1', '4')">4 deteriorate</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 alleviate</span><br>
+        【文脈】政府の支援は、困窮する世帯が直面する厳しい困窮を<strong>軽減する（和らげる）</strong>のに役立った。<br>
+        <div class="vocab-list">
+          ・1 aggravate: 悪化させる<br>・2 alleviate: 軽減する、和らげる<br>・3 contemplate: 熟考する<br>・4 deteriorate: 悪化する
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q3-2">
+      <div class="question-title">(2) Despite encountering severe financial ( ), the young entrepreneur refused to give up on her dream.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q3-2', '1')">1 adversity</button>
+        <button class="option-btn" onclick="checkAnswer('q3-2', '2')">2 solace</button>
+        <button class="option-btn" onclick="checkAnswer('q3-2', '3')">3 asset</button>
+        <button class="option-btn" onclick="checkAnswer('q3-2', '4')">4 verdict</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 adversity</span><br>
+        【文脈】厳しい資金面の<strong>逆境（困難）</strong>に立ち向かいながらも、起業家は夢を諦めなかった。<br>
+        <div class="vocab-list">
+          ・1 adversity: 逆境、不運<br>・2 solace: 慰め<br>・3 asset: 資産<br>・4 verdict: 評決
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q3-3">
+      <div class="question-title">(3) The wording of the policy statement was so ( ) that it led to conflicting interpretations.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q3-3', '1')">1 authentic</button>
+        <button class="option-btn" onclick="checkAnswer('q3-3', '2')">2 coherent</button>
+        <button class="option-btn" onclick="checkAnswer('q3-3', '3')">3 ambiguous</button>
+        <button class="option-btn" onclick="checkAnswer('q3-3', '4')">4 lucid</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 3 ambiguous</span><br>
+        【文脈】方針文書の文言が非常に<strong>曖昧（多義的）</strong>であったため、解釈の対立が生じた。<br>
+        <div class="vocab-list">
+          ・1 authentic: 本物の<br>・2 coherent: 筋の通った<br>・3 ambiguous: 曖昧な<br>・4 lucid: 明快な
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q3-4">
+      <div class="question-title">(4) The art expert confirmed that the painting was an ( ) work by Master Rembrandt.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q3-4', '1')">1 authentic</button>
+        <button class="option-btn" onclick="checkAnswer('q3-4', '2')">2 dubious</button>
+        <button class="option-btn" onclick="checkAnswer('q3-4', '3')">3 superficial</button>
+        <button class="option-btn" onclick="checkAnswer('q3-4', '4')">4 frivolous</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 authentic</span><br>
+        【文脈】美術鑑定家はその絵画がレンブラント作の<strong>本物の（真作の）</strong>作品であると確認した。<br>
+        <div class="vocab-list">
+          ・1 authentic: 本物の、真正の<br>・2 dubious: 疑わしい<br>・3 superficial: 表面的な<br>・4 frivolous: 軽はずみな
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q3-5">
+      <div class="question-title">(5) In this fast-changing market, it is ( ) that companies rapidly adapt to technological trends.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q3-5', '1')">1 lenient</button>
+        <button class="option-btn" onclick="checkAnswer('q3-5', '2')">2 submissive</button>
+        <button class="option-btn" onclick="checkAnswer('q3-5', '3')">3 imperative</button>
+        <button class="option-btn" onclick="checkAnswer('q3-5', '4')">4 monotonous</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 3 imperative</span><br>
+        【文脈】めまぐるしく変化する市場において、技術トレンドに迅速に適応することは<strong>絶対必要な（不可欠な）</strong>ことだ。<br>
+        <div class="vocab-list">
+          ・1 lenient: 寛大な<br>・2 submissive: 服従的な<br>・3 imperative: 絶対必要な、緊急の<br>・4 monotonous: 単調な
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q3-6">
+      <div class="question-title">(6) The judge requested an ( ) assessment of the evidence before delivering the final verdict.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q3-6', '1')">1 hostile</button>
+        <button class="option-btn" onclick="checkAnswer('q3-6', '2')">2 impartial</button>
+        <button class="option-btn" onclick="checkAnswer('q3-6', '3')">3 rigid</button>
+        <button class="option-btn" onclick="checkAnswer('q3-6', '4')">4 gullible</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 impartial</span><br>
+        【文脈】裁判官は最終判決を下す前に、証拠に対する<strong>公平な（偏りのない）</strong>評価を求めた。<br>
+        <div class="vocab-list">
+          ・1 hostile: 敵意のある<br>・2 impartial: 公平な、不偏不党の<br>・3 rigid: 頑固な<br>・4 gullible: 騙されやすい
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q3-7">
+      <div class="question-title">(7) Forensic scientists conducted a ( ) analysis of the crime scene to gather tiny fibers.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q3-7', '1')">1 cursory</button>
+        <button class="option-btn" onclick="checkAnswer('q3-7', '2')">2 hasty</button>
+        <button class="option-btn" onclick="checkAnswer('q3-7', '3')">3 meticulous</button>
+        <button class="option-btn" onclick="checkAnswer('q3-7', '4')">4 superficial</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 3 meticulous</span><br>
+        【文脈】科捜研の科学者らは微細な繊維を収集するため、現場の<strong>精密な（細部まで慎重な）</strong>分析を行った。<br>
+        <div class="vocab-list">
+          ・1 cursory: 大雑把な<br>・2 hasty: 焦った<br>・3 meticulous: 精密な、きわめて慎重な<br>・4 superficial: 表面的な
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q3-8">
+      <div class="question-title">(8) Economists warned that the government's proposal could cause a ( ) fall in consumer spending.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q3-8', '1')">1 drastic</button>
+        <button class="option-btn" onclick="checkAnswer('q3-8', '2')">2 negligible</button>
+        <button class="option-btn" onclick="checkAnswer('q3-8', '3')">3 trivial</button>
+        <button class="option-btn" onclick="checkAnswer('q3-8', '4')">4 transient</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 drastic</span><br>
+        【文脈】経済学者は政府の提案が個人消費の<strong>急激な（思い切った）</strong>落ち込みを招く可能性があると警告した。<br>
+        <div class="vocab-list">
+          ・1 drastic: 急激な、極端な<br>・2 negligible: 無視できるほどの<br>・3 trivial: ささいな<br>・4 transient: 一時的な
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q3-9">
+      <div class="question-title">(9) Before approving the budget, the committee considered whether the project was financially ( ).</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q3-9', '1')">1 hazardous</button>
+        <button class="option-btn" onclick="checkAnswer('q3-9', '2')">2 incompatible</button>
+        <button class="option-btn" onclick="checkAnswer('q3-9', '3')">3 feasible</button>
+        <button class="option-btn" onclick="checkAnswer('q3-9', '4')">4 detrimental</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 3 feasible</span><br>
+        【文脈】予算承認の前に、委員会はそのプロジェクトが財政的に<strong>実現可能か（実行可能か）</strong>を検討した。<br>
+        <div class="vocab-list">
+          ・1 hazardous: 危険な<br>・2 incompatible: 不適合な<br>・3 feasible: 実現可能な<br>・4 detrimental: 有害な
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q3-10">
+      <div class="question-title">(10) The suspect remained ( ) for months, dodging law enforcement by changing disguises.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q3-10', '1')">1 elusive</button>
+        <button class="option-btn" onclick="checkAnswer('q3-10', '2')">2 sturdy</button>
+        <button class="option-btn" onclick="checkAnswer('q3-10', '3')">3 vivid</button>
+        <button class="option-btn" onclick="checkAnswer('q3-10', '4')">4 cordial</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 elusive</span><br>
+        【文脈】容疑者は変装を変えて捜査の手をすり抜け、何ヶ月も<strong>捕まらない（神出鬼没の）</strong>ままであった。<br>
+        <div class="vocab-list">
+          ・1 elusive: 捕まえにくい、逃げやすい<br>・2 sturdy: 頑丈な<br>・3 vivid: 鮮明な<br>・4 cordial: 心からの
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q3-11">
+      <div class="question-title">(11) Top athletes know they cannot afford to become ( ) even after winning an international title.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q3-11', '1')">1 apprehensive</button>
+        <button class="option-btn" onclick="checkAnswer('q3-11', '2')">2 complacent</button>
+        <button class="option-btn" onclick="checkAnswer('q3-11', '3')">3 stern</button>
+        <button class="option-btn" onclick="checkAnswer('q3-11', '4')">4 vulnerable</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 complacent</span><br>
+        【文脈】一流選手たちは世界タイトルを獲得した後であっても、油断して<strong>自己満足に陥る（悦に入る）</strong>わけにはいかないと分かっている。<br>
+        <div class="vocab-list">
+          ・1 apprehensive: 不安な<br>・2 complacent: 自己満足した、油断した<br>・3 stern: 厳しい<br>・4 vulnerable: 脆弱な
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q3-12">
+      <div class="question-title">(12) High tuition fees and living costs can ( ) bright students from pursuing higher education.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q3-12', '1')">1 foster</button>
+        <button class="option-btn" onclick="checkAnswer('q3-12', '2')">2 subsidize</button>
+        <button class="option-btn" onclick="checkAnswer('q3-12', '3')">3 deter</button>
+        <button class="option-btn" onclick="checkAnswer('q3-12', '4')">4 compensate</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 3 deter</span><br>
+        【文脈】高額な授業料や生活費は、優秀な学生が進学を<strong>思いとどまる（躊躇する）</strong>原因となり得る。<br>
+        <div class="vocab-list">
+          ・1 foster: 育む<br>・2 subsidize: 補助金を出す<br>・3 deter: 思いとどまらせる、妨げる<br>・4 compensate: 補償する
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q3-13">
+      <div class="question-title">(13) The lecturer presented a ( ) overview of quantum physics, answering student questions clearly.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q3-13', '1')">1 coherent</button>
+        <button class="option-btn" onclick="checkAnswer('q3-13', '2')">2 opaque</button>
+        <button class="option-btn" onclick="checkAnswer('q3-13', '3')">3 tedious</button>
+        <button class="option-btn" onclick="checkAnswer('q3-13', '4')">4 vague</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 coherent</span><br>
+        【文脈】講師は量子力学について<strong>筋の通った（論理的な）</strong>概観を示し、質問に分かりやすく答えた。<br>
+        <div class="vocab-list">
+          ・1 coherent: 筋の通った、論理的な<br>・2 opaque: 不透明な<br>・3 tedious: 退屈な<br>・4 vague: 漠然とした
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q3-14">
+      <div class="question-title">(14) The wealthy businessman was known for his ( ) donations to healthcare research facilities.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q3-14', '1')">1 hostile</button>
+        <button class="option-btn" onclick="checkAnswer('q3-14', '2')">2 benevolent</button>
+        <button class="option-btn" onclick="checkAnswer('q3-14', '3')">3 stern</button>
+        <button class="option-btn" onclick="checkAnswer('q3-14', '4')">4 arrogant</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 benevolent</span><br>
+        【文脈】その裕福な実業家は、医療研究機関への<strong>慈悲深い（好意的な）</strong>寄付で知られていた。<br>
+        <div class="vocab-list">
+          ・1 hostile: 敵意のある<br>・2 benevolent: 慈悲深い、好意的な<br>・3 stern: 厳格な<br>・4 arrogant: 傲慢な
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q3-15">
+      <div class="question-title">(15) After failing her driving test three times, Lisa decided to ( ) her attempt to get a license.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q3-15', '1')">1 fall back on</button>
+        <button class="option-btn" onclick="checkAnswer('q3-15', '2')">2 hold back</button>
+        <button class="option-btn" onclick="checkAnswer('q3-15', '3')">3 bring up</button>
+        <button class="option-btn" onclick="checkAnswer('q3-15', '4')">4 give up on</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 4 give up on</span><br>
+        【文脈】免許試験に3回落ちた後、リサは免許取得の試みを<strong>諦める（見限る）</strong>ことにした。<br>
+        <div class="vocab-list">
+          ・1 fall back on: 頼る<br>・2 hold back: 抑える<br>・3 bring up: 持ち出す<br>・4 give up on: 諦める、見限る
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q3-16">
+      <div class="question-title">(16) When negotiations failed, both companies had to ( ) their original contract conditions.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q3-16', '1')">1 fall back on</button>
+        <button class="option-btn" onclick="checkAnswer('q3-16', '2')">2 look down on</button>
+        <button class="option-btn" onclick="checkAnswer('q3-16', '3')">3 cut down on</button>
+        <button class="option-btn" onclick="checkAnswer('q3-16', '4')">4 get away with</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 fall back on</span><br>
+        【文脈】交渉が決裂した際、両社は元の契約条件に<strong>頼る（立ち返る）</strong>しかなかった。<br>
+        <div class="vocab-list">
+          ・1 fall back on: 頼る、あてにする<br>・2 look down on: 軽蔑する<br>・3 cut down on: 削減する<br>・4 get away with: うまく逃れる
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q3-17">
+      <div class="question-title">(17) The emotional speaker tried hard to ( ) his tears while remembering his deceased friend.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q3-17', '1')">1 step in</button>
+        <button class="option-btn" onclick="checkAnswer('q3-17', '2')">2 phase out</button>
+        <button class="option-btn" onclick="checkAnswer('q3-17', '3')">3 hold back</button>
+        <button class="option-btn" onclick="checkAnswer('q3-17', '4')">4 brush off</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 3 hold back</span><br>
+        【文脈】感極まった話し手は、亡き友を思い出しながら涙を<strong>堪える（抑える）</strong>のに苦労した。<br>
+        <div class="vocab-list">
+          ・1 step in: 割って入る<br>・2 phase out: 段階的に廃止する<br>・3 hold back: 抑える、堪える<br>・4 brush off: 無視する
+        </div>
+      </div>
+    </div>
+
+    <div class="question-card" id="q3-18">
+      <div class="question-title">(18) During the quarterly strategy meeting, the project manager decided to ( ) the issue of employee burnout.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q3-18', '1')">1 call off</button>
+        <button class="option-btn" onclick="checkAnswer('q3-18', '2')">2 bring up</button>
+        <button class="option-btn" onclick="checkAnswer('q3-18', '3')">3 set back</button>
+        <button class="option-btn" onclick="checkAnswer('q3-18', '4')">4 do away with</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 bring up</span><br>
+        【文脈】戦略会議にて、プロジェクトマネージャーは従業員のバーンアウト問題を<strong>話題に挙げる（提起する）</strong>ことにした。<br>
+        <div class="vocab-list">
+          ・1 call off: 中止する<br>・2 bring up: 話題に挙げる、提起する<br>・3 set back: 延期させる<br>・4 do away with: 廃止する
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  let currentZoom = 100;
+
+  function changeZoom(delta) {
+    currentZoom = Math.min(Math.max(70, currentZoom + delta), 130);
+    document.getElementById('zoom-val').innerText = currentZoom + '%';
+    document.getElementById('main-container').style.transform = `scale(${currentZoom / 100})`;
+  }
+
+  function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+      tabcontent[i].classList.remove("active");
+    }
+    tablinks = document.getElementsByClassName("tab-btn");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].classList.remove("active");
+    }
+    document.getElementById(tabName).style.display = "block";
+    document.getElementById(tabName).classList.add("active");
+    evt.currentTarget.classList.add("active");
+  }
+
+  function checkAnswer(questionId, selectedNumber) {
+    const card = document.getElementById(questionId);
+    const buttons = card.querySelectorAll('.option-btn');
+    const explanation = card.querySelector('.explanation');
+    
+    const correctMatch = explanation.innerHTML.match(/正解:\s*([1-4])/);
+    if (!correctMatch) return;
+    const correctNumber = correctMatch[1];
+
+    buttons.forEach(btn => {
+      btn.disabled = true;
+      const btnText = btn.innerText.trim();
+      
+      if (btnText.startsWith(`${correctNumber} `)) {
+        btn.classList.add('correct');
+      }
+      if (btnText.startsWith(`${selectedNumber} `) && selectedNumber !== correctNumber) {
+        btn.classList.add('incorrect');
+      }
+    });
+
+    explanation.style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
