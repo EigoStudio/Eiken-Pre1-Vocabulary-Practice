@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>英検準1級 大問1 予想問題 #7 (Day 19 - Day 21)</title>
+<script src="auth.js"></script>
+<style>
+  :root {
+    --primary-color: #1a365d;
+    --secondary-color: #2b6cb0;
+    --bg-color: #f7fafc;
+    --card-bg: #ffffff;
+    --text-color: #2d3748;
+    --border-color: #e2e8f0;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 20px;
+  }
+
+  .control-panel {
+    max-width: 900px;
+    margin: 0 auto 15px auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: #edf2f7;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+  }
+
+  .zoom-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #4a5568;
+  }
+
+  .zoom-btn {
+    background: white;
+    border: 1px solid #cbd5e0;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .zoom-btn:hover { background: #e2e8f0; }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transform-origin: top center;
+    transition: transform 0.2s ease;
+  }
+
+  .tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--border-color);
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    flex: 1;
+    min-width: 100px;
+    padding: 12px 8px;
+    background: #edf2f7;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: #4a5568;
+    border-radius: 8px 8px 0 0;
+    transition: all 0.2s ease;
+    text-align: center;
+  }
+
+  .tab-btn:hover { background: #e2e8f0; }
+  .tab-btn.active { background: var(--secondary-color); color: white; }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .day-header {
+    border-bottom: 3px solid var(--secondary-color);
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+  }
+
+  .day-header h2 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .day-header .subtitle {
+    text-align: center;
+    color: #4a5568;
+    font-size: 0.9rem;
+    margin-top: 4px;
+  }
+
+  .question-card {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-left: 5px solid var(--secondary-color);
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 22px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  }
+
+  .question-title {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--primary-color);
+    margin-bottom: 12px;
+  }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .option-btn {
+    background: #f8fafc;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    padding: 10px 14px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    transition: all 0.2s ease;
+  }
+
+  .option-btn:hover { background: #ebf8ff; border-color: var(--secondary-color); }
+  .option-btn.correct { background-color: #c6f6d5 !important; border-color: #38a169 !important; color: #22543d; font-weight: bold; }
+  .option-btn.incorrect { background-color: #fed7d7 !important; border-color: #e53e3e !important; color: #742a2a; }
+
+  .explanation {
+    display: none;
+    margin-top: 15px;
+    padding: 14px;
+    background-color: #ebf8ff;
+    border-radius: 6px;
+    font-size: 0.92rem;
+    border-left: 4px solid var(--secondary-color);
+  }
+
+  .explanation span.label { font-weight: bold; color: var(--primary-color); font-size: 0.98rem; }
+  .vocab-list { margin-top: 10px; font-size: 0.88rem; color: #2d3748; background: rgba(255, 255, 255, 0.85); padding: 10px 14px; border-radius: 4px; line-height: 1.6; border: 1px solid #e2e8f0; }
+
+  /* 🖨 印刷時（改ページ設定） */
+  @media print {
+    body { background-color: white !important; padding: 0 !important; color: black !important; }
+    .control-panel, .tabs { display: none !important; }
+    .container { box-shadow: none !important; padding: 0 !important; max-width: 100% !important; transform: none !important; }
+
+    .tab-content {
+      display: block !important;
+      page-break-before: always !important;
+      break-before: page !important;
+    }
+
+    .tab-content:first-of-type {
+      page-break-before: avoid !important;
+      break-before: auto !important;
+    }
+
+    .day-header h2 { font-size: 1.3rem !important; }
+    .question-card { border: none !important; border-bottom: 1px solid #ddd !important; padding: 6px 0 !important; margin-bottom: 6px !important; page-break-inside: avoid; }
+    .question-title { color: black !important; font-size: 0.92rem !important; margin-bottom: 4px !important; }
+    .options-grid { display: flex !important; flex-wrap: wrap !important; gap: 15px !important; margin-top: 2px !important; }
+    .option-btn { background: none !important; border: none !important; padding: 0 !important; font-size: 0.9rem !important; color: black !important; display: inline-block !important; }
+    .explanation { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="control-panel">
+  <div class="zoom-controls">
+    <span>表示サイズ:</span>
+    <button class="zoom-btn" onclick="changeZoom(-10)">-</button>
+    <span id="zoom-val">100%</span>
+    <button class="zoom-btn" onclick="changeZoom(10)">+</button>
+  </div>
+</div>
+
+<div class="container" id="main-container">
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="openTab(event, 'day19')">Day 19</button>
+    <button class="tab-btn" onclick="openTab(event, 'day20')">Day 20</button>
+    <button class="tab-btn" onclick="openTab(event, 'day21')">Day 21</button>
+  </div>
+
+  <!-- DAY 19 -->
+  <div id="day19" class="tab-content active">
+    <div class="day-header">
+      <h2>英検準1級 大問1 予想問題 #7 Day19</h2>
+      <div class="subtitle">【短文の語句空所補充問題】 (1問〜18問)</div>
+    </div>
+
+    <div class="question-card" id="q19-1">
+      <div class="question-title">(1) Because of severe traffic congestion in the city center, many office workers prefer to ( ) by train rather than drive.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q19-1', '1')">1 commute</button>
+        <button class="option-btn" onclick="checkAnswer('q19-1', '2')">2 compound</button>
+        <button class="option-btn" onclick="checkAnswer('q19-1', '3')">3 conflict</button>
+        <button class="option-btn" onclick="checkAnswer('q19-1', '4')">4 critic</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 commute</span><br>
+        【文脈】都心部の深刻な交通渋滞のため、多くの会社員は車よりも電車での<strong>通勤</strong>を好む。<br>
+        <div class="vocab-list">
+          ・1 commute: 通勤<br>・2 compound: 化合物<br>・3 conflict: 対立<br>・4 critic: 評論家
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q19-2">
+      <div class="question-title">(2) The aerospace company plans to ( ) a new communication satellite into orbit next month to expand internet coverage.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q19-2', '1')">1 address</button>
+        <button class="option-btn" onclick="checkAnswer('q19-2', '2')">2 launch</button>
+        <button class="option-btn" onclick="checkAnswer('q19-2', '3')">3 consume</button>
+        <button class="option-btn" onclick="checkAnswer('q19-2', '4')">4 assume</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 launch</span><br>
+        【文脈】その航空宇宙企業は、インターネットの通信範囲を拡大するために来月新しい通信衛星を軌道に<strong>打ち上げる（開始する）</strong>計画だ。<br>
+        <div class="vocab-list">
+          ・1 address: 〜に取り組む<br>・2 launch: 〜に着手する、打ち上げる<br>・3 consume: 〜を消費する<br>・4 assume: 〜だと想定する
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q19-3">
+      <div class="question-title">(3) Recent breakthroughs in ( ) research have enabled doctors to identify inherited diseases before symptoms even appear.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q19-3', '1')">1 genetic</button>
+        <button class="option-btn" onclick="checkAnswer('q19-3', '2')">2 stable</button>
+        <button class="option-btn" onclick="checkAnswer('q19-3', '3')">3 lunar</button>
+        <button class="option-btn" onclick="checkAnswer('q19-3', '4')">4 exhausted</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 genetic</span><br>
+        【文脈】<strong>遺伝子の</strong>研究における最近の飛躍的進展により、医師は症状が現れる前に遺伝性疾患を特定できるようになった。<br>
+        <div class="vocab-list">
+          ・1 genetic: 遺伝子の<br>・2 stable: 安定した<br>・3 lunar: 月の<br>・4 exhausted: 疲れ切った
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q19-4">
+      <div class="question-title">(4) The country is rich in natural ( ) such as oil, coal, and natural gas.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q19-4', '1')">1 reminder</button>
+        <button class="option-btn" onclick="checkAnswer('q19-4', '2')">2 resource</button>
+        <button class="option-btn" onclick="checkAnswer('q19-4', '3')">3 retailer</button>
+        <button class="option-btn" onclick="checkAnswer('q19-4', '4')">4 resident</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 resource</span><br>
+        【文脈】その国は石油、石炭、天然ガスなどの天然<strong>資源</strong>に恵まれている。<br>
+        <div class="vocab-list">
+          ・1 reminder: 思い出させる物<br>・2 resource: 資源<br>・3 retailer: 小売業者<br>・4 resident: 住民
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q19-5">
+      <div class="question-title">(5) Although the new policy was intended to boost small businesses, an unintended ( ) was a sharp rise in consumer prices.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q19-5', '1')">1 consequence</button>
+        <button class="option-btn" onclick="checkAnswer('q19-5', '2')">2 circumstance</button>
+        <button class="option-btn" onclick="checkAnswer('q19-5', '3')">3 capacity</button>
+        <button class="option-btn" onclick="checkAnswer('q19-5', '4')">4 capital</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 consequence</span><br>
+        【文脈】新しい政策は中小企業を活性化することを意図していたが、意図せざる<strong>結果（結末）</strong>として消費者物価の急騰を招いた。<br>
+        <div class="vocab-list">
+          ・1 consequence: 結果<br>・2 circumstance: 状況<br>・3 capacity: 収容能力<br>・4 capital: 資本
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q19-6">
+      <div class="question-title">(6) Even after receiving multiple warnings from the board, the manager remained ( ) that his risky investment strategy would succeed.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q19-6', '1')">1 behavioral</button>
+        <button class="option-btn" onclick="checkAnswer('q19-6', '2')">2 illogical</button>
+        <button class="option-btn" onclick="checkAnswer('q19-6', '3')">3 insistent</button>
+        <button class="option-btn" onclick="checkAnswer('q19-6', '4')">4 forthcoming</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 3 insistent</span><br>
+        【文脈】取締役会から何度も警告を受けた後も、そのマネージャーは自分の危険な投資戦略が成功すると<strong>しつこい（強く主張し続ける）</strong>態度を崩さなかった。<br>
+        <div class="vocab-list">
+          ・1 behavioral: 行動の<br>・2 illogical: 非論理的な<br>・3 insistent: しつこい、強く主張する<br>・4 forthcoming: 今度の
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q19-7">
+      <div class="question-title">(7) When signing a lease for a new apartment, tenants are usually required to pay a security ( ) equal to one month's rent.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q19-7', '1')">1 debt</button>
+        <button class="option-btn" onclick="checkAnswer('q19-7', '2')">2 edge</button>
+        <button class="option-btn" onclick="checkAnswer('q19-7', '3')">3 decade</button>
+        <button class="option-btn" onclick="checkAnswer('q19-7', '4')">4 deposit</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 4 deposit</span><br>
+        【文脈】新しいアパートの賃貸契約を結ぶ際、借主は通常1ヶ月分の家賃に相当する敷金（<strong>頭金・預かり金</strong>）を支払う必要がある。<br>
+        <div class="vocab-list">
+          ・1 debt: 借金<br>・2 edge: 優位<br>・3 decade: 10年間<br>・4 deposit: 頭金、預かり金
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q19-8">
+      <div class="question-title">(8) Although the witness appeared confident on the stand, his testimony was ( ) contradicted by security camera footage.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q19-8', '1')">1 apparently</button>
+        <button class="option-btn" onclick="checkAnswer('q19-8', '2')">2 approximately</button>
+        <button class="option-btn" onclick="checkAnswer('q19-8', '3')">3 annually</button>
+        <button class="option-btn" onclick="checkAnswer('q19-8', '4')">4 abruptly</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 apparently</span><br>
+        【文脈】目撃者は証言台で自信満々に見えたが、<strong>どうやら（見たところ）</strong>彼の証言は防犯カメラの映像と矛盾していたようだ。<br>
+        <div class="vocab-list">
+          ・1 apparently: どうやら<br>・2 approximately: 約<br>・3 annually: 毎年<br>・4 abruptly: 突然に
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q19-9">
+      <div class="question-title">(9) Economists warned that a sudden spike in global oil prices could ( ) widespread inflation across both developed and developing nations.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q19-9', '1')">1 trigger</button>
+        <button class="option-btn" onclick="checkAnswer('q19-9', '2')">2 decline</button>
+        <button class="option-btn" onclick="checkAnswer('q19-9', '3')">3 assess</button>
+        <button class="option-btn" onclick="checkAnswer('q19-9', '4')">4 intrude</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 trigger</span><br>
+        【文脈】経済学者たちは、世界の原油価格の急騰が先進国と発展途上国の双方で広範なインフレを<strong>引き起こす</strong>可能性があると警告した。<br>
+        <div class="vocab-list">
+          ・1 trigger: 〜を引き起こす<br>・2 decline: 減少する<br>・3 assess: 〜を評価する<br>・4 intrude: 邪魔をする
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q19-10">
+      <div class="question-title">(10) Because of a severe shortage of skilled workers, the manufacturing ( ) has struggled to meet rising global demand.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q19-10', '1')">1 sector</button>
+        <button class="option-btn" onclick="checkAnswer('q19-10', '2')">2 solution</button>
+        <button class="option-btn" onclick="checkAnswer('q19-10', '3')">3 source</button>
+        <button class="option-btn" onclick="checkAnswer('q19-10', '4')">4 representative</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 sector</span><br>
+        【文脈】熟練労働者の深刻な不足のため、製造<strong>部門</strong>は高まる世界需要に応えるのに苦労している。<br>
+        <div class="vocab-list">
+          ・1 sector: 部門<br>・2 solution: 解決策<br>・3 source: 源<br>・4 representative: 代表者
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q19-11">
+      <div class="question-title">(11) After reviewing the safety audit, the director concluded that the current security measures were not ( ) for protecting sensitive data.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q19-11', '1')">1 appropriate</button>
+        <button class="option-btn" onclick="checkAnswer('q19-11', '2')">2 aggressive</button>
+        <button class="option-btn" onclick="checkAnswer('q19-11', '3')">3 intact</button>
+        <button class="option-btn" onclick="checkAnswer('q19-11', '4')">4 conventional</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 appropriate</span><br>
+        【文脈】安全監査を精査した後、部長は現在のセキュリティ対策が機密データを保護するのに<strong>適切な</strong>ものではないと結論づけた。<br>
+        <div class="vocab-list">
+          ・1 appropriate: 適切な<br>・2 aggressive: 攻撃的な<br>・3 intact: 無傷の<br>・4 conventional: 従来の
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q19-12">
+      <div class="question-title">(12) Every dedicated environmental ( ) outside parliament demanded stricter laws against industrial water pollution.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q19-12', '1')">1 activist</button>
+        <button class="option-btn" onclick="checkAnswer('q19-12', '2')">2 administration</button>
+        <button class="option-btn" onclick="checkAnswer('q19-12', '3')">3 alternative</button>
+        <button class="option-btn" onclick="checkAnswer('q19-12', '4')">4 herd</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 activist</span><br>
+        【文脈】議会の外に集まったすべての熱心な環境<strong>活動家</strong>は、産業水質汚染に対するより厳しい法律を要求した。<br>
+        <div class="vocab-list">
+          ・1 activist: 活動家<br>・2 administration: 管理、政権<br>・3 alternative: 代替案<br>・4 herd: 群れ
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q19-13">
+      <div class="question-title">(13) To accommodate the growing student population, the university plans to ( ) its main science laboratory next year.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q19-13', '1')">1 underestimate</button>
+        <button class="option-btn" onclick="checkAnswer('q19-13', '2')">2 waver</button>
+        <button class="option-btn" onclick="checkAnswer('q19-13', '3')">3 dislocate</button>
+        <button class="option-btn" onclick="checkAnswer('q19-13', '4')">4 expand</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 4 expand</span><br>
+        【文脈】増加する学生数に対応するため、大学は来年メインの科学実験室を<strong>拡大する（拡張する）</strong>計画だ。<br>
+        <div class="vocab-list">
+          ・1 underestimate: 〜を過小評価する<br>・2 waver: 迷う<br>・3 dislocate: 〜を脱臼する<br>・4 expand: 〜を拡大する
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q19-14">
+      <div class="question-title">(14) The rapid acceleration of ( ) has become a major concern for climate scientists studying melting polar ice caps.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q19-14', '1')">1 global warming</button>
+        <button class="option-btn" onclick="checkAnswer('q19-14', '2')">2 physics</button>
+        <button class="option-btn" onclick="checkAnswer('q19-14', '3')">3 advertising</button>
+        <button class="option-btn" onclick="checkAnswer('q19-14', '4')">4 materialism</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 global warming</span><br>
+        【文脈】<strong>地球温暖化</strong>の急速な加速は、極地の氷冠の融解を研究する気候科学者にとって大きな懸念となっている。<br>
+        <div class="vocab-list">
+          ・1 global warming: 地球温暖化<br>・2 physics: 物理学<br>・3 advertising: 広告<br>・4 materialism: 物質主義
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q19-15">
+      <div class="question-title">(15) Because the eyewitness provided clear, consistent details that matched physical evidence, the jury found her account completely ( ).</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q19-15', '1')">1 credible</button>
+        <button class="option-btn" onclick="checkAnswer('q19-15', '2')">2 corrupt</button>
+        <button class="option-btn" onclick="checkAnswer('q19-15', '3')">3 countless</button>
+        <button class="option-btn" onclick="checkAnswer('q19-15', '4')">4 clumsy</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 credible</span><br>
+        【文脈】目撃者が物的証拠と一致する明確で一貫した詳細を提供したため、陪審員は彼女の証言が完全に<strong>信用できる</strong>と判断した。<br>
+        <div class="vocab-list">
+          ・1 credible: 信用できる<br>・2 corrupt: 堕落した<br>・3 countless: 数え切れない<br>・4 clumsy: 不器用な
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q19-16">
+      <div class="question-title">(16) Following a series of product recalls, the automaker worked hard to rebuild its damaged ( ) among consumers.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q19-16', '1')">1 reputation</button>
+        <button class="option-btn" onclick="checkAnswer('q19-16', '2')">2 requirement</button>
+        <button class="option-btn" onclick="checkAnswer('q19-16', '3')">3 reserve</button>
+        <button class="option-btn" onclick="checkAnswer('q19-16', '4')">4 registration</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 reputation</span><br>
+        【文脈】相次ぐ製品リコールの後、その自動車メーカーは消費者の間で損なわれた<strong>評判</strong>を再建するために懸命に働いた。<br>
+        <div class="vocab-list">
+          ・1 reputation: 評判<br>・2 requirement: 必要条件<br>・3 reserve: 蓄え<br>・4 registration: 登録
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q19-17">
+      <div class="question-title">(17) The hospital is seeking experienced specialists to ( ) its newly established emergency trauma department.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q19-17', '1')">1 indicate</button>
+        <button class="option-btn" onclick="checkAnswer('q19-17', '2')">2 administer</button>
+        <button class="option-btn" onclick="checkAnswer('q19-17', '3')">3 invest</button>
+        <button class="option-btn" onclick="checkAnswer('q19-17', '4')">4 liberate</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 administer</span><br>
+        【文脈】その病院は、新設された救急外傷部門を<strong>管理する（運営する）</strong>経験豊富な専門家を募集している。<br>
+        <div class="vocab-list">
+          ・1 indicate: 〜を示す<br>・2 administer: 〜を管理する<br>・3 invest: 投資する<br>・4 liberate: 〜を解放する
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q19-18">
+      <div class="question-title">(18) Even a small mistake in calculating structural loads can lead to an ( ) increase in construction costs later on.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q19-18', '1')">1 chronic</button>
+        <button class="option-btn" onclick="checkAnswer('q19-18', '2')">2 bleak</button>
+        <button class="option-btn" onclick="checkAnswer('q19-18', '3')">3 enormous</button>
+        <button class="option-btn" onclick="checkAnswer('q19-18', '4')">4 edible</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 3 enormous</span><br>
+        【文脈】構造荷重の計算におけるほんの小さなミスでも、後に建設費の<strong>巨大な（莫大な）</strong>増加につながる可能性がある。<br>
+        <div class="vocab-list">
+          ・1 chronic: 慢性の<br>・2 bleak: 暗い<br>・3 enormous: 巨大な<br>・4 edible: 食用の
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- DAY 20 -->
+  <div id="day20" class="tab-content">
+    <div class="day-header">
+      <h2>英検準1級 大問1 予想問題 #7 Day20</h2>
+      <div class="subtitle">【短文の語句空所補充問題】 (1問〜18問)</div>
+    </div>
+
+    <div class="question-card" id="q20-1">
+      <div class="question-title">(1) Before purchasing a house, buyers should hire a certified inspector to examine the ( ) for any hidden structural damage.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q20-1', '1')">1 component</button>
+        <button class="option-btn" onclick="checkAnswer('q20-1', '2')">2 pollution</button>
+        <button class="option-btn" onclick="checkAnswer('q20-1', '3')">3 promotion</button>
+        <button class="option-btn" onclick="checkAnswer('q20-1', '4')">4 property</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 4 property</span><br>
+        【文脈】住宅を購入する前に、買い手は隠れた構造上の損傷がないかその<strong>財産（不動産・物件）</strong>を調査するため認定検査員を雇うべきである。<br>
+        <div class="vocab-list">
+          ・1 component: 成分<br>・2 pollution: 汚染<br>・3 promotion: 昇進<br>・4 property: 財産、不動産
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q20-2">
+      <div class="question-title">(2) The new solar panels installed on the factory roof are designed to ( ) clean electricity even on cloudy days.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q20-2', '1')">1 generate</button>
+        <button class="option-btn" onclick="checkAnswer('q20-2', '2')">2 stray</button>
+        <button class="option-btn" onclick="checkAnswer('q20-2', '3')">3 prohibit</button>
+        <button class="option-btn" onclick="checkAnswer('q20-2', '4')">4 plunge</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 generate</span><br>
+        【文脈】工場の屋根に設置された新しいソーラーパネルは、曇りの日でもクリーンな電力を<strong>生み出す（発電する）</strong>ように設計されている。<br>
+        <div class="vocab-list">
+          ・1 generate: 〜を生み出す<br>・2 stray: 迷い出る<br>・3 prohibit: 〜を禁止する<br>・4 plunge: 飛び込む
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q20-3">
+      <div class="question-title">(3) Although the newly discovered mineral has ( ) applications in battery manufacturing, further testing is still required.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q20-3', '1')">1 pathetic</button>
+        <button class="option-btn" onclick="checkAnswer('q20-3', '2')">2 precarious</button>
+        <button class="option-btn" onclick="checkAnswer('q20-3', '3')">3 potential</button>
+        <button class="option-btn" onclick="checkAnswer('q20-3', '4')">4 preliminary</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 3 potential</span><br>
+        【文脈】新しく発見されたその鉱物はバッテリー製造において<strong>潜在的な</strong>用途があるものの、さらなる試験が依然として必要である。<br>
+        <div class="vocab-list">
+          ・1 pathetic: 情けない<br>・2 precarious: 危険な<br>・3 potential: 潜在的な<br>・4 preliminary: 予備的な
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q20-4">
+      <div class="question-title">(4) To ensure fair elections, international observers closely monitored the voting process and the counting of every ( ).</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q20-4', '1')">1 ballot</button>
+        <button class="option-btn" onclick="checkAnswer('q20-4', '2')">2 beam</button>
+        <button class="option-btn" onclick="checkAnswer('q20-4', '3')">3 purchase</button>
+        <button class="option-btn" onclick="checkAnswer('q20-4', '4')">4 blunder</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 ballot</span><br>
+        【文脈】公正な選挙を確実にするため、国際監視団は投票プロセスとすべての<strong>投票（投票用紙）</strong>の開票作業を注意深く監視した。<br>
+        <div class="vocab-list">
+          ・1 ballot: 投票<br>・2 beam: 梁<br>・3 purchase: 購入<br>・4 blunder: 大失敗
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q20-5">
+      <div class="question-title">(5) Independent auditors warned that the actual cost of building the new stadium would significantly ( ) the original budget.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q20-5', '1')">1 exceed</button>
+        <button class="option-btn" onclick="checkAnswer('q20-5', '2')">2 accumulate</button>
+        <button class="option-btn" onclick="checkAnswer('q20-5', '3')">3 emphasize</button>
+        <button class="option-btn" onclick="checkAnswer('q20-5', '4')">4 capsize</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 exceed</span><br>
+        【文脈】独立監査人は、新しいスタジアムの実際の建設費が当初の予算を大幅に<strong>超える</strong>だろうと警告した。<br>
+        <div class="vocab-list">
+          ・1 exceed: 〜を超える<br>・2 accumulate: 〜をためる<br>・3 emphasize: 〜を強調する<br>・4 capsize: 転覆する
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q20-6">
+      <div class="question-title">(6) Because of an ( ) power outage in the downtown district, several subway lines were temporarily suspended.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q20-6', '1')">1 unexpected</button>
+        <button class="option-btn" onclick="checkAnswer('q20-6', '2')">2 exotic</button>
+        <button class="option-btn" onclick="checkAnswer('q20-6', '3')">3 conclusive</button>
+        <button class="option-btn" onclick="checkAnswer('q20-6', '4')">4 subsequent</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 unexpected</span><br>
+        【文脈】繁華街での<strong>思いがけない（予期せぬ）</strong>停電のため、いくつかの地下鉄路線が一時運休となった。<br>
+        <div class="vocab-list">
+          ・1 unexpected: 思いがけない<br>・2 exotic: 外来の<br>・3 conclusive: 決定的な<br>・4 subsequent: その後の
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q20-7">
+      <div class="question-title">(7) Severe droughts have devastated local crops and forced farmers to sell off their ( ) due to a lack of feed.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q20-7', '1')">1 luxury</button>
+        <button class="option-btn" onclick="checkAnswer('q20-7', '2')">2 livelihood</button>
+        <button class="option-btn" onclick="checkAnswer('q20-7', '3')">3 leftover</button>
+        <button class="option-btn" onclick="checkAnswer('q20-7', '4')">4 livestock</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 4 livestock</span><br>
+        【文脈】深刻な干ばつにより地元の作物が壊滅的な被害を受け、農家は飼料不足のため<strong>家畜</strong>を売却せざるを得なくなった。<br>
+        <div class="vocab-list">
+          ・1 luxury: ぜいたくさ<br>・2 livelihood: 生計<br>・3 leftover: 残り物<br>・4 livestock: 家畜
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q20-8">
+      <div class="question-title">(8) The new public transit system is fast and affordable; ( ), it significantly reduces carbon emissions in the city.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q20-8', '1')">1 furthermore</button>
+        <button class="option-btn" onclick="checkAnswer('q20-8', '2')">2 barely</button>
+        <button class="option-btn" onclick="checkAnswer('q20-8', '3')">3 initially</button>
+        <button class="option-btn" onclick="checkAnswer('q20-8', '4')">4 literally</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 furthermore</span><br>
+        【文脈】新しい公共交通機関は速くて手頃な価格である。<strong>その上</strong>、市内の二酸化炭素排出量を大幅に削減する。<br>
+        <div class="vocab-list">
+          ・1 furthermore: その上<br>・2 barely: 辛うじて<br>・3 initially: 最初は<br>・4 literally: 文字通り
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q20-9">
+      <div class="question-title">(9) The defense lawyer struggled to ( ) his client's actions after surveillance video clearly showed the theft taking place.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q20-9', '1')">1 provoke</button>
+        <button class="option-btn" onclick="checkAnswer('q20-9', '2')">2 justify</button>
+        <button class="option-btn" onclick="checkAnswer('q20-9', '3')">3 convene</button>
+        <button class="option-btn" onclick="checkAnswer('q20-9', '4')">4 amplify</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 justify</span><br>
+        【文脈】防犯カメラの映像に窃盗が行われている様子がはっきりと映っていたため、弁護人は依頼人の行動を<strong>正当化する</strong>のに苦労した。<br>
+        <div class="vocab-list">
+          ・1 provoke: 〜を引き起こす<br>・2 justify: 〜を正当化する<br>・3 convene: 〜を招集する<br>・4 amplify: 〜を詳しく説明する
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q20-10">
+      <div class="question-title">(10) A sudden surge in ( ) cases among young adults has prompted health officials to launch nationwide vaccination campaigns.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q20-10', '1')">1 alert</button>
+        <button class="option-btn" onclick="checkAnswer('q20-10', '2')">2 urge</button>
+        <button class="option-btn" onclick="checkAnswer('q20-10', '3')">3 virus</button>
+        <button class="option-btn" onclick="checkAnswer('q20-10', '4')">4 discipline</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 3 virus</span><br>
+        【文脈】若年成人の間での<strong>ウイルス</strong>感染例（症例）の急増を受け、保健当局は全国的なワクチン接種キャンペーンを開始した。<br>
+        <div class="vocab-list">
+          ・1 alert: 警報<br>・2 urge: 衝動<br>・3 virus: ウイルス<br>・4 discipline: 規律
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q20-11">
+      <div class="question-title">(11) The museum's new wing features ( ) interactive displays that allow visitors to explore ancient cities in virtual reality.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q20-11', '1')">1 advanced</button>
+        <button class="option-btn" onclick="checkAnswer('q20-11', '2')">2 awkward</button>
+        <button class="option-btn" onclick="checkAnswer('q20-11', '3')">3 barren</button>
+        <button class="option-btn" onclick="checkAnswer('q20-11', '4')">4 cynical</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 advanced</span><br>
+        【文脈】その博物館の新館では、来館者がバーチャルリアリティで古代都市を探索できる<strong>先進の（高度な）</strong>双方向型展示が特徴となっている。<br>
+        <div class="vocab-list">
+          ・1 advanced: 先進の<br>・2 awkward: 気まずい<br>・3 barren: 不毛の<br>・4 cynical: 冷笑的な
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q20-12">
+      <div class="question-title">(12) Every volunteer selected as a clinical trial ( ) underwent a thorough medical examination before receiving the experimental vaccine.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q20-12', '1')">1 participant</button>
+        <button class="option-btn" onclick="checkAnswer('q20-12', '2')">2 predecessor</button>
+        <button class="option-btn" onclick="checkAnswer('q20-12', '3')">3 inhabitant</button>
+        <button class="option-btn" onclick="checkAnswer('q20-12', '4')">4 physician</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 participant</span><br>
+        【文脈】臨床試験の<strong>参加者</strong>として選ばれたすべてのボランティアは、実験用ワクチンを接種する前に徹底的な健康診断を受けた。<br>
+        <div class="vocab-list">
+          ・1 participant: 参加者<br>・2 predecessor: 前任者<br>・3 inhabitant: 住民<br>・4 physician: 医師
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q20-13">
+      <div class="question-title">(13) Because the new manufacturing process uses recycled materials, it will significantly ( ) the amount of industrial waste.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q20-13', '1')">1 boost</button>
+        <button class="option-btn" onclick="checkAnswer('q20-13', '2')">2 curb</button>
+        <button class="option-btn" onclick="checkAnswer('q20-13', '3')">3 alter</button>
+        <button class="option-btn" onclick="checkAnswer('q20-13', '4')">4 pacify</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 curb</span><br>
+        【文脈】新しい製造工程ではリサイクル材料を使用するため、産業廃棄物の量を大幅に<strong>抑制する（減らす）</strong>ことになる。<br>
+        <div class="vocab-list">
+          ・1 boost: 〜を増加させる<br>・2 curb: 〜を抑制する<br>・3 alter: 〜を変える<br>・4 pacify: 〜をなだめる
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q20-14">
+      <div class="question-title">(14) The wildlife sanctuary provides a secure ( ) where endangered giant pandas can breed safely away from poachers.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q20-14', '1')">1 enclosure</button>
+        <button class="option-btn" onclick="checkAnswer('q20-14', '2')">2 emission</button>
+        <button class="option-btn" onclick="checkAnswer('q20-14', '3')">3 epidemic</button>
+        <button class="option-btn" onclick="checkAnswer('q20-14', '4')">4 erosion</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 enclosure</span><br>
+        【文脈】その野生動物保護区は、絶滅危惧種のジャイアントパンダが密猟者から離れて安全に繁殖できる安全な<strong>囲い（保護区画）</strong>を提供している。<br>
+        <div class="vocab-list">
+          ・1 enclosure: 囲い<br>・2 emission: 放出<br>・3 epidemic: 流行<br>・4 erosion: 浸食
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q20-15">
+      <div class="question-title">(15) The city council's proposal to build a nuclear waste storage facility near a residential area proved highly ( ).</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q20-15', '1')">1 contagious</button>
+        <button class="option-btn" onclick="checkAnswer('q20-15', '2')">2 confidential</button>
+        <button class="option-btn" onclick="checkAnswer('q20-15', '3')">3 controversial</button>
+        <button class="option-btn" onclick="checkAnswer('q20-15', '4')">4 compulsory</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 3 controversial</span><br>
+        【文脈】住宅地の近くに核廃棄物貯蔵施設を建設するという市議会の提案は、非常に<strong>物議を醸す（議論を呼ぶ）</strong>ものとなった。<br>
+        <div class="vocab-list">
+          ・1 contagious: 伝染しやすい<br>・2 confidential: 秘密の<br>・3 controversial: 物議を醸す<br>・4 compulsory: 義務的な
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q20-16">
+      <div class="question-title">(16) In many developing countries, access to affordable public ( ) such as electricity and clean water remains a major challenge.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q20-16', '1')">1 utility</button>
+        <button class="option-btn" onclick="checkAnswer('q20-16', '2')">2 virtue</button>
+        <button class="option-btn" onclick="checkAnswer('q20-16', '3')">3 dismay</button>
+        <button class="option-btn" onclick="checkAnswer('q20-16', '4')">4 workforce</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 utility</span><br>
+        【文脈】多くの発展途上国では、電気や清潔な水などの手頃な価格の公共サービス（<strong>公共料金・公益事業</strong>）へのアクセスが依然として大きな課題となっている。<br>
+        <div class="vocab-list">
+          ・1 utility: 公共料金、公益事業<br>・2 virtue: 美徳<br>・3 dismay: 失望<br>・4 workforce: 従業員
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q20-17">
+      <div class="question-title">(17) The company decided to ( ) new energy-efficient heating systems across all its regional warehouses before winter.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q20-17', '1')">1 install</button>
+        <button class="option-btn" onclick="checkAnswer('q20-17', '2')">2 collaborate</button>
+        <button class="option-btn" onclick="checkAnswer('q20-17', '3')">3 spoil</button>
+        <button class="option-btn" onclick="checkAnswer('q20-17', '4')">4 browse</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 install</span><br>
+        【文脈】同社は冬が来る前に、すべての地域倉庫に新しい省エネ暖房システムを<strong>取りつける（設置する）</strong>ことを決定した。<br>
+        <div class="vocab-list">
+          ・1 install: 〜を取りつける<br>・2 collaborate: 共同制作する<br>・3 spoil: 腐る<br>・4 browse: ざっと目を通す
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q20-18">
+      <div class="question-title">(18) Patients who suffer from ( ) disorders often experience symptoms such as chronic migraines, tremors, or memory loss.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q20-18', '1')">1 neurological</button>
+        <button class="option-btn" onclick="checkAnswer('q20-18', '2')">2 nomadic</button>
+        <button class="option-btn" onclick="checkAnswer('q20-18', '3')">3 nutritious</button>
+        <button class="option-btn" onclick="checkAnswer('q20-18', '4')">4 naive</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 neurological</span><br>
+        【文脈】<strong>神経の（神経学的な）</strong>障害に苦しむ患者は、慢性的な偏頭痛、震え、記憶喪失などの症状を経験することが多い。<br>
+        <div class="vocab-list">
+          ・1 neurological: 神経の<br>・2 nomadic: 遊牧の<br>・3 nutritious: 栄養のある<br>・4 naive: 世間知らずの
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- DAY 21 -->
+  <div id="day21" class="tab-content">
+    <div class="day-header">
+      <h2>英検準1級 大問1 予想問題 #7 Day21</h2>
+      <div class="subtitle">【短文の語句空所補充問題】 (1問〜18問)</div>
+    </div>
+
+    <div class="question-card" id="q21-1">
+      <div class="question-title">(1) Community health centers are expanding counseling programs to help teenagers recover from severe drug ( ).</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q21-1', '1')">1 admiration</button>
+        <button class="option-btn" onclick="checkAnswer('q21-1', '2')">2 abuse</button>
+        <button class="option-btn" onclick="checkAnswer('q21-1', '3')">3 alliance</button>
+        <button class="option-btn" onclick="checkAnswer('q21-1', '4')">4 amenity</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 abuse</span><br>
+        【文脈】地域の保健センターは、10代の若者が深刻な薬物<strong>乱用</strong>から回復するのを助けるため、カウンセリングプログラムを拡大している。<br>
+        <div class="vocab-list">
+          ・1 admiration: 称賛<br>・2 abuse: 乱用<br>・3 alliance: 同盟<br>・4 amenity: 設備
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q21-2">
+      <div class="question-title">(2) The young engineer struggled at first to ( ) the complex mathematical principles behind quantum computing.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q21-2', '1')">1 grasp</button>
+        <button class="option-btn" onclick="checkAnswer('q21-2', '2')">2 crawl</button>
+        <button class="option-btn" onclick="checkAnswer('q21-2', '3')">3 reciprocate</button>
+        <button class="option-btn" onclick="checkAnswer('q21-2', '4')">4 fire</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 grasp</span><br>
+        【文脈】その若手エンジニアは当初、量子コンピューティングの背後にある複雑な数学的原理を<strong>理解する</strong>のに苦労した。<br>
+        <div class="vocab-list">
+          ・1 grasp: 〜を理解する<br>・2 crawl: はう<br>・3 reciprocate: 〜に報いる<br>・4 fire: 〜を解雇する
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q21-3">
+      <div class="question-title">(3) To qualify for the entry-level accounting position, applicants must possess a ( ) of two years of relevant work experience.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q21-3', '1')">1 minimum</button>
+        <button class="option-btn" onclick="checkAnswer('q21-3', '2')">2 mature</button>
+        <button class="option-btn" onclick="checkAnswer('q21-3', '3')">3 unauthorized</button>
+        <button class="option-btn" onclick="checkAnswer('q21-3', '4')">4 mandatory</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 minimum</span><br>
+        【文脈】初級経理職の応募資格を得るには、応募者は<strong>最低の（最小限の）</strong>2年間の関連実務経験を有していなければならない。<br>
+        <div class="vocab-list">
+          ・1 minimum: 最低の、最小限の<br>・2 mature: 大人びた<br>・3 unauthorized: 無許可の<br>・4 mandatory: 義務的な
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q21-4">
+      <div class="question-title">(4) Even under extreme financial pressure, the company's chief ( ) refused to compromise on product safety standards.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q21-4', '1')">1 executive</button>
+        <button class="option-btn" onclick="checkAnswer('q21-4', '2')">2 estimate</button>
+        <button class="option-btn" onclick="checkAnswer('q21-4', '3')">3 emergency</button>
+        <button class="option-btn" onclick="checkAnswer('q21-4', '4')">4 employment</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 executive</span><br>
+        【文脈】極度の財務上のプレッシャーの下でさえ、同社の最高<strong>経営幹部</strong>は製品の安全基準で妥協することを拒否した。<br>
+        <div class="vocab-list">
+          ・1 executive: 経営幹部<br>・2 estimate: 見積もり<br>・3 emergency: 緊急時<br>・4 employment: 雇用
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q21-5">
+      <div class="question-title">(5) Rising sea temperatures and ocean acidification severely ( ) the survival of coral reef ecosystems worldwide.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q21-5', '1')">1 classify</button>
+        <button class="option-btn" onclick="checkAnswer('q21-5', '2')">2 certify</button>
+        <button class="option-btn" onclick="checkAnswer('q21-5', '3')">3 affect</button>
+        <button class="option-btn" onclick="checkAnswer('q21-5', '4')">4 assemble</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 3 affect</span><br>
+        【文脈】海水温の上昇と海洋酸性化は、世界中のサンゴ礁生態系の生存に深刻な<strong>影響を及ぼす</strong>。<br>
+        <div class="vocab-list">
+          ・1 classify: 〜を分類する<br>・2 certify: 〜を証明する<br>・3 affect: 〜に影響を及ぼす<br>・4 assemble: 〜を組み立てる
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q21-6">
+      <div class="question-title">(6) Following the release of the blockbuster film, fans eagerly awaited the ( ) scheduled to arrive in theaters next summer.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q21-6', '1')">1 session</button>
+        <button class="option-btn" onclick="checkAnswer('q21-6', '2')">2 segment</button>
+        <button class="option-btn" onclick="checkAnswer('q21-6', '3')">3 sequence</button>
+        <button class="option-btn" onclick="checkAnswer('q21-6', '4')">4 sequel</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 4 sequel</span><br>
+        【文脈】その大ヒット映画の公開に続き、ファンは来夏劇場公開予定の<strong>続編</strong>を心待ちにしていた。<br>
+        <div class="vocab-list">
+          ・1 session: 会議<br>・2 segment: 部分<br>・3 sequence: 一連<br>・4 sequel: 続編
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q21-7">
+      <div class="question-title">(7) Because the antique vase was discovered to be a clever ( ), the auction house immediately withdrew it from the sale.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q21-7', '1')">1 frail</button>
+        <button class="option-btn" onclick="checkAnswer('q21-7', '2')">2 fluid</button>
+        <button class="option-btn" onclick="checkAnswer('q21-7', '3')">3 fake</button>
+        <button class="option-btn" onclick="checkAnswer('q21-7', '4')">4 fierce</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 3 fake</span><br>
+        【文脈】そのアンティークの花瓶が巧妙な<strong>偽の（贋作の）</strong>品であることが判明したため、オークションハウスは直ちに出品を取り下げた。<br>
+        <div class="vocab-list">
+          ・1 frail: 体の弱った<br>・2 fluid: 流動的な<br>・3 fake: 偽の<br>・4 fierce: 激しい
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q21-8">
+      <div class="question-title">(8) The newly discovered species of deep-sea ( ) survives without sunlight by deriving energy from hydrothermal vents.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q21-8', '1')">1 organism</button>
+        <button class="option-btn" onclick="checkAnswer('q21-8', '2')">2 objective</button>
+        <button class="option-btn" onclick="checkAnswer('q21-8', '3')">3 obstacle</button>
+        <button class="option-btn" onclick="checkAnswer('q21-8', '4')">4 opponent</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 organism</span><br>
+        【文脈】新しく発見された深海<strong>生物</strong>の種は、熱水噴出孔からエネルギーを得ることで太陽光なしで生き延びている。<br>
+        <div class="vocab-list">
+          ・1 organism: 生物<br>・2 objective: 目標<br>・3 obstacle: 障害<br>・4 opponent: 敵
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q21-9">
+      <div class="question-title">(9) The CEO's speech was ( ) praised by industry analysts for clearly outlining the company's long-term vision.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q21-9', '1')">1 overly</button>
+        <button class="option-btn" onclick="checkAnswer('q21-9', '2')">2 highly</button>
+        <button class="option-btn" onclick="checkAnswer('q21-9', '3')">3 roughly</button>
+        <button class="option-btn" onclick="checkAnswer('q21-9', '4')">4 barely</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 highly</span><br>
+        【文脈】CEOのスピーチは、会社の長期ビジョンを明確に示したとして業界アナリストから<strong>非常に（高く）</strong>称賛された。<br>
+        <div class="vocab-list">
+          ・1 overly: あまりにも<br>・2 highly: 非常に、高く<br>・3 roughly: およそ<br>・4 barely: 辛うじて
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q21-10">
+      <div class="question-title">(10) The university's new research ( ) is equipped with state-of-the-art laboratories for biotechnology and robotics.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q21-10', '1')">1 fortune</button>
+        <button class="option-btn" onclick="checkAnswer('q21-10', '2')">2 facility</button>
+        <button class="option-btn" onclick="checkAnswer('q21-10', '3')">3 fame</button>
+        <button class="option-btn" onclick="checkAnswer('q21-10', '4')">4 finding</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 facility</span><br>
+        【文脈】その大学の新しい研究<strong>施設</strong>には、バイオテクノロジーとロボット工学のための最先端の実験室が備わっている。<br>
+        <div class="vocab-list">
+          ・1 fortune: 財産、幸運<br>・2 facility: 施設<br>・3 fame: 名声<br>・4 finding: 結果、発見
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q21-11">
+      <div class="question-title">(11) To ensure that all employees understand the new compliance rules, the HR department will ( ) proper procedures during tomorrow's seminar.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q21-11', '1')">1 determine</button>
+        <button class="option-btn" onclick="checkAnswer('q21-11', '2')">2 dominate</button>
+        <button class="option-btn" onclick="checkAnswer('q21-11', '3')">3 demonstrate</button>
+        <button class="option-btn" onclick="checkAnswer('q21-11', '4')">4 designate</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 3 demonstrate</span><br>
+        【文脈】すべての従業員が新しいコンプライアンス規則を理解できるように、人事部は明日のセミナーで適切な手順を<strong>実演する（証明・提示する）</strong>予定だ。<br>
+        <div class="vocab-list">
+          ・1 determine: 〜を決定する<br>・2 dominate: 〜を支配する<br>・3 demonstrate: 〜を証明する、実演する<br>・4 designate: 〜を指定する
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q21-12">
+      <div class="question-title">(12) After undergoing months of physical rehabilitation, the injured athlete achieved a ( ) improvement in mobility.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q21-12', '1')">1 substantial</button>
+        <button class="option-btn" onclick="checkAnswer('q21-12', '2')">2 superficial</button>
+        <button class="option-btn" onclick="checkAnswer('q21-12', '3')">3 subjective</button>
+        <button class="option-btn" onclick="checkAnswer('q21-12', '4')">4 subtle</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 substantial</span><br>
+        【文脈】何ヶ月もの身体的リハビリテーションを受けた後、負傷したアスリートは可動性において<strong>かなりの（大幅な）</strong>改善を達成した。<br>
+        <div class="vocab-list">
+          ・1 substantial: かなりの<br>・2 superficial: 表面的な<br>・3 subjective: 主観的な<br>・4 subtle: 微妙な
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q21-13">
+      <div class="question-title">(13) In the wild, hawks rely on their keen eyesight to spot small ( ) such as mice and rabbits from high in the sky.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q21-13', '1')">1 prey</button>
+        <button class="option-btn" onclick="checkAnswer('q21-13', '2')">2 pottery</button>
+        <button class="option-btn" onclick="checkAnswer('q21-13', '3')">3 plot</button>
+        <button class="option-btn" onclick="checkAnswer('q21-13', '4')">4 plantation</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 prey</span><br>
+        【文脈】野生では、タカは空高くからネズミやウサギなどの小さな<strong>獲物</strong>を見つけるために鋭い視力に頼っている。<br>
+        <div class="vocab-list">
+          ・1 prey: 獲物<br>・2 pottery: 陶器<br>・3 plot: 筋<br>・4 plantation: 農園
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q21-14">
+      <div class="question-title">(14) The engineering firm agreed to ( ) that all bridges built under the contract would withstand major earthquakes.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q21-14', '1')">1 escalate</button>
+        <button class="option-btn" onclick="checkAnswer('q21-14', '2')">2 evacuate</button>
+        <button class="option-btn" onclick="checkAnswer('q21-14', '3')">3 exaggerate</button>
+        <button class="option-btn" onclick="checkAnswer('q21-14', '4')">4 guarantee</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 4 guarantee</span><br>
+        【文脈】そのエンジニアリング会社は、契約に基づいて建設されるすべての橋が大地震に耐えることを<strong>保証する</strong>ことに同意した。<br>
+        <div class="vocab-list">
+          ・1 escalate: エスカレートする<br>・2 evacuate: 〜を避難させる<br>・3 exaggerate: 〜を誇張する<br>・4 guarantee: 〜を保証する
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q21-15">
+      <div class="question-title">(15) Because the payment on the commercial loan is now thirty days past ( ), the bank has charged a late fee.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q21-15', '1')">1 decent</button>
+        <button class="option-btn" onclick="checkAnswer('q21-15', '2')">2 due</button>
+        <button class="option-btn" onclick="checkAnswer('q21-15', '3')">3 diverse</button>
+        <button class="option-btn" onclick="checkAnswer('q21-15', '4')">4 distinct</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 2 due</span><br>
+        【文脈】商業ローンの支払いが現在<strong>提出期日のきた（支払い期限を過ぎた）</strong>状態から30日経過しているため、銀行は延滞料を請求した。<br>
+        <div class="vocab-list">
+          ・1 decent: まともな<br>・2 due: 提出期日のきた、支払い期限の<br>・3 diverse: さまざまな<br>・4 distinct: はっきりした
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q21-16">
+      <div class="question-title">(16) Despite facing fierce competition, the young entrepreneur turned her small online shop into a global retail ( ).</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q21-16', '1')">1 precaution</button>
+        <button class="option-btn" onclick="checkAnswer('q21-16', '2')">2 preference</button>
+        <button class="option-btn" onclick="checkAnswer('q21-16', '3')">3 powerhouse</button>
+        <button class="option-btn" onclick="checkAnswer('q21-16', '4')">4 exile</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 3 powerhouse</span><br>
+        【文脈】激しい競争に直面しながらも、その若い起業家は小さなオンラインショップを世界的な小売りの<strong>強大な組織（パワーハウス）</strong>へと成長させた。<br>
+        <div class="vocab-list">
+          ・1 precaution: 予防措置<br>・2 preference: 好み<br>・3 powerhouse: 強大な国・組織<br>・4 exile: 亡命者
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q21-17">
+      <div class="question-title">(17) According to the latest agricultural report, favorable weather conditions have resulted in a record wheat ( ) this autumn.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q21-17', '1')">1 yield</button>
+        <button class="option-btn" onclick="checkAnswer('q21-17', '2')">2 workout</button>
+        <button class="option-btn" onclick="checkAnswer('q21-17', '3')">3 counterpart</button>
+        <button class="option-btn" onclick="checkAnswer('q21-17', '4')">4 warehouse</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 1 yield</span><br>
+        【文脈】最新の農業報告書によると、好天に恵まれたことで今秋は記録的な小麦の<strong>産出量（収穫量）</strong>となった。<br>
+        <div class="vocab-list">
+          ・1 yield: 産出量<br>・2 workout: トレーニング<br>・3 counterpart: 相当するもの<br>・4 warehouse: 倉庫
+        </div>
+      </div>
+    </div>
+    <div class="question-card" id="q21-18">
+      <div class="question-title">(18) Because of ( ) public concern over data privacy, tech companies are introducing stricter encryption features.</div>
+      <div class="options-grid">
+        <button class="option-btn" onclick="checkAnswer('q21-18', '1')">1 vivid</button>
+        <button class="option-btn" onclick="checkAnswer('q21-18', '2')">2 vocational</button>
+        <button class="option-btn" onclick="checkAnswer('q21-18', '3')">3 vital</button>
+        <button class="option-btn" onclick="checkAnswer('q21-18', '4')">4 widespread</button>
+      </div>
+      <div class="explanation">
+        <span class="label">正解: 4 widespread</span><br>
+        【文脈】データプライバシーに対する<strong>広範囲に及ぶ</strong>世間の懸念のため、IT企業はより厳格な暗号化機能を導入している。<br>
+        <div class="vocab-list">
+          ・1 vivid: 鮮明な<br>・2 vocational: 職業の<br>・3 vital: 極めて重要な<br>・4 widespread: 広範囲に及ぶ
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  let currentZoom = 100;
+
+  function changeZoom(delta) {
+    currentZoom = Math.min(Math.max(70, currentZoom + delta), 130);
+    document.getElementById('zoom-val').innerText = currentZoom + '%';
+    document.getElementById('main-container').style.transform = `scale(${currentZoom / 100})`;
+  }
+
+  function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+      tabcontent[i].classList.remove("active");
+    }
+    tablinks = document.getElementsByClassName("tab-btn");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].classList.remove("active");
+    }
+    document.getElementById(tabName).style.display = "block";
+    document.getElementById(tabName).classList.add("active");
+    evt.currentTarget.classList.add("active");
+  }
+
+  function checkAnswer(questionId, selectedNumber) {
+    const card = document.getElementById(questionId);
+    const buttons = card.querySelectorAll('.option-btn');
+    const explanation = card.querySelector('.explanation');
+    
+    const correctMatch = explanation.innerHTML.match(/正解:\s*([1-4])/);
+    if (!correctMatch) return;
+    const correctNumber = correctMatch[1];
+
+    buttons.forEach(btn => {
+      btn.disabled = true;
+      const btnText = btn.innerText.trim();
+      
+      if (btnText.startsWith(`${correctNumber} `)) {
+        btn.classList.add('correct');
+      }
+      if (btnText.startsWith(`${selectedNumber} `) && selectedNumber !== correctNumber) {
+        btn.classList.add('incorrect');
+      }
+    });
+
+    explanation.style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
