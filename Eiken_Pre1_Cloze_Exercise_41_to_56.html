@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>英検準1級 大問1形式 短文語句空所補充エクササイズ (#41〜#56 / 320問)</title>
+<style>
+  :root {
+    --primary-color: #1a365d;
+    --secondary-color: #2b6cb0;
+    --bg-color: #f7fafc;
+    --card-bg: #ffffff;
+    --text-color: #2d3748;
+    --border-color: #e2e8f0;
+    --success-bg: #c6f6d5;
+    --success-border: #38a169;
+    --success-text: #22543d;
+    --error-bg: #fed7d7;
+    --error-border: #e53e3e;
+    --error-text: #742a2a;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 20px;
+  }
+
+  .control-panel {
+    max-width: 920px;
+    margin: 0 auto 15px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    background: #edf2f7;
+    padding: 12px 18px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+  }
+
+  .control-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ctrl-btn {
+    background: white;
+    border: 1px solid #cbd5e0;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: #2d3748;
+    transition: all 0.15s ease;
+  }
+
+  .ctrl-btn:hover { background: #e2e8f0; }
+
+  .ctrl-btn.print-btn {
+    background: #2f855a;
+    color: white;
+    border-color: #276749;
+  }
+
+  .ctrl-btn.print-btn:hover { background: #276749; }
+
+  .ctrl-btn.shuffle-btn {
+    background: #dd6b20;
+    color: white;
+    border-color: #c05621;
+  }
+
+  .ctrl-btn.shuffle-btn:hover { background: #c05621; }
+
+  .zoom-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #4a5568;
+  }
+
+  .zoom-btn {
+    background: white;
+    border: 1px solid #cbd5e0;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .zoom-btn:hover { background: #e2e8f0; }
+
+  .container {
+    max-width: 920px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transform-origin: top center;
+    transition: transform 0.2s ease;
+  }
+
+  .tabs-wrapper {
+    margin-bottom: 22px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 14px;
+  }
+
+  .tabs-header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .tabs-title {
+    font-size: 0.92rem;
+    font-weight: bold;
+    color: var(--primary-color);
+  }
+
+  .overall-progress {
+    font-size: 0.85rem;
+    color: #4a5568;
+    background: #edf2f7;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+
+  .tabs {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 6px;
+  }
+
+  @media (max-width: 640px) {
+    .tabs {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .tab-btn {
+    padding: 10px 4px;
+    background: #edf2f7;
+    border: 1px solid #cbd5e0;
+    outline: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.92rem;
+    color: #4a5568;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    text-align: center;
+  }
+
+  .tab-btn:hover { background: #bee3f8; color: var(--primary-color); }
+  .tab-btn.active {
+    background: var(--secondary-color);
+    color: white;
+    border-color: var(--primary-color);
+    box-shadow: 0 2px 6px rgba(43, 108, 176, 0.35);
+  }
+  .tab-btn.completed {
+    background: #c6f6d5;
+    border-color: #38a169;
+    color: #22543d;
+  }
+  .tab-btn.completed.active {
+    background: #2f855a;
+    color: white;
+    border-color: #22543d;
+  }
+
+  .day-header {
+    border-bottom: 3px solid var(--secondary-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+
+  .set-nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .nav-arrow-btn {
+    background: #edf2f7;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    cursor: pointer;
+  }
+
+  .nav-arrow-btn:hover:not(:disabled) { background: #e2e8f0; }
+  .nav-arrow-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .day-header h2 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.45rem;
+    text-align: center;
+  }
+
+  .day-header .subtitle {
+    text-align: center;
+    color: #4a5568;
+    font-size: 0.9rem;
+    margin-top: 4px;
+  }
+
+  .score-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    background: #ebf8ff;
+    border: 1px solid #bee3f8;
+    padding: 10px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+
+  .score-info {
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 0.95rem;
+  }
+
+  .score-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .question-card {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-left: 5px solid var(--secondary-color);
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  }
+
+  .question-title {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--primary-color);
+    margin-bottom: 12px;
+  }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .option-btn {
+    background: #f8fafc;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    padding: 10px 14px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    transition: all 0.2s ease;
+    font-family: inherit;
+  }
+
+  .option-btn:hover:not(:disabled) { background: #ebf8ff; border-color: var(--secondary-color); }
+  .option-btn:disabled { cursor: default; }
+  .option-btn.correct {
+    background-color: var(--success-bg) !important;
+    border-color: var(--success-border) !important;
+    color: var(--success-text);
+    font-weight: bold;
+  }
+  .option-btn.incorrect {
+    background-color: var(--error-bg) !important;
+    border-color: var(--error-border) !important;
+    color: var(--error-text);
+  }
+
+  .explanation {
+    display: none;
+    margin-top: 15px;
+    padding: 14px;
+    background-color: #ebf8ff;
+    border-radius: 6px;
+    font-size: 0.92rem;
+    border-left: 4px solid var(--secondary-color);
+  }
+
+  .explanation.show { display: block; }
+
+  .explanation span.label {
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 0.98rem;
+  }
+
+  .vocab-list {
+    margin-top: 10px;
+    font-size: 0.88rem;
+    color: #2d3748;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 10px 14px;
+    border-radius: 4px;
+    line-height: 1.65;
+    border: 1px solid #e2e8f0;
+  }
+
+  .worksheet-meta, .worksheet-answer-key, .print-set-container {
+    display: none;
+  }
+
+  /* 🖨 印刷時（ワークシート対応・改ページ設定） */
+  @media print {
+    body {
+      background-color: white !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      color: black !important;
+      font-size: 9pt !important;
+      line-height: 1.35 !important;
+    }
+
+    .control-panel, .tabs-wrapper, .score-bar, .nav-arrow-btn, .explanation {
+      display: none !important;
+    }
+
+    .container {
+      box-shadow: none !important;
+      padding: 0 !important;
+      max-width: 100% !important;
+      transform: none !important;
+    }
+
+    .worksheet-meta {
+      display: flex !important;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #333;
+      padding: 5px 10px;
+      margin-bottom: 8px;
+      font-size: 8.5pt;
+    }
+
+    .day-header {
+      border-bottom: 2px solid #000 !important;
+      padding-bottom: 4px !important;
+      margin-bottom: 6px !important;
+    }
+
+    .day-header h2 {
+      font-size: 12.5pt !important;
+      color: black !important;
+    }
+
+    .day-header .subtitle {
+      font-size: 8.2pt !important;
+      color: #333 !important;
+    }
+
+    .question-card {
+      border: none !important;
+      border-bottom: 1px solid #ddd !important;
+      padding: 5px 0 !important;
+      margin-bottom: 4px !important;
+      box-shadow: none !important;
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+
+    .question-title {
+      color: black !important;
+      font-size: 9pt !important;
+      margin-bottom: 3px !important;
+    }
+
+    .options-grid {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 14px !important;
+      margin-top: 2px !important;
+    }
+
+    .option-btn {
+      background: none !important;
+      border: none !important;
+      padding: 0 !important;
+      font-size: 8.8pt !important;
+      color: black !important;
+      font-weight: normal !important;
+      display: inline-block !important;
+    }
+
+    .worksheet-answer-key {
+      display: block !important;
+      margin-top: 8px;
+      padding: 5px 8px;
+      border: 1px dashed #666;
+      font-size: 8pt;
+      page-break-inside: avoid;
+    }
+
+    body.print-all-mode #active-set-view {
+      display: none !important;
+    }
+
+    body.print-all-mode .print-set-container {
+      display: block !important;
+    }
+
+    body.print-all-mode .print-page-block {
+      page-break-before: always !important;
+      break-before: page !important;
+    }
+
+    body.print-all-mode .print-page-block:first-child {
+      page-break-before: avoid !important;
+      break-before: auto !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="control-panel">
+  <div class="control-group">
+    <button class="ctrl-btn shuffle-btn" onclick="reshuffleAllSets()" title="16セット（320問）の出題順序をランダムにシャッフルします">🔀 320問の出題順をシャッフル</button>
+  </div>
+
+  <div class="control-group">
+    <button class="ctrl-btn print-btn" onclick="printCurrentSet()">🖨 このセットを印刷</button>
+    <button class="ctrl-btn print-btn" onclick="printAllSets()">🖨 全16セット一括印刷</button>
+    <div class="zoom-controls">
+      <span>表示サイズ:</span>
+      <button class="zoom-btn" onclick="changeZoom(-10)">-</button>
+      <span id="zoom-val">100%</span>
+      <button class="zoom-btn" onclick="changeZoom(10)">+</button>
+    </div>
+  </div>
+</div>
+
+<div class="container" id="main-container">
+  <div class="tabs-wrapper">
+    <div class="tabs-header-bar">
+      <div class="tabs-title">エクササイズ選択（#41 〜 #56 / 各20問・全320問）</div>
+      <div class="overall-progress" id="overall-progress">完了: 0 / 16 セット（累計正解: 0 / 320 問）</div>
+    </div>
+    <div class="tabs" id="tabs-grid"></div>
+  </div>
+
+  <div id="active-set-view"></div>
+  <div class="print-set-container" id="print-all-container"></div>
+</div>
+
+<script id="cloze-sets-data" type="application/json">[[{"s":"Negotiations over the international trade agreement continued to ( ) for months with little progress on tariff reductions.","j":"国際貿易協定をめぐる交渉は、関税引き下げについてほとんど進展がないまま何ヶ月も<strong>だらだらと続い</strong>た。","o":["drag on","come down with","rip off","get away with"],"a":0,"v":[["drag on","だらだらと続く","Day 56","動詞句"],["come down with","～にかかる","Day 54","動詞句"],["rip off","～を食い物にする","Day 55","動詞句"],["get away with","～をしてもただで済む","Day 57","動詞句"]]},{"s":"Soft jazz music and warm lighting created a welcoming ( ) inside the newly opened neighborhood café.","j":"穏やかなジャズ音楽と温かみのある照明が、新しくオープンした近所のカフェの中に心地よい<strong>雰囲気</strong>を作り出していた。","o":["archaeologist","estimate","atmosphere","psychology"],"a":2,"v":[["archaeologist","考古学者","Day 4","名詞"],["estimate","見積もり","Day 4","名詞"],["atmosphere","雰囲気","Day 4","名詞"],["psychology","心理学","Day 36","名詞"]]},{"s":"While all tropical ecosystems are fragile, coral reefs ( ) are extremely sensitive to rising ocean temperatures.","j":"すべての熱帯生態系は壊れやすいが、<strong>特に</strong>サンゴ礁は海水温の上昇に対して極めて敏感である。","o":["all but","in particular","as follows","for the time being"],"a":1,"v":[["all but","ほとんど","Day 68","形容詞句・副詞句・前置詞群"],["in particular","特に","Day 69","形容詞句・副詞句・前置詞群"],["as follows","次の通り","Day 69","形容詞句・副詞句・前置詞群"],["for the time being","当分の間","Day 68","形容詞句・副詞句・前置詞群"]]},{"s":"The hospital recruited a renowned surgeon whose technical ( ) in minimally invasive procedures is recognized worldwide.","j":"その病院は、低侵襲手術における専門的<strong>知識（技術）</strong>が世界的に認められている著名な外科医を採用した。","o":["asset","investigation","makeup","expertise"],"a":3,"v":[["asset","資産","Day 34","名詞"],["investigation","捜査","Day 30","名詞"],["makeup","構造","Day 11","名詞"],["expertise","専門的知識","Day 3","名詞"]]},{"s":"Local artisans launched a community workshop to ( ) traditional indigo dyeing techniques that had nearly vanished.","j":"地元の職人たちは、消えかけていた伝統的な藍染め技術を<strong>復興させる</strong>ために地域ワークショップを立ち上げた。","o":["clarify","intrude","evaluate","revive"],"a":3,"v":[["clarify","〜をはっきりさせる","Day 15","動詞"],["intrude","邪魔をする","Day 42","動詞"],["evaluate","〜を評価する","Day 15","動詞"],["revive","〜を復興させる","Day 41","動詞"]]},{"s":"The regional medical research institute ( ) the national university and shares its clinical laboratories.","j":"その地域医学研究所は国立大学<strong>の系列下であり</strong>、臨床検査室を共有している。","o":["is affiliated with","is entitled to","is deprived of","is committed to"],"a":0,"v":[["be affiliated with","～の系列下である","Day 65","動詞句"],["be entitled to do","～する権利がある","Day 66","動詞句"],["be deprived of","～を奪われている","Day 64","動詞句"],["be committed to","～に打ち込んでいる","Day 64","動詞句"]]},{"s":"Discarded plastic fishing nets ( ) a severe threat to sea turtles and dolphins across the Pacific.","j":"廃棄されたプラスチック製の漁網は、太平洋全域のウミガメやイルカに深刻な脅威<strong>をもたらす</strong>。","o":["pose","browse","emphasize","justify"],"a":0,"v":[["pose","〜をもたらす","Day 14","動詞"],["browse","ざっと目を通す","Day 13","動詞"],["emphasize","〜を強調する","Day 17","動詞"],["justify","〜を正当化する","Day 16","動詞"]]},{"s":"When Maya took a week off to care for her sick father, her supportive ( ) handled all her urgent client emails.","j":"マヤが病気の父親の介護のために1週間休暇を取ったとき、頼りになる<strong>同僚</strong>が彼女の緊急の顧客メールをすべて対応してくれた。","o":["erosion","deforestation","solution","colleague"],"a":3,"v":[["erosion","浸食","Day 9","名詞"],["deforestation","森林破壊","Day 30","名詞"],["solution","解決策","Day 5","名詞"],["colleague","同僚","Day 6","名詞"]]},{"s":"Paleontologists uncovered the remarkably preserved ( ) of a prehistoric marine reptile embedded in coastal limestone.","j":"古生物学者たちは、沿岸の石灰岩に埋まっていた先史時代の海生爬虫類の驚くほど保存状態の良い<strong>化石</strong>を発見した。","o":["fossil","conservation","conversion","crisis"],"a":0,"v":[["fossil","化石","Day 5","名詞"],["conservation","保護","Day 26","名詞"],["conversion","変換","Day 26","名詞"],["crisis","危機","Day 29","名詞"]]},{"s":"Modern lithium-ion batteries store far more energy per kilogram ( ) older lead-acid batteries.","j":"現代のリチウムイオン電池は、古い鉛蓄電池<strong>と比べると</strong>1キログラムあたりはるかに多くのエネルギーを蓄える。","o":["at the expense of","the other way around","compared to","in contrast"],"a":2,"v":[["at the expense of","～を犠牲にして","Day 70","形容詞句・副詞句・前置詞群"],["the other way around","逆で","Day 68","形容詞句・副詞句・前置詞群"],["compared to","～と比べると","Day 70","形容詞句・副詞句・前置詞群"],["in contrast","対照的に","Day 68","形容詞句・副詞句・前置詞群"]]},{"s":"Over two hundred local residents decided to ( ) the free weekend coding bootcamp at the public library.","j":"200人以上の地域住民が、公立図書館で開催される無料の週末プログラミング講座<strong>に申し込む</strong>ことを決めた。","o":["excel in","sign up for","come up with","hand out"],"a":1,"v":[["excel in","～に秀でている","Day 56","動詞句"],["sign up for","～に申し込む","Day 58","動詞句"],["come up with","～を思いつく","Day 53","動詞句"],["hand out","～を配る","Day 58","動詞句"]]},{"s":"University students must upload their completed sociology ( ) to the online portal before midnight on Sunday.","j":"大学生は、完成した社会学の<strong>宿題（課題）</strong>を日曜日の深夜0時前にオンラインポータルへアップロードしなければならない。","o":["personnel","assignment","itinerary","surplus"],"a":1,"v":[["personnel","職員","Day 33","名詞"],["assignment","宿題","Day 4","名詞"],["itinerary","旅行計画","Day 30","名詞"],["surplus","余り","Day 7","名詞"]]},{"s":"Thanks to strict safety protocols, the new surgical technique causes only ( ) discomfort and allows rapid recovery.","j":"厳格な安全手順のおかげで、新しい手術法は<strong>最小限の</strong>不快感しか引き起こさず、迅速な回復を可能にする。","o":["arrogant","coarse","minimal","dormant"],"a":2,"v":[["arrogant","ごう慢な","Day 48","形容詞"],["coarse","ざらざらした","Day 48","形容詞"],["minimal","最小限の","Day 47","形容詞"],["dormant","活動休止中の","Day 25","形容詞"]]},{"s":"Young children often find it easier to grasp concrete examples rather than ( ) philosophical concepts.","j":"幼い子どもは、<strong>抽象的な</strong>哲学的概念よりも具体的な例を理解する方が簡単だと感じることが多い。","o":["obedient","hostile","urban","abstract"],"a":3,"v":[["obedient","従順な","Day 46","形容詞"],["hostile","適さない","Day 20","形容詞"],["urban","都市の","Day 21","形容詞"],["abstract","抽象的な","Day 48","形容詞"]]},{"s":"Detectives launched a thorough forensic ( ) after rare paintings were stolen from the municipal gallery.","j":"市立美術館から希少な絵画が盗まれた後、刑事たちは徹底的な鑑識<strong>捜査</strong>を開始した。","o":["reputation","settlement","routine","investigation"],"a":3,"v":[["reputation","評判","Day 11","名詞"],["settlement","集落","Day 9","名詞"],["routine","日常の仕事","Day 31","名詞"],["investigation","捜査","Day 30","名詞"]]},{"s":"To prevent future misunderstandings, the contract should clearly ( ) each partner's financial responsibilities.","j":"将来の誤解を防ぐため、契約書には各パートナーの財務上の責任を明確に<strong>詳しく説明する（明記する）</strong>べきである。","o":["weed out","jump at","spell out","come down with"],"a":2,"v":[["weed out","～を排除する","Day 56","動詞句"],["jump at","～に飛びつく","Day 57","動詞句"],["spell out","～を詳しく説明する","Day 59","動詞句"],["come down with","～にかかる","Day 54","動詞句"]]},{"s":"Publishing unverified rumors without checking sources can permanently damage a news organization's ( ).","j":"情報源を確認せずに未確認の噂を公表することは、報道機関の<strong>信用</strong>を永久に損なう可能性がある。","o":["powerhouse","hospitality","outbreak","credibility"],"a":3,"v":[["powerhouse","強大な国","Day 36","名詞"],["hospitality","温かいもてなし","Day 27","名詞"],["outbreak","勃発","Day 3","名詞"],["credibility","信用","Day 35","名詞"]]},{"s":"Geothermal heat from underground volcanic rock provides a reliable, clean ( ) of electricity in Iceland.","j":"地下の火山岩からの地熱は、アイスランドにおいて信頼性の高いクリーンな電力の<strong>源（供給源）</strong>を提供している。","o":["urge","removal","testimony","source"],"a":3,"v":[["urge","衝動","Day 31","名詞"],["removal","撤去","Day 28","名詞"],["testimony","証言","Day 11","名詞"],["source","源","Day 2","名詞"]]},{"s":"Sharp declines in tax revenue combined with rising healthcare costs left the city with a massive budget ( ).","j":"税収の急減と医療費の増加が重なり、市は巨額の予算<strong>赤字</strong>を抱えることになった。","o":["representative","ingredient","deficit","fame"],"a":2,"v":[["representative","代表者","Day 28","名詞"],["ingredient","材料","Day 9","名詞"],["deficit","赤字","Day 26","名詞"],["fame","名声","Day 30","名詞"]]},{"s":"Sales of luxury electric vehicles have grown rapidly in ( ) suburban neighborhoods over the past three years.","j":"過去3年間で、<strong>裕福な</strong>郊外の住宅地において高級電気自動車の販売が急速に伸びている。","o":["affluent","conventional","cautious","dubious"],"a":0,"v":[["affluent","裕福な","Day 50","形容詞"],["conventional","従来の","Day 46","形容詞"],["cautious","慎重な","Day 24","形容詞"],["dubious","疑っている","Day 23","形容詞"]]}],[{"s":"Clean drinking water and basic sanitation are ( ) for maintaining public health in densely populated cities.","j":"清潔な飲料水と基本的な衛生設備は、人口密度の高い都市で公衆衛生を維持するために<strong>不可欠な</strong>ものである。","o":["medieval","commendable","indispensable","Arctic"],"a":2,"v":[["medieval","中世の","Day 49","形容詞"],["commendable","称賛に値する","Day 44","形容詞"],["indispensable","不可欠な","Day 25","形容詞"],["Arctic","北極の","Day 48","形容詞"]]},{"s":"Reading a historical speech within its political ( ) helps students understand why the speaker chose specific words.","j":"歴史的な演説をその政治的<strong>文脈</strong>の中で読むことは、演説者がなぜ特定の言葉を選んだのかを学生が理解する助けとなる。","o":["segment","insight","context","expense"],"a":2,"v":[["segment","部分","Day 36","名詞"],["insight","洞察力","Day 30","名詞"],["context","文脈","Day 10","名詞"],["expense","出費","Day 1","名詞"]]},{"s":"Even after the formal conference ended, many researchers chose to ( ) and discuss potential joint projects.","j":"公式の会議が終わった後も、多くの研究者が<strong>もうちょっと待つ（その場に残る）</strong>ことを選び、共同プロジェクトの可能性について話し合った。","o":["stick around","glare at","draw on","put down"],"a":0,"v":[["stick around","もうちょっと待つ","Day 55","動詞句"],["glare at","～をにらみつける","Day 57","動詞句"],["draw on","～を活用する","Day 55","動詞句"],["put down","～を払う","Day 54","動詞句"]]},{"s":"Small and medium-sized enterprises form the economic ( ) of the region, employing over seventy percent of local workers.","j":"中小企業は地域の経済的<strong>中枢（基盤）</strong>を形成しており、地元労働者の70%以上を雇用している。","o":["registration","inhabitant","riot","backbone"],"a":3,"v":[["registration","登録","Day 36","名詞"],["inhabitant","住民","Day 11","名詞"],["riot","暴動","Day 36","名詞"],["backbone","中枢","Day 26","名詞"]]},{"s":"The university established an emergency scholarship ( ) to assist students facing sudden family financial crises.","j":"大学は、突然の家庭の経済危機に直面している学生を支援するため、緊急奨学金<strong>資金（基金）</strong>を設立した。","o":["compartment","warehouse","fund","symptom"],"a":2,"v":[["compartment","小物入れ","Day 26","名詞"],["warehouse","倉庫","Day 34","名詞"],["fund","資金","Day 1","名詞"],["symptom","症状","Day 4","名詞"]]},{"s":"Parents or legal guardians must ( ) children under twelve when visiting the interactive science exhibition.","j":"体験型科学展示会を訪れる際、12歳未満の子どもには保護者または法定後見人が<strong>同行する</strong>必要がある。","o":["stray","demonstrate","accompany","provoke"],"a":2,"v":[["stray","迷い出る","Day 15","動詞"],["demonstrate","〜を証明する","Day 14","動詞"],["accompany","〜に同行する","Day 39","動詞"],["provoke","〜を引き起こす","Day 37","動詞"]]},{"s":"Critics argued that the judge's ( ) sentence failed to deter corporate executives from committing financial fraud.","j":"批評家たちは、裁判官の<strong>寛大な</strong>判決では企業幹部が金融詐欺を犯すのを抑止できなかったと主張した。","o":["feasible","extravagant","lenient","obsolete"],"a":2,"v":[["feasible","実現可能な","Day 22","形容詞"],["extravagant","金遣いの荒い","Day 49","形容詞"],["lenient","寛大な","Day 24","形容詞"],["obsolete","時代遅れの","Day 20","形容詞"]]},{"s":"Expanding the renewable energy sector is expected to generate thousands of stable ( ) opportunities nationwide.","j":"再生可能エネルギー部門の拡大により、全国で何千もの安定した<strong>雇用</strong>機会が生み出されると期待されている。","o":["legislation","poverty","outbreak","employment"],"a":3,"v":[["legislation","法律","Day 11","名詞"],["poverty","貧困","Day 28","名詞"],["outbreak","勃発","Day 3","名詞"],["employment","雇用","Day 6","名詞"]]},{"s":"It took several readings for students to fully ( ) the complex mathematical proof presented in the lecture.","j":"講義で提示された複雑な数学的証明を学生たちが完全に<strong>理解する</strong>には、何度か読み返す必要があった。","o":["simulate","lessen","stray","grasp"],"a":3,"v":[["simulate","〜をシミュレートする","Day 41","動詞"],["lessen","〜を少なくする","Day 38","動詞"],["stray","迷い出る","Day 15","動詞"],["grasp","〜を理解する","Day 17","動詞"]]},{"s":"Despite minor delays in the first quarter, the corporation's ( ) financial performance this year exceeded expectations.","j":"第1四半期の軽微な遅れにもかかわらず、今年の同社の<strong>全体的な</strong>業績は予想を上回った。","o":["overall","confidential","experienced","moderate"],"a":0,"v":[["overall","全体的な","Day 19","形容詞"],["confidential","秘密の","Day 23","形容詞"],["experienced","経験豊かな","Day 45","形容詞"],["moderate","適度の","Day 21","形容詞"]]},{"s":"Conservationists warned that the last remaining wetland habitat of the rare crane must be protected ( ).","j":"自然保護論者たちは、希少なツルの最後に残された湿地生息地を<strong>どんな犠牲を払っても</strong>守らなければならないと警告した。","o":["on the verge of","at all costs","at large","for the time being"],"a":1,"v":[["on the verge of","～の寸前で","Day 70","形容詞句・副詞句・前置詞群"],["at all costs","どんな犠牲を払っても","Day 68","形容詞句・副詞句・前置詞群"],["at large","一般の","Day 69","形容詞句・副詞句・前置詞群"],["for the time being","当分の間","Day 68","形容詞句・副詞句・前置詞群"]]},{"s":"Strict cybersecurity monitoring helps prevent unauthorized users from trying to ( ) identity theft online.","j":"厳格なサイバーセキュリティ監視は、無許可の利用者がオンラインでなりすまし窃盗<strong>を犯す</strong>のを防ぐのに役立つ。","o":["commit","infect","evaporate","adjust"],"a":0,"v":[["commit","〜を犯す","Day 39","動詞"],["infect","〜を感染させる","Day 40","動詞"],["evaporate","蒸発する","Day 43","動詞"],["adjust","〜を調節する","Day 41","動詞"]]},{"s":"Tourists visiting the traditional open-air market often enjoy trying to ( ) with vendors over handmade souvenirs.","j":"伝統的な青空市場を訪れる観光客は、手作りの土産物をめぐって露天商と<strong>交渉する（値切る）</strong>ことを楽しむことが多い。","o":["merge","fire","bargain","discharge"],"a":2,"v":[["merge","合併する","Day 42","動詞"],["fire","〜を解雇する","Day 42","動詞"],["bargain","交渉する","Day 39","動詞"],["discharge","〜を排出する","Day 38","動詞"]]},{"s":"Angry protesters threatened to ( ) the municipal building if the council approved the unpopular tax hike.","j":"市議会が不人気な増税を承認すれば、怒った抗議者たちが市庁舎<strong>を襲撃する（押しかける）</strong>と脅した。","o":["assemble","extinguish","construct","storm"],"a":3,"v":[["assemble","〜を組み立てる","Day 43","動詞"],["extinguish","〜を消す","Day 17","動詞"],["construct","〜を建設する","Day 42","動詞"],["storm","〜を襲撃する","Day 14","動詞"]]},{"s":"After finishing her urgent client reports, Elena finally had time to ( ) answering her personal emails.","j":"緊急の顧客報告書を終えた後、エレナはついに個人的なメールに返信する<strong>手が回る</strong>時間ができた。","o":["get away with","chip in","get around to","find their way"],"a":2,"v":[["get away with","～をしてもただで済む","Day 57","動詞句"],["chip in","金を出し合う","Day 53","動詞句"],["get around to","～に手が回る","Day 54","動詞句"],["find one’s way","たどり着く","Day 67","動詞句"]]},{"s":"Visitors often spend hours in the independent bookstore simply to ( ) through rare art and photography books.","j":"来訪者は、希少な美術書や写真集に<strong>ざっと目を通す</strong>ためだけに独立系書店で何時間も過ごすことが多い。","o":["browse","mingle","boost","spoil"],"a":0,"v":[["browse","ざっと目を通す","Day 13","動詞"],["mingle","歓談する","Day 17","動詞"],["boost","〜を増加させる","Day 12","動詞"],["spoil","腐る","Day 39","動詞"]]},{"s":"Renewable sources such as wind and solar now ( ) nearly forty percent of the country's total electricity generation.","j":"風力や太陽光などの再生可能エネルギー源は現在、同国の総発電量のほぼ40%<strong>を占める</strong>。","o":["slip away","make up for","account for","turn to"],"a":2,"v":[["slip away","そっと出て行く","Day 58","動詞句"],["make up for","～の埋め合わせをする","Day 57","動詞句"],["account for","～を占める","Day 55","動詞句"],["turn to","～に求める","Day 55","動詞句"]]},{"s":"Taking a twenty-minute ( ) walk outdoors during lunch break helps refresh the mind and boost afternoon focus.","j":"昼休みに屋外で20分間<strong>きびきびした</strong>早歩きをすると、頭がリフレッシュされ午後の集中力が高まる。","o":["brisk","distinguished","obedient","tranquil"],"a":0,"v":[["brisk","きびきびした","Day 19","形容詞"],["distinguished","優れた","Day 22","形容詞"],["obedient","従順な","Day 46","形容詞"],["tranquil","穏やかな","Day 24","形容詞"]]},{"s":"With the final exam only two weeks away, students need to stop procrastinating and ( ) serious revision.","j":"期末試験まであと2週間しかないため、学生たちは先延ばしをやめて本格的な復習<strong>に本腰を入れる</strong>必要がある。","o":["turn up","get down to","wear off","get around to"],"a":1,"v":[["turn up","現れる","Day 60","動詞句"],["get down to","～に本腰を入れる","Day 58","動詞句"],["wear off","徐々になくなる","Day 60","動詞句"],["get around to","～に手が回る","Day 54","動詞句"]]},{"s":"Although scientists have mapped most of the ocean floor, they ( ) explore the deepest trenches in detail.","j":"科学者たちは海底の大部分の地図を作成したが、最も深い海溝については<strong>まだ</strong>詳細に探査<strong>していない</strong>。","o":["attempt to","choose to","have yet to","aspire to"],"a":2,"v":[["attempt to do","～しようとする","Day 63","動詞句"],["choose to do","～することにする","Day 63","動詞句"],["have yet to do","まだ～していない","Day 67","動詞句"],["aspire to do","～することを熱望する","Day 63","動詞句"]]}],[{"s":"Electric vehicles require far fewer moving parts than ( ) cars powered by internal combustion engines.","j":"電気自動車は、内燃機関を搭載した<strong>従来の</strong>車よりもはるかに少ない可動部品しか必要としない。","o":["nutritious","tense","conventional","conditional"],"a":2,"v":[["nutritious","栄養のある","Day 25","形容詞"],["tense","緊迫した","Day 24","形容詞"],["conventional","従来の","Day 46","形容詞"],["conditional","条件つきの","Day 22","形容詞"]]},{"s":"The software developer decided to ( ) the competing firm ( ) violating its patent rights.","j":"そのソフトウェア開発会社は、特許権を侵害したとして競合他社<strong>を訴える</strong>ことを決定した。","o":["associate / with","aim / at","lead / to do","sue / for"],"a":3,"v":[["associate A with B","AをBと結びつけて考える","Day 61","動詞句"],["aim A at B","Bを対象にAを行う","Day 61","動詞句"],["lead A to do","Aに～させる","Day 63","動詞句"],["sue A for B","AをBで訴える","Day 62","動詞句"]]},{"s":"The judge ruled that the witness's personal opinions were completely ( ) to the factual evidence in the case.","j":"裁判官は、証人の個人的意見は本件の事実証拠とはまったく<strong>無関係の</strong>ものであると判断した。","o":["amicable","irrelevant","massive","obsolete"],"a":1,"v":[["amicable","友好的な","Day 21","形容詞"],["irrelevant","無関係の","Day 45","形容詞"],["massive","巨大な","Day 20","形容詞"],["obsolete","時代遅れの","Day 20","形容詞"]]},{"s":"Critics warned against pursuing rapid industrial expansion ( ) clean air and public health.","j":"批評家たちは、きれいな空気と公衆衛生<strong>を犠牲にして</strong>急速な産業拡大を追求することに警告を発した。","o":["regardless of","in contrast","in terms of","at the expense of"],"a":3,"v":[["regardless of","～に関係なく","Day 70","形容詞句・副詞句・前置詞群"],["in contrast","対照的に","Day 68","形容詞句・副詞句・前置詞群"],["in terms of","～の点で","Day 70","形容詞句・副詞句・前置詞群"],["at the expense of","～を犠牲にして","Day 70","形容詞句・副詞句・前置詞群"]]},{"s":"High-speed satellite internet will ( ) students in remote mountain villages ( ) attend live university lectures.","j":"高速衛星インターネットにより、人里離れた山村の学生たちが大学のライブ講義に出席<strong>できるようになる</strong>。","o":["enable / to","see / as","tempt / to do","assign / to"],"a":0,"v":[["enable A to do","Aが～できるようにする","Day 63","動詞句"],["see A as B","AをBと見なす","Day 61","動詞句"],["tempt A to do","Aの気を引いて～させる","Day 63","動詞句"],["assign A to B","AをBに配属する","Day 61","動詞句"]]},{"s":"Volunteers stood outside the subway station to ( ) free reusable shopping bags to morning commuters.","j":"ボランティアたちは地下鉄駅の外に立ち、朝の通勤客に無料のエコバッグ<strong>を配っ</strong>た。","o":["pass out","hand out","wear off","bump into"],"a":1,"v":[["pass out","気絶する","Day 57","動詞句"],["hand out","～を配る","Day 58","動詞句"],["wear off","徐々になくなる","Day 60","動詞句"],["bump into","～に偶然出会う","Day 58","動詞句"]]},{"s":"Under national law, any ( ) under eighteen must have parental consent before opening a bank account.","j":"国内法に基づき、18歳未満のすべての<strong>未成年者</strong>は銀行口座を開設する前に保護者の同意が必要である。","o":["term","fatigue","minor","theft"],"a":2,"v":[["term","用語","Day 29","名詞"],["fatigue","疲労","Day 27","名詞"],["minor","未成年者","Day 7","名詞"],["theft","窃盗","Day 9","名詞"]]},{"s":"During the training exercise, medical students practiced responding to a ( ) emergency involving multiple patients.","j":"訓練演習中、医学生たちは複数の患者が関わる<strong>仮定の</strong>緊急事態に対応する練習をした。","o":["hypothetical","traumatic","forthcoming","persistent"],"a":0,"v":[["hypothetical","仮定の","Day 47","形容詞"],["traumatic","心的外傷となる","Day 23","形容詞"],["forthcoming","今度の","Day 50","形容詞"],["persistent","粘り強い","Day 22","形容詞"]]},{"s":"Labor union leaders met with factory executives for twelve hours to ( ) fair wages and safer working conditions.","j":"労働組合の指導者たちは、公正な賃金とより安全な労働条件を<strong>交渉する</strong>ため工場幹部と12時間会談した。","o":["negotiate","spoil","condemn","capsize"],"a":0,"v":[["negotiate","交渉する","Day 17","動詞"],["spoil","腐る","Day 39","動詞"],["condemn","〜を非難する","Day 16","動詞"],["capsize","転覆する","Day 18","動詞"]]},{"s":"There was an ( ) silence in the conference room after the presenter accidentally displayed confidential salary figures.","j":"発表者が誤って機密の給与データを画面に表示してしまった後、会議室には<strong>気まずい</strong>沈黙が流れた。","o":["awkward","federal","inconsiderate","radioactive"],"a":0,"v":[["awkward","気まずい","Day 46","形容詞"],["federal","連邦の","Day 20","形容詞"],["inconsiderate","配慮のない","Day 49","形容詞"],["radioactive","放射性の","Day 48","形容詞"]]},{"s":"Firefighters battled ( ) heat and thick smoke for six hours to prevent the warehouse blaze from spreading.","j":"消防士たちは倉庫の火災が燃え広がるのを防ぐため、<strong>激しい</strong>熱気と濃煙と6時間闘った。","o":["intense","complicated","illogical","debatable"],"a":0,"v":[["intense","激しい","Day 45","形容詞"],["complicated","複雑な","Day 48","形容詞"],["illogical","非論理的な","Day 45","形容詞"],["debatable","議論の余地のある","Day 44","形容詞"]]},{"s":"Homeowners can reduce winter heating costs by hiring a technician to ( ) smart thermostats in every room.","j":"住宅所有者は、すべての部屋にスマートサーモスタット<strong>を取りつける</strong>よう技術者に依頼することで冬の暖房費を削減できる。","o":["define","depict","infect","install"],"a":3,"v":[["define","〜を定義する","Day 37","動詞"],["depict","〜を描く","Day 42","動詞"],["infect","〜を感染させる","Day 40","動詞"],["install","〜を取りつける","Day 16","動詞"]]},{"s":"Police negotiators spoke calmly by phone for hours to secure the safe release of every ( ) inside the bank.","j":"警察の交渉官たちは、銀行内にいるすべての<strong>人質</strong>の無事な解放を確保するため何時間も電話で冷静に話し合った。","o":["property","personnel","refinement","hostage"],"a":3,"v":[["property","財産","Day 1","名詞"],["personnel","職員","Day 33","名詞"],["refinement","改良","Day 36","名詞"],["hostage","人質","Day 27","名詞"]]},{"s":"Without urgent action to curb carbon emissions, climate scientists warn of a ( ) future for low-lying coastal cities.","j":"炭素排出を抑制する緊急の行動がなければ、低地の沿岸都市には<strong>暗い（希望のない）</strong>未来が待っていると気候科学者は警告する。","o":["chronological","secure","endangered","bleak"],"a":3,"v":[["chronological","年代順の","Day 20","形容詞"],["secure","安全な","Day 20","形容詞"],["endangered","絶滅の危機に瀕した","Day 49","形容詞"],["bleak","暗い","Day 21","形容詞"]]},{"s":"Solar energy reduces household electricity bills; ( ), it lowers a family's overall carbon footprint.","j":"太陽エネルギーは家庭の電気代を削減し、<strong>その上</strong>、家族全体の二酸化炭素排出量も減らす。","o":["primarily","literally","significantly","furthermore"],"a":3,"v":[["primarily","主に","Day 52","副詞"],["literally","文字通り","Day 51","副詞"],["significantly","著しく","Day 51","副詞"],["furthermore","その上","Day 51","副詞"]]},{"s":"Pressing the red button on the control panel will immediately ( ) the emergency sprinkler system.","j":"コントロールパネルの赤いボタンを押すと、緊急スプリンクラーシステムが即座に<strong>作動する</strong>。","o":["activate","imply","sweep","scan"],"a":0,"v":[["activate","〜を作動させる","Day 41","動詞"],["imply","〜をほのめかす","Day 15","動詞"],["sweep","〜を襲う","Day 39","動詞"],["scan","〜にざっと目を通す","Day 14","動詞"]]},{"s":"Before beginning the debate, both teams agreed on how to clearly ( ) key economic terms.","j":"討論を始める前に、両チームは主要な経済用語をどのように明確に<strong>定義する</strong>かについて合意した。","o":["cite","define","halt","certify"],"a":1,"v":[["cite","〜を引き合いに出す","Day 39","動詞"],["define","〜を定義する","Day 37","動詞"],["halt","〜を中止する","Day 17","動詞"],["certify","〜を証明する","Day 18","動詞"]]},{"s":"Despite repeated offers of money, the principled local farmer continued to ( ) sell his ancestral land to developers.","j":"何度もお金を提示されたにもかかわらず、信念のある地元の農家は先祖代々の土地を開発業者に売ること<strong>を拒み</strong>続けた。","o":["aspire to","struggle to","refuse to","have yet to"],"a":2,"v":[["aspire to do","～することを熱望する","Day 63","動詞句"],["struggle to do","～しようと奮闘する","Day 63","動詞句"],["refuse to do","～することを拒む","Day 63","動詞句"],["have yet to do","まだ～していない","Day 67","動詞句"]]},{"s":"Severe toxic contamination forced authorities to ( ) close the old chemical factory and seal off the site.","j":"深刻な有毒物質汚染により、当局はその古い化学工場を<strong>永久に</strong>閉鎖し現場を封鎖することを余儀なくされた。","o":["barely","largely","abruptly","permanently"],"a":3,"v":[["barely","辛うじて","Day 51","副詞"],["largely","大部分は","Day 52","副詞"],["abruptly","突然に","Day 52","副詞"],["permanently","永久に","Day 52","副詞"]]},{"s":"The municipal library plans to ( ) its digital audiobook collection to serve visually impaired readers.","j":"市立図書館は、視覚障害のある読者にサービスを提供するためデジタルオーディオブックの蔵書<strong>を拡大する</strong>計画だ。","o":["distort","vary","transmit","expand"],"a":3,"v":[["distort","〜をゆがめる","Day 38","動詞"],["vary","異なる","Day 43","動詞"],["transmit","〜を送る","Day 15","動詞"],["expand","〜を拡大する","Day 12","動詞"]]}],[{"s":"Advanced brain imaging allows doctors to detect subtle ( ) disorders much earlier than in the past.","j":"高度な脳画像診断により、医師は微細な<strong>神経の</strong>障害を以前よりもはるかに早期に発見できる。","o":["vigorous","vivid","extravagant","neurological"],"a":3,"v":[["vigorous","活発な","Day 24","形容詞"],["vivid","鮮明な","Day 46","形容詞"],["extravagant","金遣いの荒い","Day 49","形容詞"],["neurological","神経の","Day 47","形容詞"]]},{"s":"Opening the windows every morning lets fresh mountain air replace the ( ) air inside the cabin.","j":"毎朝窓を開けることで、新鮮な山の空気が山小屋の中の<strong>よどんだ</strong>空気と入れ替わる。","o":["stale","credible","persistent","authentic"],"a":0,"v":[["stale","よどんだ","Day 50","形容詞"],["credible","信用できる","Day 50","形容詞"],["persistent","粘り強い","Day 22","形容詞"],["authentic","本物の","Day 24","形容詞"]]},{"s":"Although the ( ) prototype had minor battery issues, engineers quickly improved the design in later versions.","j":"<strong>最初の</strong>試作機にはバッテリーに軽微な問題があったが、技術者たちは後のバージョンで設計を迅速に改良した。","o":["initial","barren","enormous","prompt"],"a":0,"v":[["initial","最初の","Day 25","形容詞"],["barren","不毛の","Day 22","形容詞"],["enormous","巨大な","Day 20","形容詞"],["prompt","迅速な","Day 23","形容詞"]]},{"s":"What started as a small neighborhood book club has managed to ( ) a nationwide literacy charity.","j":"小さな近所の読書会として始まった活動が、<strong>成長して</strong>全国的な識字率向上慈善団体<strong>になっ</strong>た。","o":["enroll in","grow into","wear out","flip through"],"a":1,"v":[["enroll in","～に入学する","Day 60","動詞句"],["grow into","成長して～になる","Day 58","動詞句"],["wear out","～を疲れ果てさせる","Day 58","動詞句"],["flip through","～をパラパラめくる","Day 58","動詞句"]]},{"s":"The neutral country worked diplomatically to avoid letting neighboring conflicts ( ) it ( ) a costly war.","j":"その中立国は、近隣諸国の紛争によって自国が代償の大きい戦争<strong>に巻き込まれる</strong>のを避けるため外交努力を重ねた。","o":["drag / into","abbreviate / to","lead / to do","sue / for"],"a":0,"v":[["drag A into B","AをBに巻き込む","Day 61","動詞句"],["abbreviate A to B","AをBに短縮する","Day 61","動詞句"],["lead A to do","Aに～させる","Day 63","動詞句"],["sue A for B","AをBで訴える","Day 62","動詞句"]]},{"s":"Expanding into emerging Asian markets is a central pillar of the automaker's five-year growth ( ).","j":"新興アジア市場への進出は、その自動車メーカーの5ヶ年成長<strong>戦略</strong>の中心的な柱である。","o":["portion","strategy","critic","deposit"],"a":1,"v":[["portion","部分","Day 31","名詞"],["strategy","戦略","Day 1","名詞"],["critic","評論家","Day 1","名詞"],["deposit","頭金","Day 10","名詞"]]},{"s":"When neighbors helped rebuild his storm-damaged fence, Kenji was eager to ( ) by baking fresh bread for everyone.","j":"嵐で壊れたフェンスの修理を近所の人たちが手伝ってくれたとき、健二は皆に焼きたてのパンを焼くことで<strong>報いる（お返しをする）</strong>ことを熱望した。","o":["stray","construct","assemble","reciprocate"],"a":3,"v":[["stray","迷い出る","Day 15","動詞"],["construct","〜を建設する","Day 42","動詞"],["assemble","〜を組み立てる","Day 43","動詞"],["reciprocate","〜に報いる","Day 37","動詞"]]},{"s":"Grandparents sometimes love to ( ) their grandchildren with extra treats and toys during holiday visits.","j":"祖父母は休暇の訪問時に、おやつやおもちゃをたくさん与えて孫<strong>を甘やかす</strong>のが大好きなことがある。","o":["reciprocate","discard","pamper","devastate"],"a":2,"v":[["reciprocate","〜に報いる","Day 37","動詞"],["discard","〜を捨てる","Day 38","動詞"],["pamper","〜を甘やかす","Day 38","動詞"],["devastate","〜を壊滅させる","Day 15","動詞"]]},{"s":"After years of traveling abroad for work, the journalist decided to ( ) in a quiet coastal village.","j":"仕事で何年も海外を飛び回った後、そのジャーナリストは静かな沿岸の村で<strong>落ち着く（定住する）</strong>ことに決めた。","o":["live up to","play a role in","settle down","turn up"],"a":2,"v":[["live up to","～に添う","Day 60","動詞句"],["play a role in","～で役割を果たす","Day 67","動詞句"],["settle down","落ち着く","Day 57","動詞句"],["turn up","現れる","Day 60","動詞句"]]},{"s":"People who work late at night under bright screens ( ) experience difficulty falling asleep afterward.","j":"深夜に明るい画面の下で作業する人は、その後寝つきが悪く<strong>なりがちである</strong>。","o":["are apt to","are opposed to","are credited with","are geared to"],"a":0,"v":[["be apt to do","～しがちである","Day 66","動詞句"],["be opposed to","～に反対している","Day 65","動詞句"],["be credited with","～の功績を認められている","Day 65","動詞句"],["be geared to","～をターゲットにしている","Day 64","動詞句"]]},{"s":"Transitioning from coal to wind and solar power has dramatically reduced urban air ( ).","j":"石炭から風力・太陽光発電への移行により、都市部の大気<strong>汚染</strong>が劇的に減少した。","o":["anthropologist","pollution","diagnosis","architect"],"a":1,"v":[["anthropologist","人類学者","Day 32","名詞"],["pollution","汚染","Day 5","名詞"],["diagnosis","診断","Day 3","名詞"],["architect","建築家","Day 29","名詞"]]},{"s":"Delegates from over one hundred nations signed an international ( ) banning nuclear weapons testing.","j":"100ヶ国以上の代表団が、核兵器実験を禁止する国際<strong>条約</strong>に署名した。","o":["factor","majority","treaty","fame"],"a":2,"v":[["factor","要素","Day 27","名詞"],["majority","大多数","Day 4","名詞"],["treaty","条約","Day 11","名詞"],["fame","名声","Day 30","名詞"]]},{"s":"The museum exhibition uses interactive displays to ( ) the contributions of forgotten women scientists.","j":"その博物館の展示では、忘れられていた女性科学者たちの功績<strong>を強調する</strong>ために体験型ディスプレイを使用している。","o":["highlight","predict","accommodate","accompany"],"a":0,"v":[["highlight","〜を強調する","Day 42","動詞"],["predict","〜を予測する","Day 15","動詞"],["accommodate","〜を収容する","Day 13","動詞"],["accompany","〜に同行する","Day 39","動詞"]]},{"s":"With thousands of jobs and billions in exports ( ), lawmakers worked through the weekend to prevent a port strike.","j":"何千もの雇用と何十億もの輸出が<strong>危険にさらされて</strong>いるため、議員たちは港湾ストライキを防ぐべく週末返上で働いた。","o":["as such","at stake","on display","in exchange for"],"a":1,"v":[["as such","厳密な意味で","Day 68","形容詞句・副詞句・前置詞群"],["at stake","危険にさらされて","Day 69","形容詞句・副詞句・前置詞群"],["on display","展示されて","Day 69","形容詞句・副詞句・前置詞群"],["in exchange for","～と引き換えに","Day 70","形容詞句・副詞句・前置詞群"]]},{"s":"Drip irrigation and organic fertilizers significantly increased the annual wheat ( ) per acre.","j":"点滴灌漑と有機肥料により、1エーカーあたりの年間小麦<strong>産出量（収穫量）</strong>が大幅に増加した。","o":["portion","survey","satellite","yield"],"a":3,"v":[["portion","部分","Day 31","名詞"],["survey","調査","Day 7","名詞"],["satellite","衛星","Day 9","名詞"],["yield","産出量","Day 4","名詞"]]},{"s":"Protecting coastal mangrove forests preserves a critical nursery ( ) for juvenile fish and crustaceans.","j":"沿岸のマングローブ林を保護することは、稚魚や甲殻類にとって重要な成育<strong>生息地</strong>を守ることにつながる。","o":["consistency","expertise","venture","habitat"],"a":3,"v":[["consistency","一貫性","Day 3","名詞"],["expertise","専門的知識","Day 3","名詞"],["venture","投機的事業","Day 26","名詞"],["habitat","生息地","Day 1","名詞"]]},{"s":"Drivers who ( ) the posted speed limit in school zones face heavy fines and license penalty points.","j":"スクールゾーンで掲示された制限速度<strong>を超える</strong>運転手は、高額な罰金と免許の減点処分に直面する。","o":["contaminated","transplanted","exceed","updated"],"a":2,"v":[["contaminate","〜を汚染する","Day 37","動詞"],["transplant","〜を移植する","Day 39","動詞"],["exceed","〜を超える","Day 14","動詞"],["update","〜を更新する","Day 18","動詞"]]},{"s":"Strict park regulations ( ) visitors from feeding wild bears or leaving food unattended at campsites.","j":"厳格な公園規則により、来園者が野生のクマに餌を与えたりキャンプ場に食べ物を放置したりすることが<strong>禁じられて</strong>いる。","o":["disclose","forbid","threaten","complicate"],"a":1,"v":[["disclose","〜を明らかにする","Day 40","動詞"],["forbid","〜を禁じる","Day 40","動詞"],["threaten","〜を脅かす","Day 14","動詞"],["complicate","〜を複雑にする","Day 16","動詞"]]},{"s":"It took archivists nearly two years to ( ) all the scattered letters written by the nineteenth-century poet.","j":"19世紀の詩人が書いた散逸したすべての手紙<strong>を突き止める</strong>のに、記録保管係は約2年を要した。","o":["run through","pitch in","cut back","track down"],"a":3,"v":[["run through","～にざっと目を通す","Day 55","動詞句"],["pitch in","協力する","Day 57","動詞句"],["cut back","～を削減する","Day 54","動詞句"],["track down","～を突き止める","Day 54","動詞句"]]},{"s":"Although the volcano has remained ( ) for over three centuries, geologists continue to monitor its seismic activity.","j":"その火山は3世紀以上も<strong>活動休止中の</strong>状態にあるが、地質学者たちは地震活動の監視を続けている。","o":["dormant","corrupt","countless","federal"],"a":0,"v":[["dormant","活動休止中の","Day 25","形容詞"],["corrupt","堕落した","Day 46","形容詞"],["countless","数え切れない","Day 47","形容詞"],["federal","連邦の","Day 20","形容詞"]]}],[{"s":"The invention of the printing press had a ( ) impact on education, science, and public literacy.","j":"印刷機の発明は、教育、科学、そして一般大衆の識字率に<strong>重大な（深い）</strong>影響を与えた。","o":["numb","profound","domestic","amicable"],"a":1,"v":[["numb","感覚のなくなった","Day 49","形容詞"],["profound","重大な","Day 44","形容詞"],["domestic","国内の","Day 21","形容詞"],["amicable","友好的な","Day 21","形容詞"]]},{"s":"Investigators determined that the fire was not an accident, as someone had ( ) started it.","j":"誰かが<strong>故意に</strong>火をつけたため、捜査官たちはその火災が事故ではないと断定した。","o":["intentionally","consequently","overly","ironically"],"a":0,"v":[["intentionally","故意に","Day 52","副詞"],["consequently","その結果","Day 52","副詞"],["overly","あまりにも","Day 52","副詞"],["ironically","皮肉にも","Day 51","副詞"]]},{"s":"During the annual spring festival, the historic market square becomes a ( ) hub of music, food, and dance.","j":"毎年恒例の春祭りの間、歴史ある市場広場は音楽、食べ物、踊りに満ちた<strong>活気に満ちた</strong>中心地となる。","o":["moderate","stern","vibrant","excessive"],"a":2,"v":[["moderate","適度の","Day 21","形容詞"],["stern","厳格な","Day 44","形容詞"],["vibrant","活気に満ちた","Day 48","形容詞"],["excessive","過度の","Day 20","形容詞"]]},{"s":"Consistent daily sleep and balanced nutrition ( ) long-term physical and mental well-being.","j":"毎日の規則的な睡眠とバランスの取れた栄養は、長期的な心身の健康<strong>にとって不可欠である</strong>。","o":["are scheduled to","are essential to","are intrigued by","are opposed to"],"a":1,"v":[["be scheduled to do","～する予定である","Day 66","動詞句"],["be essential to","～にとって不可欠である","Day 65","動詞句"],["be intrigued by","～に興味を持つ","Day 65","動詞句"],["be opposed to","～に反対している","Day 65","動詞句"]]},{"s":"Sharing challenging outdoor adventures helped build a strong ( ) of trust among the expedition members.","j":"困難なアウトドアの冒険を共に経験することで、探検隊メンバーの間に強い信頼の<strong>絆</strong>が築かれた。","o":["opponent","descent","excerpt","bond"],"a":3,"v":[["opponent","敵","Day 9","名詞"],["descent","降下","Day 35","名詞"],["excerpt","抜粋","Day 6","名詞"],["bond","絆","Day 10","名詞"]]},{"s":"After fainting briefly from dehydration, the runner began to ( ) once paramedics gave her cool water.","j":"脱水症状で一時的に気絶した後、救急隊員が冷たい水を与えると、そのランナーは<strong>意識を回復し</strong>始めた。","o":["turn up","lose sight of","come to","give in to"],"a":2,"v":[["turn up","現れる","Day 60","動詞句"],["lose sight of","～を見失う","Day 67","動詞句"],["come to","意識を回復する","Day 55","動詞句"],["give in to","～に屈する","Day 57","動詞句"]]},{"s":"Switching city buses to electric power has cut carbon monoxide ( ) by more than sixty percent.","j":"市バスを電動化したことで、一酸化炭素の<strong>放出（排出）</strong>が60%以上削減された。","o":["captivity","appliance","emission","luxury"],"a":2,"v":[["captivity","監禁状態","Day 8","名詞"],["appliance","器具","Day 32","名詞"],["emission","放出","Day 2","名詞"],["luxury","ぜいたくさ","Day 28","名詞"]]},{"s":"DNA analysis provided ( ) proof that the bones belonged to a previously unknown species of early human.","j":"DNA分析により、その骨がこれまで知られていなかった初期人類の種のものであるという<strong>決定的な</strong>証拠が得られた。","o":["extravagant","conclusive","radioactive","confidential"],"a":1,"v":[["extravagant","金遣いの荒い","Day 49","形容詞"],["conclusive","決定的な","Day 48","形容詞"],["radioactive","放射性の","Day 48","形容詞"],["confidential","秘密の","Day 23","形容詞"]]},{"s":"The government voted to ( ) the pristine mountain valley as a protected national wildlife sanctuary.","j":"政府は、手つかずの山の渓谷を保護された国立野生動物保護区<strong>に指定する</strong>ことを可決した。","o":["dread","designate","dislocate","imply"],"a":1,"v":[["dread","〜を怖がる","Day 38","動詞"],["designate","〜を指定する","Day 17","動詞"],["dislocate","〜を脱臼する","Day 43","動詞"],["imply","〜をほのめかす","Day 15","動詞"]]},{"s":"Early in the morning, the mist-covered lake is remarkably ( ) before tour boats begin operating.","j":"観光船の運航が始まる前の早朝、霧に覆われた湖は驚くほど<strong>穏やかな</strong>佇まいを見せる。","o":["comparable","commendable","conclusive","tranquil"],"a":3,"v":[["comparable","同等の","Day 44","形容詞"],["commendable","称賛に値する","Day 44","形容詞"],["conclusive","決定的な","Day 48","形容詞"],["tranquil","穏やかな","Day 24","形容詞"]]},{"s":"Consumers should never share bank passwords over the phone, as financial ( ) schemes are becoming increasingly sophisticated.","j":"金融<strong>詐欺</strong>の手口がますます巧妙化しているため、消費者は電話で銀行のパスワードを決して教えるべきではない。","o":["yield","capacity","fraud","survey"],"a":2,"v":[["yield","産出量","Day 4","名詞"],["capacity","収容能力","Day 4","名詞"],["fraud","詐欺","Day 35","名詞"],["survey","調査","Day 7","名詞"]]},{"s":"Solar panels ( ) sunlight directly ( ) clean electrical energy without producing greenhouse gases.","j":"太陽光パネルは、温室効果ガスを排出することなく太陽光を直接クリーンな電気エネルギー<strong>に変える</strong>。","o":["substitute / for","convert / into","charge / with","aim / at"],"a":1,"v":[["substitute A for B","Bの代わりにAを使う","Day 62","動詞句"],["convert A into B","AをBに変える","Day 62","動詞句"],["charge A with B","AをBで告発する","Day 62","動詞句"],["aim A at B","Bを対象にAを行う","Day 61","動詞句"]]},{"s":"After months of intensive training, the young astronauts ( ) embark on their first orbital mission.","j":"何ヶ月もの集中的な訓練を経て、若い宇宙飛行士たちは初の軌道ミッションに出発すること<strong>を強くしたがっている（熱望している）</strong>。","o":["are anxious to","are entitled to","are skeptical about","are affiliated with"],"a":0,"v":[["be anxious to do","～したがっている","Day 66","動詞句"],["be entitled to do","～する権利がある","Day 66","動詞句"],["be skeptical about","～を疑っている","Day 64","動詞句"],["be affiliated with","～の系列下である","Day 65","動詞句"]]},{"s":"Robotic arms on the factory floor can ( ) a complete electric car chassis in less than four hours.","j":"工場のフロアにあるロボットアームは、4時間未満で完全な電気自動車の車台<strong>を組み立てる</strong>ことができる。","o":["relieve","storm","scatter","assemble"],"a":3,"v":[["relieve","〜を和らげる","Day 42","動詞"],["storm","〜を襲撃する","Day 14","動詞"],["scatter","〜をまき散らす","Day 39","動詞"],["assemble","〜を組み立てる","Day 43","動詞"]]},{"s":"Taking the ( ) to propose creative solutions during meetings shows strong leadership potential.","j":"会議中に創造的な解決策を提案する<strong>主導権</strong>を取ることは、強いリーダーシップの可能性を示している。","o":["authority","initiative","manuscript","spending"],"a":1,"v":[["authority","当局","Day 10","名詞"],["initiative","主導権","Day 5","名詞"],["manuscript","原稿","Day 28","名詞"],["spending","支出","Day 31","名詞"]]},{"s":"Rising sea levels pose an existential ( ) to low-lying island nations across the Pacific Ocean.","j":"海面上昇は、太平洋全域の低地の島国にとって存亡に関わる<strong>脅威</strong>をもたらしている。","o":["threat","theft","promotion","temper"],"a":0,"v":[["threat","脅威","Day 3","名詞"],["theft","窃盗","Day 9","名詞"],["promotion","昇進","Day 2","名詞"],["temper","機嫌","Day 36","名詞"]]},{"s":"The weather forecast predicted heavy afternoon showers; ( ), hundreds of fans attended the outdoor concert.","j":"天気予報では午後に激しいにわか雨が予測されていたが、<strong>それにもかかわらず</strong>何百人ものファンが屋外コンサートに足を運んだ。","o":["virtually","nevertheless","literally","roughly"],"a":1,"v":[["virtually","ほとんど","Day 52","副詞"],["nevertheless","それにもかかわらず","Day 51","副詞"],["literally","文字通り","Day 51","副詞"],["roughly","およそ","Day 52","副詞"]]},{"s":"We had planned to take the scenic coastal ferry; ( ), high winds forced all boats to remain in port.","j":"風光明媚な沿岸フェリーに乗る予定だったが、<strong>残念ながら</strong>強風のためすべての船が港に留まることを余儀なくされた。","o":["previously","ironically","unfortunately","permanently"],"a":2,"v":[["previously","以前に","Day 51","副詞"],["ironically","皮肉にも","Day 51","副詞"],["unfortunately","残念ながら","Day 51","副詞"],["permanently","永久に","Day 52","副詞"]]},{"s":"When the neighborhood park was damaged by the storm, dozens of residents arrived with tools to ( ).","j":"嵐で近所の公園が被害を受けたとき、何十人もの住民が道具を持って駆けつけ<strong>協力し</strong>た。","o":["catch a glimpse of","run through","pitch in","pay off"],"a":2,"v":[["catch a glimpse of","～をちらりと見かける","Day 67","動詞句"],["run through","～にざっと目を通す","Day 55","動詞句"],["pitch in","協力する","Day 57","動詞句"],["pay off","～を完済する","Day 59","動詞句"]]},{"s":"A helpful flight ( ) assisted the elderly passenger with storing her carry-on luggage in the overhead bin.","j":"親切な客室<strong>案内係（乗務員）</strong>が、高齢の乗客が手荷物を頭上の収納棚に入れるのを手伝った。","o":["attendant","admiration","dependency","recognition"],"a":0,"v":[["attendant","案内係","Day 34","名詞"],["admiration","称賛","Day 29","名詞"],["dependency","依存","Day 32","名詞"],["recognition","認識","Day 8","名詞"]]}],[{"s":"Even without GPS, experienced navigators can ( ) across the open ocean by observing the stars.","j":"GPSがなくても、熟練した航海士は星を観察することで外洋を渡って目的地に<strong>たどり着く</strong>ことができる。","o":["get away with","find their way","mark down","act up"],"a":1,"v":[["get away with","～をしてもただで済む","Day 57","動詞句"],["find one’s way","たどり着く","Day 67","動詞句"],["mark down","～を値下げする","Day 59","動詞句"],["act up","いたずらをする","Day 55","動詞句"]]},{"s":"Living abroad as a political ( ) for twenty years, the writer continued publishing essays advocating democracy.","j":"20年間政治<strong>亡命者</strong>として海外で暮らしながら、その作家は民主主義を擁護するエッセイを発表し続けた。","o":["decade","poverty","exile","sensation"],"a":2,"v":[["decade","10年間","Day 6","名詞"],["poverty","貧困","Day 28","名詞"],["exile","亡命者","Day 27","名詞"],["sensation","感覚","Day 33","名詞"]]},{"s":"Playing loud music late at night in an apartment building is deeply ( ) to sleeping neighbors.","j":"集合住宅で深夜に大音量の音楽を流すことは、眠っている隣人に対して非常に<strong>配慮のない</strong>行為である。","o":["obsolete","inconsiderate","extravagant","genuine"],"a":1,"v":[["obsolete","時代遅れの","Day 20","形容詞"],["inconsiderate","配慮のない","Day 49","形容詞"],["extravagant","金遣いの荒い","Day 49","形容詞"],["genuine","本物の","Day 20","形容詞"]]},{"s":"The two regional banks announced plans to ( ) next year to form a stronger national financial institution.","j":"その2つの地方銀行は、より強力な全国規模の金融機関を形成するため来年に<strong>合併する</strong>計画を発表した。","o":["betray","merge","compromise","relieve"],"a":1,"v":[["betray","〜を裏切る","Day 42","動詞"],["merge","合併する","Day 42","動詞"],["compromise","妥協する","Day 37","動詞"],["relieve","〜を和らげる","Day 42","動詞"]]},{"s":"Advertisers are prohibited by law from making false claims that ( ) the health benefits of dietary supplements.","j":"広告主は、栄養補助食品の健康上の利点<strong>を誇張する</strong>虚偽の主張を行うことを法律で禁じられている。","o":["forbid","exaggerate","tackle","disclose"],"a":1,"v":[["forbid","〜を禁じる","Day 40","動詞"],["exaggerate","〜を誇張する","Day 15","動詞"],["tackle","〜に取り組む","Day 16","動詞"],["disclose","〜を明らかにする","Day 40","動詞"]]},{"s":"Either party may ( ) the consulting agreement by providing thirty days' written notice.","j":"いずれの当事者も、30日前の書面による通知を行うことでコンサルティング契約<strong>を終わらせる（終了する）</strong>ことができる。","o":["assemble","define","enhance","terminate"],"a":3,"v":[["assemble","〜を組み立てる","Day 43","動詞"],["define","〜を定義する","Day 37","動詞"],["enhance","〜を高める","Day 13","動詞"],["terminate","〜を終わらせる","Day 41","動詞"]]},{"s":"Several international engineering firms plan to ( ) the contract to build the new high-speed railway.","j":"いくつかの国際的なエンジニアリング会社が、新しい高速鉄道を建設する契約<strong>に入札する</strong>計画だ。","o":["bid for","slip out","contribute to","live off"],"a":0,"v":[["bid for","～に入札する","Day 57","動詞句"],["slip out","つい口から漏れる","Day 55","動詞句"],["contribute to","～の一因となる","Day 53","動詞句"],["live off","～で生計を立てる","Day 60","動詞句"]]},{"s":"Instead of continuing to ( ) about the difficult assignment, students should ask the professor for guidance.","j":"難しい課題について<strong>泣き言を言う</strong>のを続ける代わりに、学生たちは教授に指導を求めるべきだ。","o":["threaten","revive","whine","manufacture"],"a":2,"v":[["threaten","〜を脅かす","Day 14","動詞"],["revive","〜を復興させる","Day 41","動詞"],["whine","泣き言を言う","Day 38","動詞"],["manufacture","〜を製造する","Day 14","動詞"]]},{"s":"Many modern educators ( ) mistakes ( ) valuable learning opportunities rather than signs of failure.","j":"多くの現代の教育者は、間違いを失敗の兆候ではなく貴重な学びの機会<strong>と見なす</strong>。","o":["encourage / to do","accuse / of","prescribe / for","view / as"],"a":3,"v":[["encourage A to do","Aに～するよう勧める","Day 63","動詞句"],["accuse A of B","AをBで訴える","Day 61","動詞句"],["prescribe A for B","AをBに処方する","Day 62","動詞句"],["view A as B","AをBと見なす","Day 62","動詞句"]]},{"s":"Rapid growth in artificial intelligence startups has sparked an economic ( ) in the city's technology district.","j":"人工知能スタートアップの急速な成長は、その都市のテクノロジー地区に経済的<strong>好況</strong>を引き起こした。","o":["manuscript","segment","boom","evolution"],"a":2,"v":[["manuscript","原稿","Day 28","名詞"],["segment","部分","Day 36","名詞"],["boom","好況","Day 29","名詞"],["evolution","進化","Day 30","名詞"]]},{"s":"Rather than getting angry at the minor criticism, the confident author chose to ( ) it ( ).","j":"その些細な批判に腹を立てるのではなく、自信に満ちた作家はそれ<strong>を笑い飛ばす</strong>ことを選んだ。","o":["urge / to do","expose / to","drag / into","laugh / off"],"a":3,"v":[["urge A to do","Aに～するよう強く勧める","Day 63","動詞句"],["expose A to B","AをBにさらす","Day 61","動詞句"],["drag A into B","AをBに巻き込む","Day 61","動詞句"],["laugh off","～を笑い飛ばす","Day 57","動詞句"]]},{"s":"Passengers whose flights were delayed overnight received a complimentary hotel and meal ( ) from the airline.","j":"フライトが翌日まで遅延した乗客は、航空会社から無料のホテルと食事の<strong>引換券</strong>を受け取った。","o":["prey","backbone","voucher","legislation"],"a":2,"v":[["prey","獲物","Day 31","名詞"],["backbone","中枢","Day 26","名詞"],["voucher","引換券","Day 29","名詞"],["legislation","法律","Day 11","名詞"]]},{"s":"She decided to ( ) the lucrative overseas job offer in order to stay close to her aging parents.","j":"彼女は、年老いた両親の近くにいるために、その高収入の海外での仕事の申し出<strong>を見送る</strong>ことに決めた。","o":["contribute to","turn to","jump at","pass up"],"a":3,"v":[["contribute to","～の一因となる","Day 53","動詞句"],["turn to","～に求める","Day 55","動詞句"],["jump at","～に飛びつく","Day 57","動詞句"],["pass up","～を見送る","Day 60","動詞句"]]},{"s":"Although the ( ) test results look promising, scientists must conduct larger clinical trials before drawing conclusions.","j":"<strong>予備的な</strong>試験結果は有望に見えるが、結論を出す前に科学者たちはより大規模な臨床試験を実施しなければならない。","o":["random","preliminary","commendable","outdated"],"a":1,"v":[["random","無作為の","Day 21","形容詞"],["preliminary","予備的な","Day 44","形容詞"],["commendable","称賛に値する","Day 44","形容詞"],["outdated","時代遅れの","Day 46","形容詞"]]},{"s":"Adding interactive maps and audio guides will greatly ( ) the visitor experience at the historic castle.","j":"体験型マップや音声ガイドを追加することで、その歴史ある城での来訪者体験が大きく<strong>高まる（向上する）</strong>だろう。","o":["outweigh","expel","upgrade","enhance"],"a":3,"v":[["outweigh","〜より重要である","Day 42","動詞"],["expel","〜を除名する","Day 43","動詞"],["upgrade","〜を改良する","Day 41","動詞"],["enhance","〜を高める","Day 13","動詞"]]},{"s":"Park rangers patrol the coastline daily to ( ) strict bans on illegal fishing in marine reserves.","j":"公園管理官は、海洋保護区での違法漁業の厳格な禁止<strong>を守らせる</strong>ために毎日海岸線を巡回している。","o":["expel","devastate","scan","enforce"],"a":3,"v":[["expel","〜を除名する","Day 43","動詞"],["devastate","〜を壊滅させる","Day 15","動詞"],["scan","〜にざっと目を通す","Day 14","動詞"],["enforce","〜を守らせる","Day 16","動詞"]]},{"s":"Because the island has no freshwater rivers, residents rely ( ) entirely on rainwater collection and desalination.","j":"その島には淡水の川がないため、住民は<strong>ほとんど</strong>完全に雨水収集と海水淡水化に頼っている。","o":["highly","ultimately","virtually","primarily"],"a":2,"v":[["highly","非常に","Day 52","副詞"],["ultimately","結局","Day 52","副詞"],["virtually","ほとんど","Day 52","副詞"],["primarily","主に","Day 52","副詞"]]},{"s":"Learning a musical instrument requires patience, so beginners should ( ) daily practice even when progress feels slow.","j":"楽器の習得には忍耐が必要なので、初心者は上達が遅く感じるときでも毎日の練習<strong>を続ける</strong>べきである。","o":["stick with","work out","slip away","break out"],"a":0,"v":[["stick with","～を続ける","Day 56","動詞句"],["work out","～を考え出す","Day 53","動詞句"],["slip away","そっと出て行く","Day 58","動詞句"],["break out","勃発する","Day 55","動詞句"]]},{"s":"Mountaineers will ( ) reach the summit early tomorrow morning before afternoon winds pick up.","j":"登山隊は、午後の風が強まる前の明日の早朝に山頂に到達<strong>しようとする</strong>予定だ。","o":["attempt to","tend to","strive to","choose to"],"a":0,"v":[["attempt to do","～しようとする","Day 63","動詞句"],["tend to do","～しがちである","Day 63","動詞句"],["strive to do","～しようと努力する","Day 63","動詞句"],["choose to do","～することにする","Day 63","動詞句"]]},{"s":"Fans eagerly awaited the release of the ( ) to see how the young detective's story continued.","j":"ファンたちは、若い探偵の物語がどのように続くのかを見るために<strong>続編</strong>の公開を心待ちにしていた。","o":["sequel","exile","flaw","eruption"],"a":0,"v":[["sequel","続編","Day 36","名詞"],["exile","亡命者","Day 27","名詞"],["flaw","欠陥","Day 10","名詞"],["eruption","噴火","Day 10","名詞"]]}],[{"s":"Community scholarship programs aim to provide equal university access for economically ( ) youth.","j":"地域の奨学金プログラムは、経済的に<strong>恵まれない</strong>若者に平等な大学進学の機会を提供することを目的としている。","o":["numb","ongoing","peculiar","disadvantaged"],"a":3,"v":[["numb","感覚のなくなった","Day 49","形容詞"],["ongoing","進行中の","Day 47","形容詞"],["peculiar","奇妙な","Day 25","形容詞"],["disadvantaged","恵まれない","Day 50","形容詞"]]},{"s":"The court ruled that the factory fire was caused by management's serious ( ) in maintaining electrical wiring.","j":"裁判所は、工場火災が電気配線の維持管理における経営陣の重大な<strong>過失</strong>によって引き起こされたと判決を下した。","o":["quota","interference","powerhouse","negligence"],"a":3,"v":[["quota","ノルマ","Day 36","名詞"],["interference","干渉","Day 35","名詞"],["powerhouse","強大な国","Day 36","名詞"],["negligence","過失","Day 36","名詞"]]},{"s":"Advances in drought-resistant seeds have helped sustain ( ) output despite hotter summer temperatures.","j":"干ばつに強い種子の進歩は、夏の気温上昇にもかかわらず<strong>農業の</strong>生産量を維持するのに役立っている。","o":["awkward","agricultural","spectacular","durable"],"a":1,"v":[["awkward","気まずい","Day 46","形容詞"],["agricultural","農業の","Day 19","形容詞"],["spectacular","壮大な","Day 49","形容詞"],["durable","耐久性のある","Day 45","形容詞"]]},{"s":"Public health experts strongly ( ) regular physical exercise and balanced nutrition to prevent chronic disease.","j":"公衆衛生の専門家は、慢性疾患を予防するために定期的な運動とバランスの取れた栄養摂取を強く<strong>支持する（推奨する）</strong>。","o":["merge","decline","compromise","advocate"],"a":3,"v":[["merge","合併する","Day 42","動詞"],["decline","減少する","Day 12","動詞"],["compromise","妥協する","Day 37","動詞"],["advocate","〜を支持する","Day 15","動詞"]]},{"s":"Strict auditing software ensures that no employee can ( ) falsifying corporate expense reports.","j":"厳格な監査ソフトウェアにより、どの従業員も企業の経費報告書を改ざん<strong>してもただで済む（罰を免れる）</strong>ことはできない。","o":["pitch in","count on","result in","get away with"],"a":3,"v":[["pitch in","協力する","Day 57","動詞句"],["count on","～に頼る","Day 53","動詞句"],["result in","～という結果になる","Day 53","動詞句"],["get away with","～をしてもただで済む","Day 57","動詞句"]]},{"s":"Switching to electric public transit will help ( ) harmful exhaust fumes in congested urban centers.","j":"電動公共交通機関への切り替えは、混雑した都心部の有害な排気ガス<strong>を取り除く（なくす）</strong>のに役立つ。","o":["eliminate","conserve","thrive","encounter"],"a":0,"v":[["eliminate","〜を取り除く","Day 12","動詞"],["conserve","〜を節約して使う","Day 17","動詞"],["thrive","繁栄する","Day 14","動詞"],["encounter","〜に直面する","Day 12","動詞"]]},{"s":"Careful editing is necessary to ( ) repetitive phrasing and make academic essays clearer.","j":"反復的な表現<strong>を排除し</strong>、学術論文をより明確にするためには注意深い編集が必要である。","o":["eat up","weed out","wear off","bump into"],"a":1,"v":[["eat up","～を消費する","Day 54","動詞句"],["weed out","～を排除する","Day 56","動詞句"],["wear off","徐々になくなる","Day 60","動詞句"],["bump into","～に偶然出会う","Day 58","動詞句"]]},{"s":"The environmental agency published a ( ) three-hundred-page report examining every aspect of regional water quality.","j":"環境庁は、地域の水質のあらゆる側面を調査した300ページに及ぶ<strong>包括的な</strong>報告書を発表した。","o":["gullible","commendable","vivid","comprehensive"],"a":3,"v":[["gullible","だまされやすい","Day 45","形容詞"],["commendable","称賛に値する","Day 44","形容詞"],["vivid","鮮明な","Day 46","形容詞"],["comprehensive","包括的な","Day 21","形容詞"]]},{"s":"The municipal ( ) voted unanimously to fund three new public libraries in underserved neighborhoods.","j":"市<strong>議会</strong>は、サービスの行き届いていない地域に3つの新しい公立図書館を設立する資金を提供することを全会一致で可決した。","o":["voucher","vault","enclosure","council"],"a":3,"v":[["voucher","引換券","Day 29","名詞"],["vault","金庫室","Day 29","名詞"],["enclosure","囲い","Day 35","名詞"],["council","議会","Day 32","名詞"]]},{"s":"To the great ( ) of waiting commuters, all morning trains were delayed due to a signal failure.","j":"待っていた通勤客たちの大きな<strong>失望</strong>を招いたことに、信号故障のため午前のすべての列車が遅延した。","o":["amenity","dismay","exemption","flaw"],"a":1,"v":[["amenity","設備","Day 34","名詞"],["dismay","失望","Day 30","名詞"],["exemption","免除","Day 35","名詞"],["flaw","欠陥","Day 10","名詞"]]},{"s":"The museum decided to ( ) its popular ancient Egypt exhibition by two months due to high visitor demand.","j":"美術館は、来館者からの高い要望に応えて人気の古代エジプト展の会期を2ヶ月<strong>拡大する（延長する）</strong>ことを決定した。","o":["pamper","extend","submit","scan"],"a":1,"v":[["pamper","〜を甘やかす","Day 38","動詞"],["extend","〜を拡大する","Day 42","動詞"],["submit","〜を提出する","Day 41","動詞"],["scan","〜にざっと目を通す","Day 14","動詞"]]},{"s":"Scientific organizations widely ( ) that human activities are the primary driver of modern climate change.","j":"科学機関は、人間の活動が現代の気候変動の主な要因であることを広く<strong>認めて</strong>いる。","o":["highlight","discharge","capsize","acknowledge"],"a":3,"v":[["highlight","〜を強調する","Day 42","動詞"],["discharge","〜を排出する","Day 38","動詞"],["capsize","転覆する","Day 18","動詞"],["acknowledge","〜を認める","Day 16","動詞"]]},{"s":"Before embarking on a desert hike, make sure you pack an ( ) supply of water and sun protection.","j":"砂漠のハイキングに出発する前に、<strong>十分な</strong>量の水と日焼け対策用品を必ず荷造りしてください。","o":["adequate","hazardous","dedicated","substantial"],"a":0,"v":[["adequate","十分な","Day 23","形容詞"],["hazardous","有害な","Day 50","形容詞"],["dedicated","献身的な","Day 23","形容詞"],["substantial","かなりの","Day 22","形容詞"]]},{"s":"Hotel staff are trained to remain calm and ( ) even when dealing with frustrated travelers during flight delays.","j":"ホテルのスタッフは、フライト遅延でイライラしている旅行者に対応するときでも冷静で<strong>礼儀正しい</strong>態度を保つよう訓練されている。","o":["courteous","compulsory","stern","hilarious"],"a":0,"v":[["courteous","礼儀正しい","Day 23","形容詞"],["compulsory","義務的な","Day 21","形容詞"],["stern","厳格な","Day 44","形容詞"],["hilarious","とても面白い","Day 25","形容詞"]]},{"s":"Dietary requirements can ( ) significantly depending on a person's age, activity level, and overall health.","j":"食事の必要量は、人の年齢、活動レベル、全体的な健康状態によって大きく<strong>異なる</strong>ことがある。","o":["administer","vary","justify","commit"],"a":1,"v":[["administer","〜を管理する","Day 18","動詞"],["vary","異なる","Day 43","動詞"],["justify","〜を正当化する","Day 16","動詞"],["commit","〜を犯す","Day 39","動詞"]]},{"s":"Discovering liquid water beneath the icy crust of the moon represents a ( ) milestone in space exploration.","j":"衛星の氷の地殻の下に液体の水を発見したことは、宇宙探査における<strong>重要な</strong>画期的出来事である。","o":["secure","coherent","significant","nutritious"],"a":2,"v":[["secure","安全な","Day 20","形容詞"],["coherent","首尾一貫した","Day 46","形容詞"],["significant","重要な","Day 19","形容詞"],["nutritious","栄養のある","Day 25","形容詞"]]},{"s":"Antitrust laws exist to prevent a single corporation from being able to ( ) an entire industry.","j":"独占禁止法は、単一の企業が産業全体<strong>を独占する</strong>ことができるようになるのを防ぐために存在する。","o":["browse","dictate","spoil","monopolize"],"a":3,"v":[["browse","ざっと目を通す","Day 13","動詞"],["dictate","〜を決定する","Day 38","動詞"],["spoil","腐る","Day 39","動詞"],["monopolize","〜を独占する","Day 38","動詞"]]},{"s":"Management decided to ( ) the senior analyst for promotion because of his repeated failure to meet deadlines.","j":"経営陣は、締め切りを繰り返し守れなかったことを理由にその上級アナリストを昇進の<strong>候補から外す</strong>ことを決定した。","o":["burst into","fall through","pass over","set off"],"a":2,"v":[["burst into","突然～しだす","Day 60","動詞句"],["fall through","失敗に終わる","Day 60","動詞句"],["pass over","～を候補から外す","Day 58","動詞句"],["set off","～を作動させる","Day 54","動詞句"]]},{"s":"An independent inspector must ( ) that the new bridge meets all national earthquake safety standards before it opens.","j":"新しい橋が開通する前に、独立した検査官が国のすべての耐震安全基準を満たしていること<strong>を証明する</strong>必要がある。","o":["reschedule","evaluate","undergo","certify"],"a":3,"v":[["reschedule","〜の予定を変更する","Day 42","動詞"],["evaluate","〜を評価する","Day 15","動詞"],["undergo","〜を受ける","Day 43","動詞"],["certify","〜を証明する","Day 18","動詞"]]},{"s":"The board threatened to ( ) the chief executive if the company failed to reverse its declining sales.","j":"取締役会は、同社が売上減少を食い止められなければ最高経営責任者<strong>を解雇する</strong>と警告した。","o":["fire","cherish","indicate","scatter"],"a":0,"v":[["fire","〜を解雇する","Day 42","動詞"],["cherish","〜を大切にする","Day 16","動詞"],["indicate","〜を示す","Day 12","動詞"],["scatter","〜をまき散らす","Day 39","動詞"]]}],[{"s":"Despite cold rain, thousands of citizens decided to ( ) to support the annual charity marathon.","j":"冷たい雨にもかかわらず、何千人もの市民が毎年恒例のチャリティマラソンを応援するために<strong>出かける（集まる）</strong>ことにした。","o":["indulge in","turn out","slip out","pass up"],"a":1,"v":[["indulge in","～にふける","Day 59","動詞句"],["turn out","出かける","Day 53","動詞句"],["slip out","つい口から漏れる","Day 55","動詞句"],["pass up","～を見送る","Day 60","動詞句"]]},{"s":"Far from being ( ) local environmental issues, young voters actively organize community cleanups.","j":"地域の環境問題<strong>に無関心である</strong>どころか、若い有権者たちは地域の清掃活動を積極的に企画している。","o":["susceptible to","intrigued by","indifferent to","designed to"],"a":2,"v":[["be susceptible to","～に感染しやすい","Day 65","動詞句"],["be intrigued by","～に興味を持つ","Day 65","動詞句"],["be indifferent to","～に無関心である","Day 64","動詞句"],["be designed to do","～することを目的にしている","Day 66","動詞句"]]},{"s":"Arctic explorers wear specialized insulated gear to survive the ( ) winter winds and subzero temperatures.","j":"北極探検家は、<strong>厳しい（過酷な）</strong>冬の風と氷点下の気温を生き延びるために特殊な断熱装備を着用する。","o":["harsh","vocational","lenient","urban"],"a":0,"v":[["harsh","厳しい","Day 21","形容詞"],["vocational","職業の","Day 50","形容詞"],["lenient","寛大な","Day 24","形容詞"],["urban","都市の","Day 21","形容詞"]]},{"s":"Many consumers now ( ) electric bicycles ( ) a practical and eco-friendly alternative to commuting by car.","j":"多くの消費者は現在、電動自転車を車での通勤に代わる実用的で環境に優しい選択肢<strong>と見なす</strong>ようになっている。","o":["lead / to do","see / as","divert / from","enable / to do"],"a":1,"v":[["lead A to do","Aに～させる","Day 63","動詞句"],["see A as B","AをBと見なす","Day 61","動詞句"],["divert A from B","AをBからそらす","Day 61","動詞句"],["enable A to do","Aが～できるようにする","Day 63","動詞句"]]},{"s":"Before the afternoon meeting, please ( ) the new project manager ( ) yesterday's client feedback.","j":"午後の会議の前に、新しいプロジェクトマネージャー<strong>に</strong>昨日の顧客フィードバックの<strong>最新情報を与えて（伝えて）</strong>ください。","o":["expose / to","convert / into","view / as","fill / in on"],"a":3,"v":[["expose A to B","AをBにさらす","Day 61","動詞句"],["convert A into B","AをBに変える","Day 62","動詞句"],["view A as B","AをBと見なす","Day 62","動詞句"],["fill A in on B","AにBの最新情報を与える","Day 61","動詞句"]]},{"s":"The committee was quick to ( ) the proposal because its projected costs were far above the annual budget.","j":"予想コストが年間予算をはるかに上回っていたため、委員会はその提案をすかさず<strong>はねつけた</strong>。","o":["slip away","shoot down","laugh off","give in to"],"a":1,"v":[["slip away","そっと出て行く","Day 58","動詞句"],["shoot down","～をはねつける","Day 57","動詞句"],["laugh off","～を笑い飛ばす","Day 57","動詞句"],["give in to","～に屈する","Day 57","動詞句"]]},{"s":"Experienced crisis managers ( ) decades of field experience when making rapid decisions during emergencies.","j":"経験豊富な危機管理責任者は、緊急時に迅速な決断を下す際、何十年もの現場経験<strong>を活用する</strong>。","o":["catch up on","abstain from","draw on","make it"],"a":2,"v":[["catch up on","～の遅れを取り戻す","Day 56","動詞句"],["abstain from","～を控える","Day 58","動詞句"],["draw on","～を活用する","Day 55","動詞句"],["make it","到着する","Day 67","動詞句"]]},{"s":"Seasonal rainfall patterns largely ( ) which crops farmers can successfully cultivate in arid regions.","j":"季節ごとの降雨パターンが、乾燥地域で農家がどの作物をうまく栽培できるかを大きく<strong>決定する</strong>。","o":["dictate","ease","recruit","cherish"],"a":0,"v":[["dictate","〜を決定する","Day 38","動詞"],["ease","〜を和らげる","Day 40","動詞"],["recruit","〜を採用する","Day 41","動詞"],["cherish","〜を大切にする","Day 16","動詞"]]},{"s":"Several international flights were canceled this morning ( ) dense fog covering the airport runways.","j":"今朝、空港の滑走路を覆う濃霧<strong>が原因で</strong>いくつかの国際便が欠航となった。","o":["in a row","at stake","due to","on the spot"],"a":2,"v":[["in a row","連続して","Day 68","形容詞句・副詞句・前置詞群"],["at stake","危険にさらされて","Day 69","形容詞句・副詞句・前置詞群"],["due to","～が原因で","Day 70","形容詞句・副詞句・前置詞群"],["on the spot","すぐに","Day 68","形容詞句・副詞句・前置詞群"]]},{"s":"The dam's water reserves dropped to record lows; ( ), strict agricultural rationing was introduced.","j":"ダムの貯水量が過去最低水準に落ち込み、<strong>その結果</strong>、厳しい農業用水の配給制が導入された。","o":["ironically","consequently","approximately","primarily"],"a":1,"v":[["ironically","皮肉にも","Day 51","副詞"],["consequently","その結果","Day 52","副詞"],["approximately","約","Day 52","副詞"],["primarily","主に","Day 52","副詞"]]},{"s":"Modern quantum computers possess the ( ) to solve complex molecular simulations in minutes rather than years.","j":"現代の量子コンピューターは、複雑な分子シミュレーションを数年ではなく数分で解く<strong>能力</strong>を備えている。","o":["funding","capability","emergency","checkup"],"a":1,"v":[["funding","資金","Day 30","名詞"],["capability","能力","Day 34","名詞"],["emergency","緊急時","Day 8","名詞"],["checkup","健康診断","Day 34","名詞"]]},{"s":"Ignoring a minor roof leak can cause water damage to rapidly ( ) during the rainy season.","j":"小さな屋根の雨漏りを放置すると、梅雨の間に水害が急速に<strong>悪化する</strong>原因になる。","o":["worsen","reconcile","exceed","unearth"],"a":0,"v":[["worsen","悪化する","Day 39","動詞"],["reconcile","〜を両立させる","Day 41","動詞"],["exceed","〜を超える","Day 14","動詞"],["unearth","〜を発掘する","Day 38","動詞"]]},{"s":"Mountaineers rely on ( ) aluminum trekking poles to maintain balance on steep, rocky trails.","j":"登山家は、急勾配で岩だらけの登山道でバランスを保つために<strong>丈夫な</strong>アルミニウム製のトレッキングポールに頼っている。","o":["numb","agricultural","sturdy","considerable"],"a":2,"v":[["numb","感覚のなくなった","Day 49","形容詞"],["agricultural","農業の","Day 19","形容詞"],["sturdy","丈夫な","Day 50","形容詞"],["considerable","かなりの","Day 50","形容詞"]]},{"s":"The veteran chef shared a helpful ( ) on keeping fresh herbs crisp for weeks in the refrigerator.","j":"そのベテランシェフは、冷蔵庫で新鮮なハーブを何週間もシャキッと保つための役立つ<strong>助言（コツ）</strong>を教えてくれた。","o":["constraint","well-being","suspect","tip"],"a":3,"v":[["constraint","制約","Day 35","名詞"],["well-being","幸福","Day 31","名詞"],["suspect","容疑者","Day 8","名詞"],["tip","助言","Day 7","名詞"]]},{"s":"Despite winning three international architecture awards, she remained remarkably ( ) about her achievements.","j":"国際的な建築賞を3度受賞したにもかかわらず、彼女は自分の業績について驚くほど<strong>控えめな</strong>態度を保っていた。","o":["modest","relevant","exclusive","genuine"],"a":0,"v":[["modest","控えめな","Day 25","形容詞"],["relevant","関係のある","Day 19","形容詞"],["exclusive","独占的な","Day 47","形容詞"],["genuine","本物の","Day 20","形容詞"]]},{"s":"When offered a full scholarship to study marine biology in Australia, Kenji immediately decided to ( ) the opportunity.","j":"オーストラリアで海洋生物学を学ぶ全額奨学金を提示されたとき、健二は即座にその機会<strong>に飛びつく</strong>ことを決めた。","o":["catch up on","jump at","account for","flag down"],"a":1,"v":[["catch up on","～の遅れを取り戻す","Day 56","動詞句"],["jump at","～に飛びつく","Day 57","動詞句"],["account for","～を占める","Day 55","動詞句"],["flag down","～を手を振って止める","Day 58","動詞句"]]},{"s":"Researchers from twelve countries will ( ) on the international space station to conduct microgravity experiments.","j":"12ヶ国の研究者たちが国際宇宙ステーションで<strong>共同制作（共同研究）する</strong>ことで、微小重力実験を行う予定だ。","o":["cultivate","contaminate","collaborate","upgrade"],"a":2,"v":[["cultivate","〜をはぐくむ","Day 13","動詞"],["contaminate","〜を汚染する","Day 37","動詞"],["collaborate","共同制作する","Day 43","動詞"],["upgrade","〜を改良する","Day 41","動詞"]]},{"s":"Recent clinical studies have documented ( ) health benefits associated with walking thirty minutes every day.","j":"最近の臨床研究により、毎日30分歩くことに関連する<strong>数多くの</strong>健康上の利点が記録されている。","o":["exhausted","controversial","numerous","unauthorized"],"a":2,"v":[["exhausted","疲れ切った","Day 45","形容詞"],["controversial","物議を醸す","Day 46","形容詞"],["numerous","数多くの","Day 21","形容詞"],["unauthorized","無許可の","Day 44","形容詞"]]},{"s":"Elderly patients and infants ( ) severe complications from seasonal respiratory infections.","j":"高齢の患者や乳児は、季節性の呼吸器感染症による重篤な合併症<strong>に感染しやすい（かかりやすい）</strong>。","o":["are anxious to","are linked to","are susceptible to","are instrumental in"],"a":2,"v":[["be anxious to do","～したがっている","Day 66","動詞句"],["be linked to","～と関連がある","Day 65","動詞句"],["be susceptible to","～に感染しやすい","Day 65","動詞句"],["be instrumental in","～に重要な役割を果たす","Day 64","動詞句"]]},{"s":"Instead of throwing away ( ) vegetables, chefs can simmer them to make flavorful soup stock.","j":"<strong>残り物</strong>の野菜を捨てる代わりに、シェフはそれらを煮込んで風味豊かなスープストックを作ることができる。","o":["leftover","applicant","uproar","procedure"],"a":0,"v":[["leftover","残り物","Day 33","名詞"],["applicant","応募者","Day 8","名詞"],["uproar","大騒ぎ","Day 33","名詞"],["procedure","手順","Day 3","名詞"]]}],[{"s":"Strict hospital sterilization rules prevent harmful bacteria from being able to ( ) surgical wounds.","j":"厳格な病院の滅菌規則により、有害な細菌が手術創<strong>を感染させる</strong>のを防いでいる。","o":["guarantee","extend","infect","thrive"],"a":2,"v":[["guarantee","〜を保証する","Day 13","動詞"],["extend","〜を拡大する","Day 42","動詞"],["infect","〜を感染させる","Day 40","動詞"],["thrive","繁栄する","Day 14","動詞"]]},{"s":"Even though he knew the surprise party was a secret, David decided to ( ) so he wouldn't spoil the fun.","j":"サプライズパーティーが秘密だと知っていたにもかかわらず、デビッドは楽しみを台無しにしないよう<strong>同意したふりをする（話を合わせる）</strong>ことにした。","o":["play along","cope with","deviate from","adapt to"],"a":0,"v":[["play along","同意したふりをする","Day 56","動詞句"],["cope with","～にうまく対処する","Day 53","動詞句"],["deviate from","～から逸脱する","Day 58","動詞句"],["adapt to","～に順応する","Day 53","動詞句"]]},{"s":"Launching a clean-energy startup requires substantial capital and carries high financial risk like any new ( ).","j":"クリーンエネルギーのスタートアップを立ち上げるには多額の資本が必要であり、他の新しい<strong>投機的事業</strong>と同様に高い財務リスクを伴う。","o":["archive","vault","venture","circumstance"],"a":2,"v":[["archive","記録保管所","Day 8","名詞"],["vault","金庫室","Day 29","名詞"],["venture","投機的事業","Day 26","名詞"],["circumstance","状況","Day 6","名詞"]]},{"s":"Meteorologists issued a tsunami ( ) immediately after the magnitude 7.8 earthquake struck off the coast.","j":"マグニチュード7.8の地震が沖合で発生した直後、気象学者たちは津波<strong>警報</strong>を発令した。","o":["regulation","dimension","alert","livestock"],"a":2,"v":[["regulation","規則","Day 3","名詞"],["dimension","局面","Day 10","名詞"],["alert","警報","Day 29","名詞"],["livestock","家畜","Day 28","名詞"]]},{"s":"Art education encourages young students to express their ( ) through painting, sculpture, and digital design.","j":"美術教育は、若い生徒たちが絵画、彫刻、デジタルデザインを通じて自分の<strong>独創力（創造性）</strong>を表現することを促す。","o":["creativity","celebrity","herd","compliment"],"a":0,"v":[["creativity","独創力","Day 32","名詞"],["celebrity","有名人","Day 10","名詞"],["herd","群れ","Day 33","名詞"],["compliment","褒め言葉","Day 6","名詞"]]},{"s":"No matter how hard the company tried to ( ) the accounting errors, independent auditors eventually uncovered them.","j":"会社が会計上の誤り<strong>を隠す</strong>ためにどれほど努力しても、独立監査人が最終的にそれらを暴き出した。","o":["undermine","conceal","dislocate","encounter"],"a":1,"v":[["undermine","〜を揺るがす","Day 41","動詞"],["conceal","〜を隠す","Day 43","動詞"],["dislocate","〜を脱臼する","Day 43","動詞"],["encounter","〜に直面する","Day 12","動詞"]]},{"s":"Crews used controlled explosives to safely ( ) the condemned cooling towers of the old power plant.","j":"作業員たちは、使用禁止となった旧発電所の冷却塔を安全に<strong>取り壊す</strong>ために制御爆破を使用した。","o":["extinguish","evaluate","demolish","disperse"],"a":2,"v":[["extinguish","〜を消す","Day 17","動詞"],["evaluate","〜を評価する","Day 15","動詞"],["demolish","〜を取り壊す","Day 37","動詞"],["disperse","〜を追い散らす","Day 43","動詞"]]},{"s":"Two centuries ago, a large portion of the rural population was ( ) because public schools did not yet exist.","j":"2世紀前、公立学校がまだ存在しなかったため、農村人口の大部分が<strong>読み書きのできない</strong>状態だった。","o":["illiterate","cosmopolitan","intense","proficient"],"a":0,"v":[["illiterate","読み書きのできない","Day 25","形容詞"],["cosmopolitan","国際色豊かな","Day 21","形容詞"],["intense","激しい","Day 45","形容詞"],["proficient","熟達した","Day 23","形容詞"]]},{"s":"Fire officials strongly ( ) residents ( ) test their smoke detectors at least twice a year.","j":"消防当局は住民<strong>に</strong>、少なくとも年に2回は煙探知機の動作確認をする<strong>よう強く勧める</strong>。","o":["urge / to","inject / into","tempt / to do","abbreviate / to"],"a":0,"v":[["urge A to do","Aに～するよう強く勧める","Day 63","動詞句"],["inject A into B","AをBに注射する","Day 62","動詞句"],["tempt A to do","Aの気を引いて～させる","Day 63","動詞句"],["abbreviate A to B","AをBに短縮する","Day 61","動詞句"]]},{"s":"Practicing mindfulness and regular exercise helps students ( ) academic stress during final exam week.","j":"マインドフルネスと定期的な運動を実践することで、学生は期末試験週間の学業ストレス<strong>にうまく対処する</strong>ことができる。","o":["turn out","cope with","come up with","rip off"],"a":1,"v":[["turn out","出かける","Day 53","動詞句"],["cope with","～にうまく対処する","Day 53","動詞句"],["come up with","～を思いつく","Day 53","動詞句"],["rip off","～を食い物にする","Day 55","動詞句"]]},{"s":"Online scammers often target ( ) consumers with promises of unrealistic investment returns.","j":"オンライン詐欺師はしばしば、非現実的な投資リターンを約束して<strong>だまされやすい</strong>消費者を標的にする。","o":["sly","illogical","gullible","competitive"],"a":2,"v":[["sly","ずる賢い","Day 44","形容詞"],["illogical","非論理的な","Day 45","形容詞"],["gullible","だまされやすい","Day 45","形容詞"],["competitive","競争の激しい","Day 23","形容詞"]]},{"s":"The judge handed down a five-year prison ( ) after the defendant was convicted of corporate embezzlement.","j":"被告が企業横領で有罪判決を受けた後、裁判官は5年の懲役<strong>刑</strong>を言い渡した。","o":["sentence","fame","poverty","retailer"],"a":0,"v":[["sentence","刑","Day 33","名詞"],["fame","名声","Day 30","名詞"],["poverty","貧困","Day 28","名詞"],["retailer","小売業者","Day 28","名詞"]]},{"s":"The outdoor tennis match stopped ( ) when a sudden summer thunderstorm drenched the court.","j":"突然の夏の雷雨がコートを濡らしたとき、屋外のテニス試合は<strong>突然に</strong>中断した。","o":["abruptly","virtually","primarily","consequently"],"a":0,"v":[["abruptly","突然に","Day 52","副詞"],["virtually","ほとんど","Day 52","副詞"],["primarily","主に","Day 52","副詞"],["consequently","その結果","Day 52","副詞"]]},{"s":"The proposed subway extension will reduce commute times, lower carbon emissions, and boost local commerce; ( ), it benefits everyone.","j":"提案されている地下鉄の延伸は通勤時間を短縮し、炭素排出量を減らし、地域商業を活性化させる。<strong>手短に言うと</strong>、すべての人に利益をもたらす。","o":["in the event of","in short","in favor of","on the blink"],"a":1,"v":[["in the event of","～の場合には","Day 70","形容詞句・副詞句・前置詞群"],["in short","手短に言うと","Day 69","形容詞句・副詞句・前置詞群"],["in favor of","～を支持して","Day 70","形容詞句・副詞句・前置詞群"],["on the blink","故障して","Day 69","形容詞句・副詞句・前置詞群"]]},{"s":"Following the accounting scandal, the chief financial officer agreed to ( ) from his position immediately.","j":"会計スキャンダルを受け、最高財務責任者は直ちにその職から<strong>辞任する</strong>ことに同意した。","o":["step down","wear off","stick around","result in"],"a":0,"v":[["step down","辞任する","Day 58","動詞句"],["wear off","徐々になくなる","Day 60","動詞句"],["stick around","もうちょっと待つ","Day 55","動詞句"],["result in","～という結果になる","Day 53","動詞句"]]},{"s":"Community volunteers regularly ( ) elderly neighbors living alone to ensure they have groceries and medication.","j":"地域のボランティアたちは、一人暮らしの高齢の隣人が食料品や薬に困らないよう定期的に<strong>援助の手を差し伸べる</strong>。","o":["figure out","reach out to","show up","turn out"],"a":1,"v":[["figure out","～を理解する","Day 53","動詞句"],["reach out to","～に援助の手を差し伸べる","Day 60","動詞句"],["show up","姿を現す","Day 57","動詞句"],["turn out","出かける","Day 53","動詞句"]]},{"s":"The constant dripping of the leaky kitchen faucet began to ( ) after hours of trying to concentrate.","j":"何時間も集中しようとした後、水漏れするキッチンの蛇口の絶え間ない水滴の音が彼<strong>をいらいらさせ</strong>始めた。","o":["wear off","track down","catch a glimpse of","get on his nerves"],"a":3,"v":[["wear off","徐々になくなる","Day 60","動詞句"],["track down","～を突き止める","Day 54","動詞句"],["catch a glimpse of","～をちらりと見かける","Day 67","動詞句"],["get on one’s nerves","～をいらいらさせる","Day 67","動詞句"]]},{"s":"Stranded on the snowy mountain road, the driver tried to ( ) a passing snowplow for help.","j":"雪の山道で立ち往生した運転手は、通りかかった除雪車に助けを求めて<strong>手を振って止めよう</strong>とした。","o":["weed out","indulge in","burst into","flag down"],"a":3,"v":[["weed out","～を排除する","Day 56","動詞句"],["indulge in","～にふける","Day 59","動詞句"],["burst into","突然～しだす","Day 60","動詞句"],["flag down","～を手を振って止める","Day 58","動詞句"]]},{"s":"The university's new evening certificate courses ( ) working professionals seeking career advancement.","j":"その大学の新しい夜間認定講座は、キャリアアップを目指す社会人<strong>をターゲットにしている</strong>。","o":["are geared to","are designed to","are curious about","are deprived of"],"a":0,"v":[["be geared to","～をターゲットにしている","Day 64","動詞句"],["be designed to do","～することを目的にしている","Day 66","動詞句"],["be curious about","～に興味がある","Day 65","動詞句"],["be deprived of","～を奪われている","Day 64","動詞句"]]},{"s":"After returning from a two-week vacation, Sarah spent Monday morning trying to ( ) hundreds of unread emails.","j":"2週間の休暇から戻った後、サラは月曜日の午前中を何百通もの未読メール<strong>の遅れを取り戻す</strong>ことに費やした。","o":["sign up for","drop out","pick on","catch up on"],"a":3,"v":[["sign up for","～に申し込む","Day 58","動詞句"],["drop out","退学する","Day 53","動詞句"],["pick on","～をいじめる","Day 59","動詞句"],["catch up on","～の遅れを取り戻す","Day 56","動詞句"]]}],[{"s":"The preserved stone monument serves as a solemn ( ) of the sacrifices made for peace.","j":"保存された石碑は、平和のために払われた犠牲を厳粛に<strong>思い出させる物</strong>としての役割を果たしている。","o":["productivity","reminder","investment","innovation"],"a":1,"v":[["productivity","生産性","Day 9","名詞"],["reminder","思い出させる物","Day 5","名詞"],["investment","投資","Day 5","名詞"],["innovation","革新","Day 9","名詞"]]},{"s":"Scientists dismissed the study's conclusions as ( ) because the sample size was far too small.","j":"サンプルサイズが小さすぎたため、科学者たちはその研究の結論を<strong>疑わしい</strong>ものとして退けた。","o":["questionable","obsolete","credible","barren"],"a":0,"v":[["questionable","疑わしい","Day 24","形容詞"],["obsolete","時代遅れの","Day 20","形容詞"],["credible","信用できる","Day 50","形容詞"],["barren","不毛の","Day 22","形容詞"]]},{"s":"Cybercriminals sometimes create fake websites that ( ) official government portals to steal personal information.","j":"サイバー犯罪者は時々、個人情報を盗むために公式の政府ポータル<strong>に成り済ます</strong>偽のウェブサイトを作成する。","o":["collaborate","obtain","impersonate","demolish"],"a":2,"v":[["collaborate","共同制作する","Day 43","動詞"],["obtain","〜を獲得する","Day 14","動詞"],["impersonate","〜に成り済ます","Day 17","動詞"],["demolish","〜を取り壊す","Day 37","動詞"]]},{"s":"Although several prototypes failed during testing, the engineering team ( ) succeeded in building a working solar aircraft.","j":"テスト中にいくつかの試作機が失敗したものの、エンジニアリングチームは<strong>結局</strong>実用的なソーラー航空機の製作に成功した。","o":["ultimately","relatively","regularly","definitely"],"a":0,"v":[["ultimately","結局","Day 52","副詞"],["relatively","比較的","Day 51","副詞"],["regularly","定期的に","Day 51","副詞"],["definitely","間違いなく","Day 51","副詞"]]},{"s":"Every commercial aircraft is equipped with inflatable slides for rapid evacuation during an ( ).","j":"すべての民間航空機には、<strong>緊急時</strong>に迅速に避難するための膨張式スライドが装備されている。","o":["emergency","conversion","assistance","yield"],"a":0,"v":[["emergency","緊急時","Day 8","名詞"],["conversion","変換","Day 26","名詞"],["assistance","援助","Day 3","名詞"],["yield","産出量","Day 4","名詞"]]},{"s":"Historians largely ( ) the city's rapid nineteenth-century growth ( ) the construction of its deep-water harbor.","j":"歴史家たちは、19世紀におけるその都市の急速な成長を主に深水港の建設<strong>に起因すると考える</strong>。","o":["abbreviate / to","impose / on","attribute / to","charge / with"],"a":2,"v":[["abbreviate A to B","AをBに短縮する","Day 61","動詞句"],["impose A on B","AをBに課す","Day 61","動詞句"],["attribute A to B","AをBに起因すると考える","Day 62","動詞句"],["charge A with B","AをBで告発する","Day 62","動詞句"]]},{"s":"The airline representative offered meal vouchers and priority rebooking to ( ) angry passengers after the cancellation.","j":"航空会社の担当者は、欠航後に怒っている乗客たち<strong>をなだめる</strong>ために食事券と優先再予約を提供した。","o":["certify","pacify","endure","anticipate"],"a":1,"v":[["certify","〜を証明する","Day 18","動詞"],["pacify","〜をなだめる","Day 16","動詞"],["endure","〜に耐える","Day 40","動詞"],["anticipate","〜を予想する","Day 39","動詞"]]},{"s":"After hiding in the mountains for three days, the fugitive finally decided to ( ) the local police.","j":"3日間山に隠れた後、逃亡犯はついに地元警察<strong>に自首する</strong>ことに決めた。","o":["rip off","cope with","push on","give himself up to"],"a":3,"v":[["rip off","～を食い物にする","Day 55","動詞句"],["cope with","～にうまく対処する","Day 53","動詞句"],["push on","前進する","Day 54","動詞句"],["give oneself up to","～に自首する","Day 67","動詞句"]]},{"s":"While waiting in the dentist's lobby, Kenji picked up a travel magazine to ( ) the colorful photographs.","j":"歯医者のロビーで待っている間、健二はカラフルな写真<strong>をパラパラめくる</strong>ために旅行雑誌を手に取った。","o":["tear down","flip through","have trouble","grow into"],"a":1,"v":[["tear down","～を取り壊す","Day 53","動詞句"],["flip through","～をパラパラめくる","Day 58","動詞句"],["have trouble doing","～するのに苦労する","Day 67","動詞句"],["grow into","成長して～になる","Day 58","動詞句"]]},{"s":"During her one-hour lecture on renewable energy, Professor Sato briefly managed to ( ) tidal power technology.","j":"再生可能エネルギーに関する1時間の講義の中で、佐藤教授は潮力発電技術についても簡潔に<strong>言及する</strong>ことができた。","o":["touch on","act up","wrap up","show off"],"a":0,"v":[["touch on","～に言及する","Day 55","動詞句"],["act up","いたずらをする","Day 55","動詞句"],["wrap up","～を終える","Day 60","動詞句"],["show off","いいところを見せようとする","Day 60","動詞句"]]},{"s":"Desalination plants powered by solar energy offer a promising ( ) to chronic freshwater shortages in coastal cities.","j":"太陽エネルギーで稼働する海水淡水化プラントは、沿岸都市の慢性的な淡水不足に対する有望な<strong>解決策</strong>を提供する。","o":["predecessor","advertising","theft","solution"],"a":3,"v":[["predecessor","前任者","Day 33","名詞"],["advertising","広告","Day 26","名詞"],["theft","窃盗","Day 9","名詞"],["solution","解決策","Day 5","名詞"]]},{"s":"Modern smart thermostats ( ) subtle changes in room occupancy and automatically adjust heating levels.","j":"最新のスマートサーモスタットは、部屋の在室状況の微細な変化<strong>にすぐに対応する</strong>ことができ、暖房レベルを自動調整する。","o":["are committed to","are obsessed with","are crammed with","are responsive to"],"a":3,"v":[["be committed to","～に打ち込んでいる","Day 64","動詞句"],["be obsessed with","～にとりつかれている","Day 64","動詞句"],["be crammed with","～でいっぱいである","Day 64","動詞句"],["be responsive to","～にすぐに対応する","Day 65","動詞句"]]},{"s":"Before investing in the new battery technology, analysts carefully evaluated both its ( ) rewards and technical risks.","j":"新しいバッテリー技術に投資する前に、アナリストたちはその<strong>潜在的な</strong>利益と技術的リスクの双方を慎重に評価した。","o":["contagious","accessible","subjective","potential"],"a":3,"v":[["contagious","伝染しやすい","Day 23","形容詞"],["accessible","行きやすい","Day 48","形容詞"],["subjective","主観的な","Day 50","形容詞"],["potential","潜在的な","Day 19","形容詞"]]},{"s":"Environmental scientists across the globe urgently ( ) immediate reductions in single-use plastic production.","j":"世界中の環境科学者たちは、使い捨てプラスチック生産の即時削減を緊急に<strong>求める（要求する）</strong>声を上げている。","o":["rip off","single out","wear out","call for"],"a":3,"v":[["rip off","～を食い物にする","Day 55","動詞句"],["single out","～を選び出す","Day 59","動詞句"],["wear out","～を疲れ果てさせる","Day 58","動詞句"],["call for","～を求める","Day 59","動詞句"]]},{"s":"Accurate weather forecasting is ( ) for ensuring the safety of maritime shipping and commercial aviation.","j":"正確な天気予報は、海上輸送と民間航空の安全を確保するために<strong>非常に重要な</strong>役割を果たす。","o":["substantial","tranquil","clumsy","crucial"],"a":3,"v":[["substantial","かなりの","Day 22","形容詞"],["tranquil","穏やかな","Day 24","形容詞"],["clumsy","不器用な","Day 50","形容詞"],["crucial","非常に重要な","Day 48","形容詞"]]},{"s":"Full-time employees who have worked for at least one year ( ) receive twenty days of paid annual leave.","j":"少なくとも1年間勤務したフルタイム従業員は、年間20日間の有給休暇を取得<strong>する権利がある</strong>。","o":["are opposed to","are affiliated with","are entitled to","are eager to"],"a":2,"v":[["be opposed to","～に反対している","Day 65","動詞句"],["be affiliated with","～の系列下である","Day 65","動詞句"],["be entitled to do","～する権利がある","Day 66","動詞句"],["be eager to do","～したいと思っている","Day 66","動詞句"]]},{"s":"The factory scheduled extra weekend shifts to ( ) the production time lost during the power outage.","j":"工場は、停電中に失われた生産時間<strong>の埋め合わせをする</strong>ために週末の追加シフトを組んだ。","o":["come up with","make up for","sign up for","embark on"],"a":1,"v":[["come up with","～を思いつく","Day 53","動詞句"],["make up for","～の埋め合わせをする","Day 57","動詞句"],["sign up for","～に申し込む","Day 58","動詞句"],["embark on","～に着手する","Day 59","動詞句"]]},{"s":"Investigators concluded that the data leak was not accidental but a ( ) act by an insider.","j":"捜査官たちは、そのデータ漏洩は偶発的なものではなく内部関係者による<strong>意図的な</strong>行為であると結論づけた。","o":["vivid","complicated","deliberate","inconsiderate"],"a":2,"v":[["vivid","鮮明な","Day 46","形容詞"],["complicated","複雑な","Day 48","形容詞"],["deliberate","意図的な","Day 19","形容詞"],["inconsiderate","配慮のない","Day 49","形容詞"]]},{"s":"Wide-angle camera lenses can slightly ( ) straight architectural lines near the edges of a photograph.","j":"広角カメラレンズは、写真の端付近にある真っ直ぐな建築の線<strong>をゆがめる</strong>ことがある。","o":["provoke","upgrade","distort","certify"],"a":2,"v":[["provoke","〜を引き起こす","Day 37","動詞"],["upgrade","〜を改良する","Day 41","動詞"],["distort","〜をゆがめる","Day 38","動詞"],["certify","〜を証明する","Day 18","動詞"]]},{"s":"Desert camels can ( ) extreme heat and travel for days without drinking water.","j":"砂漠のラクダは極度の暑さ<strong>に耐える</strong>ことができ、水を飲まずに何日も移動できる。","o":["activate","exceed","endure","reinforce"],"a":2,"v":[["activate","〜を作動させる","Day 41","動詞"],["exceed","〜を超える","Day 14","動詞"],["endure","〜に耐える","Day 40","動詞"],["reinforce","〜を補強する","Day 41","動詞"]]}],[{"s":"To pass the competitive entrance exam, students must ( ) mastering core vocabulary and reading comprehension.","j":"競争の激しい入試に合格するためには、学生は基礎語彙と読解力の習得<strong>に集中する</strong>必要がある。","o":["spell out","slip away","focus on","live up to"],"a":2,"v":[["spell out","～を詳しく説明する","Day 59","動詞句"],["slip away","そっと出て行く","Day 58","動詞句"],["focus on","～に集中する","Day 53","動詞句"],["live up to","～に添う","Day 60","動詞句"]]},{"s":"Advances in DNA sequencing have enabled doctors to identify ( ) risk factors for hereditary heart conditions.","j":"DNA塩基配列解析の進歩により、医師は遺伝性心疾患の<strong>遺伝子の（遺伝的）</strong>リスク要因を特定できるようになった。","o":["numerous","genetic","extensive","rigid"],"a":1,"v":[["numerous","数多くの","Day 21","形容詞"],["genetic","遺伝子の","Day 19","形容詞"],["extensive","広範囲にわたる","Day 25","形容詞"],["rigid","厳しい","Day 21","形容詞"]]},{"s":"International relief agencies sent medical teams and emergency financial ( ) to regions struck by the earthquake.","j":"国際救援機関は、地震に見舞われた地域に医療チームと緊急の資金<strong>援助</strong>を派遣した。","o":["fracture","routine","exile","assistance"],"a":3,"v":[["fracture","骨折","Day 10","名詞"],["routine","日常の仕事","Day 31","名詞"],["exile","亡命者","Day 27","名詞"],["assistance","援助","Day 3","名詞"]]},{"s":"Pollinators such as honeybees and butterflies ( ) maintaining global food crops and wild plant diversity.","j":"ミツバチやチョウなどの花粉媒介者は、世界の食用作物と野生植物の多様性を維持する上で<strong>役割を果たす（重要な働きをする）</strong>。","o":["play along","catch a glimpse of","chip in","play a role in"],"a":3,"v":[["play along","同意したふりをする","Day 56","動詞句"],["catch a glimpse of","～をちらりと見かける","Day 67","動詞句"],["chip in","金を出し合う","Day 53","動詞句"],["play a role in","～で役割を果たす","Day 67","動詞句"]]},{"s":"Before purchasing new accounting software, verify that it ( ) your company's current operating system.","j":"新しい会計ソフトウェアを購入する前に、それが会社の現在のOS<strong>と互換性がある</strong>ことを確認してください。","o":["is compatible with","is committed to","is susceptible to","is scheduled to"],"a":0,"v":[["be compatible with","～と互換性がある","Day 64","動詞句"],["be committed to","～に打ち込んでいる","Day 64","動詞句"],["be susceptible to","～に感染しやすい","Day 65","動詞句"],["be scheduled to do","～する予定である","Day 66","動詞句"]]},{"s":"During the climate summit, the minister outlined her government's firm ( ) on phasing out coal power.","j":"気候サミットの席で、大臣は石炭火力発電の段階的廃止に対する政府の揺るぎない<strong>立場</strong>を概説した。","o":["incident","stance","predecessor","solitude"],"a":1,"v":[["incident","出来事","Day 27","名詞"],["stance","立場","Day 9","名詞"],["predecessor","前任者","Day 33","名詞"],["solitude","孤独","Day 11","名詞"]]},{"s":"Before traveling to Madrid for his business trip, Kenji spent two weeks trying to ( ) on his conversational Spanish.","j":"出張でマドリードへ行く前に、健二は2週間かけて会話スペイン語<strong>を勉強し直す（磨き直す）</strong>ことに取り組んだ。","o":["come down with","count on","brush up","rule out"],"a":2,"v":[["come down with","～にかかる","Day 54","動詞句"],["count on","～に頼る","Day 53","動詞句"],["brush up","～を勉強し直す","Day 55","動詞句"],["rule out","～を除外する","Day 58","動詞句"]]},{"s":"Interactive science museums help ( ) curiosity and a lifelong love of discovery among young visitors.","j":"体験型の科学博物館は、若い来館者の間に好奇心と生涯にわたる発見への愛着<strong>を促進する（育む）</strong>のに役立つ。","o":["dispatch","halt","foster","invest"],"a":2,"v":[["dispatch","〜を派遣する","Day 38","動詞"],["halt","〜を中止する","Day 17","動詞"],["foster","〜を促進する","Day 40","動詞"],["invest","投資する","Day 13","動詞"]]},{"s":"Bees and other pollinators play a ( ) role in agricultural food production around the world.","j":"ミツバチやその他の花粉媒介者は、世界中の農業食料生産において<strong>極めて重要な</strong>役割を果たしている。","o":["subsequent","confidential","Arctic","vital"],"a":3,"v":[["subsequent","その後の","Day 24","形容詞"],["confidential","秘密の","Day 23","形容詞"],["Arctic","北極の","Day 48","形容詞"],["vital","極めて重要な","Day 48","形容詞"]]},{"s":"After graduating from law school, Elena joined a prestigious international law ( ) specializing in patent litigation.","j":"ロースクールを卒業した後、エレナは特許訴訟を専門とする一流の国際法律<strong>会社（事務所）</strong>に入社した。","o":["chore","resident","hydrogen","firm"],"a":3,"v":[["chore","雑用","Day 34","名詞"],["resident","住民","Day 1","名詞"],["hydrogen","水素","Day 35","名詞"],["firm","会社","Day 6","名詞"]]},{"s":"Family courts often recommend mediation to help couples reach fair custody arrangements during a ( ).","j":"家庭裁判所はしばしば、<strong>離婚</strong>の際に夫婦が公正な親権の取り決めに達するのを助けるため調停を推奨する。","o":["fraud","divorce","credibility","circulation"],"a":1,"v":[["fraud","詐欺","Day 35","名詞"],["divorce","離婚","Day 7","名詞"],["credibility","信用","Day 35","名詞"],["circulation","流通","Day 2","名詞"]]},{"s":"Because measles is highly ( ), health officials urge parents to ensure their children are vaccinated on schedule.","j":"はしかは非常に<strong>伝染しやすい</strong>ため、保健当局は保護者に子どもたちが予定通り予防接種を受けられるよう強く促している。","o":["courteous","edible","contagious","barren"],"a":2,"v":[["courteous","礼儀正しい","Day 23","形容詞"],["edible","食用の","Day 49","形容詞"],["contagious","伝染しやすい","Day 23","形容詞"],["barren","不毛の","Day 22","形容詞"]]},{"s":"World leaders gathered at the emergency summit to strongly ( ) the unprovoked attack on civilian infrastructure.","j":"世界の指導者たちは緊急サミットに集まり、民間インフラへのいわれのない攻撃を強く<strong>非難した</strong>。","o":["condemn","exceed","disguise","evolve"],"a":0,"v":[["condemn","〜を非難する","Day 16","動詞"],["exceed","〜を超える","Day 14","動詞"],["disguise","〜を変装させる","Day 40","動詞"],["evolve","進化する","Day 40","動詞"]]},{"s":"The proposal to build a highway through the ancient forest sparked fierce public ( ) across the country.","j":"古代の森を貫く高速道路を建設する提案は、全国で激しい世間の<strong>論争</strong>を巻き起こした。","o":["evolution","controversy","outburst","bid"],"a":1,"v":[["evolution","進化","Day 30","名詞"],["controversy","論争","Day 7","名詞"],["outburst","爆発","Day 5","名詞"],["bid","試み","Day 34","名詞"]]},{"s":"Clothing retailers often ( ) winter coats by fifty percent at the end of February to clear seasonal inventory.","j":"衣料品小売業者は、季節在庫を一掃するために2月末になると冬物コートを50%<strong>値下げする</strong>ことが多い。","o":["mark down","brush up","jot down","drop out"],"a":0,"v":[["mark down","～を値下げする","Day 59","動詞句"],["brush up","～を勉強し直す","Day 55","動詞句"],["jot down","～を書き留める","Day 54","動詞句"],["drop out","退学する","Day 53","動詞句"]]},{"s":"Building the hydroelectric dam required a ( ) concrete wall capable of holding back billions of gallons of water.","j":"その水力発電ダムの建設には、何十億ガロンもの水をせき止めることができる<strong>巨大な</strong>コンクリートの壁が必要だった。","o":["ongoing","vital","massive","competitive"],"a":2,"v":[["ongoing","進行中の","Day 47","形容詞"],["vital","極めて重要な","Day 48","形容詞"],["massive","巨大な","Day 20","形容詞"],["competitive","競争の激しい","Day 23","形容詞"]]},{"s":"Winning a fellowship at the ( ) research university opened doors to international scientific collaborations.","j":"その<strong>一流の（名門の）</strong>研究大学でのフェローシップを獲得したことで、国際的な科学共同研究への道が開かれた。","o":["prestigious","stable","medieval","desperate"],"a":0,"v":[["prestigious","一流の","Day 49","形容詞"],["stable","安定した","Day 19","形容詞"],["medieval","中世の","Day 49","形容詞"],["desperate","欲しくてたまらない","Day 49","形容詞"]]},{"s":"Eyewitness accounts seemed to ( ) the suspect's claim that he was out of town on the night of the burglary.","j":"目撃者の証言は、強盗事件の夜に町を離れていたという容疑者の主張<strong>と矛盾する</strong>ように思われた。","o":["surpass","reproduce","betray","contradict"],"a":3,"v":[["surpass","〜を超える","Day 16","動詞"],["reproduce","繁殖する","Day 41","動詞"],["betray","〜を裏切る","Day 42","動詞"],["contradict","〜と矛盾する","Day 40","動詞"]]},{"s":"Uncontrolled wildfires caused widespread ( ) across thousands of acres of national forest last summer.","j":"制御不能な山火事は、昨夏、何千エーカーもの国有林に広範囲な<strong>破壊</strong>をもたらした。","o":["workout","outburst","deposit","destruction"],"a":3,"v":[["workout","トレーニング","Day 31","名詞"],["outburst","爆発","Day 5","名詞"],["deposit","頭金","Day 10","名詞"],["destruction","破壊","Day 27","名詞"]]},{"s":"For most commuters, the long-term health benefits of cycling to work far ( ) the minor inconvenience of rain.","j":"ほとんどの通勤者にとって、自転車通勤の長期的な健康上の利点は、雨という些細な不便さ<strong>より重要である（を上回る）</strong>。","o":["browse","forfeit","stray","outweigh"],"a":3,"v":[["browse","ざっと目を通す","Day 13","動詞"],["forfeit","〜を没収される","Day 37","動詞"],["stray","迷い出る","Day 15","動詞"],["outweigh","〜より重要である","Day 42","動詞"]]}],[{"s":"Strong coastal winds helped rapidly ( ) the dense morning fog over the harbor.","j":"強い海風のおかげで、港の上に立ち込めていた濃い朝霧が急速に<strong>追い散らされ（晴れ）</strong>た。","o":["amplify","disperse","withdraw","convene"],"a":1,"v":[["amplify","〜を詳しく説明する","Day 43","動詞"],["disperse","〜を追い散らす","Day 43","動詞"],["withdraw","〜を引き出す","Day 43","動詞"],["convene","〜を招集する","Day 42","動詞"]]},{"s":"Wait until the strong gusty winds ( ) before attempting to pitch the lightweight camping tent.","j":"軽量キャンプ用テントを設営しようとする前に、強い突風が<strong>静まる</strong>まで待ちなさい。","o":["bring down","shoot down","lose sight of","die down"],"a":3,"v":[["bring down","～を倒す","Day 56","動詞句"],["shoot down","～をはねつける","Day 57","動詞句"],["lose sight of","～を見失う","Day 67","動詞句"],["die down","静まる","Day 54","動詞句"]]},{"s":"Security software immediately blocked an ( ) attempt to access the hospital's patient database.","j":"セキュリティソフトウェアは、病院の患者データベースにアクセスしようとする<strong>無許可の</strong>試みを即座に遮断した。","o":["rigid","genetic","stable","unauthorized"],"a":3,"v":[["rigid","厳しい","Day 21","形容詞"],["genetic","遺伝子の","Day 19","形容詞"],["stable","安定した","Day 19","形容詞"],["unauthorized","無許可の","Day 44","形容詞"]]},{"s":"Laboratory experiments clearly ( ) that the new alloy can withstand extreme temperatures without bending.","j":"実験室での実験は、その新しい合金が曲がることなく極端な高温に耐えられること<strong>を証明して</strong>いる。","o":["escort","demonstrate","browse","enhance"],"a":1,"v":[["escort","〜を護衛する","Day 43","動詞"],["demonstrate","〜を証明する","Day 14","動詞"],["browse","ざっと目を通す","Day 13","動詞"],["enhance","〜を高める","Day 13","動詞"]]},{"s":"Expanding high-speed rail networks requires substantial public ( ) but yields decades of economic returns.","j":"高速鉄道網の拡充には多額の公共<strong>投資</strong>が必要だが、何十年にもわたる経済的見返りをもたらす。","o":["investment","hardship","session","itinerary"],"a":0,"v":[["investment","投資","Day 5","名詞"],["hardship","苦難","Day 32","名詞"],["session","会議","Day 33","名詞"],["itinerary","旅行計画","Day 30","名詞"]]},{"s":"The automaker recalled fifty thousand vehicles after discovering a ( ) airbag sensor in certain models.","j":"特定の車種で<strong>欠陥のある</strong>エアバッグセンサーが発見されたことを受け、その自動車メーカーは5万台のリコールを実施した。","o":["prompt","lunar","vibrant","faulty"],"a":3,"v":[["prompt","迅速な","Day 23","形容詞"],["lunar","月の","Day 45","形容詞"],["vibrant","活気に満ちた","Day 48","形容詞"],["faulty","欠陥のある","Day 45","形容詞"]]},{"s":"Violent waves during the sudden squall caused the small fishing boat to ( ) near the rocky reef.","j":"突然のスコールによる激しい波により、その小型漁船は岩礁付近で<strong>転覆した</strong>。","o":["capsize","conclude","loiter","devastate"],"a":0,"v":[["capsize","転覆する","Day 18","動詞"],["conclude","〜だと結論する","Day 16","動詞"],["loiter","うろつく","Day 37","動詞"],["devastate","〜を壊滅させる","Day 15","動詞"]]},{"s":"Having won the national chess championship four years ( ), she is widely regarded as the greatest player of her era.","j":"全国チェス選手権で4年<strong>連続して</strong>優勝した彼女は、同時代で最も偉大なプレイヤーと広くみなされている。","o":["regardless of","in a row","as such","at large"],"a":1,"v":[["regardless of","～に関係なく","Day 70","形容詞句・副詞句・前置詞群"],["in a row","連続して","Day 68","形容詞句・副詞句・前置詞群"],["as such","厳密な意味で","Day 68","形容詞句・副詞句・前置詞群"],["at large","一般の","Day 69","形容詞句・副詞句・前置詞群"]]},{"s":"Excavations revealed a buried Roman road that had been ( ) unknown to modern historians.","j":"発掘調査により、現代の歴史家には<strong>以前に</strong>知られていなかった埋もれたローマ街道が明らかになった。","o":["regularly","previously","approximately","frequently"],"a":1,"v":[["regularly","定期的に","Day 51","副詞"],["previously","以前に","Day 51","副詞"],["approximately","約","Day 52","副詞"],["frequently","頻繁に","Day 51","副詞"]]},{"s":"Wearing a seatbelt dramatically reduces the ( ) of suffering fatal injuries in a highway collision.","j":"シートベルトを着用することで、高速道路での衝突事故で致命傷を負う<strong>可能性</strong>が劇的に減少する。","o":["negligence","estimate","likelihood","finding"],"a":2,"v":[["negligence","過失","Day 36","名詞"],["estimate","見積もり","Day 4","名詞"],["likelihood","可能性","Day 5","名詞"],["finding","結果","Day 32","名詞"]]},{"s":"Factories must safely treat wastewater to prevent any toxic ( ) from entering local rivers.","j":"工場は、有毒な<strong>化学物質</strong>が地元の川に流入するのを防ぐために廃水を安全に処理しなければならない。","o":["segment","capacity","physician","chemical"],"a":3,"v":[["segment","部分","Day 36","名詞"],["capacity","収容能力","Day 4","名詞"],["physician","医師","Day 31","名詞"],["chemical","化学物質","Day 1","名詞"]]},{"s":"Offshore wind turbines can ( ) enough clean electricity to power hundreds of thousands of coastal homes.","j":"洋上風力タービンは、何十万もの沿岸家庭に電力を供給するのに十分なクリーン電力を<strong>生み出す（発電する）</strong>ことができる。","o":["deflect","endure","generate","devise"],"a":2,"v":[["deflect","〜をそらす","Day 37","動詞"],["endure","〜に耐える","Day 40","動詞"],["generate","〜を生み出す","Day 12","動詞"],["devise","〜を考案する","Day 14","動詞"]]},{"s":"Ash clouds from the volcanic ( ) disrupted international flights across the region for nearly a week.","j":"火山<strong>噴火</strong>による灰雲は、約1週間にわたり地域全体の国際線フライトを混乱させた。","o":["candidate","amenity","eruption","coauthor"],"a":2,"v":[["candidate","候補者","Day 5","名詞"],["amenity","設備","Day 34","名詞"],["eruption","噴火","Day 10","名詞"],["coauthor","共著者","Day 29","名詞"]]},{"s":"Strict international protocols govern the safe transport and storage of ( ) medical isotopes.","j":"厳格な国際規定が、<strong>放射性の</strong>医療用同位体の安全な輸送と保管を管理している。","o":["genetic","radioactive","subjective","tender"],"a":1,"v":[["genetic","遺伝子の","Day 19","形容詞"],["radioactive","放射性の","Day 48","形容詞"],["subjective","主観的な","Day 50","形容詞"],["tender","柔らかい","Day 23","形容詞"]]},{"s":"The prime minister decided to ( ) an emergency cabinet meeting to address the sudden energy crisis.","j":"首相は、突然のエネルギー危機に対処するため緊急閣議<strong>を招集する</strong>ことを決定した。","o":["convene","demolish","imply","forbid"],"a":0,"v":[["convene","〜を招集する","Day 42","動詞"],["demolish","〜を取り壊す","Day 37","動詞"],["imply","〜をほのめかす","Day 15","動詞"],["forbid","〜を禁じる","Day 40","動詞"]]},{"s":"Despite competing fiercely on the tennis court, the two players maintained an ( ) friendship off the court.","j":"テニスコート上では激しく競い合いながらも、2人の選手はコート外では<strong>友好的な</strong>友情を保っていた。","o":["amicable","extravagant","illegal","tranquil"],"a":0,"v":[["amicable","友好的な","Day 21","形容詞"],["extravagant","金遣いの荒い","Day 49","形容詞"],["illegal","違法の","Day 19","形容詞"],["tranquil","穏やかな","Day 24","形容詞"]]},{"s":"Museum curators wear cotton gloves when handling ( ) seventeenth-century porcelain vases.","j":"美術館の学芸員は、<strong>壊れやすい</strong>17世紀の磁器の花瓶を取り扱う際に綿の手袋を着用する。","o":["hilarious","bleak","fragile","enormous"],"a":2,"v":[["hilarious","とても面白い","Day 25","形容詞"],["bleak","暗い","Day 21","形容詞"],["fragile","壊れやすい","Day 19","形容詞"],["enormous","巨大な","Day 20","形容詞"]]},{"s":"The health ministry issued a new dietary ( ) recommending daily consumption of whole grains and fresh vegetables.","j":"保健省は、全粒穀物と新鮮な野菜の毎日の摂取を推奨する新しい食事<strong>指針（ガイドライン）</strong>を発表した。","o":["guideline","temper","inhabitant","applicant"],"a":0,"v":[["guideline","指針","Day 6","名詞"],["temper","機嫌","Day 36","名詞"],["inhabitant","住民","Day 11","名詞"],["applicant","応募者","Day 8","名詞"]]},{"s":"A growing ( ) of university graduates are choosing careers in renewable energy and environmental science.","j":"大学卒業生の中で、再生可能エネルギーや環境科学のキャリアを選ぶ人の<strong>割合</strong>が増加している。","o":["proportion","publicity","blow","statistics"],"a":0,"v":[["proportion","割合","Day 31","名詞"],["publicity","評判","Day 6","名詞"],["blow","打撃","Day 32","名詞"],["statistics","統計","Day 2","名詞"]]},{"s":"Upgrading factory insulation and motors significantly improved energy ( ) and lowered operating costs.","j":"工場の断熱材とモーターを改良したことで、エネルギー<strong>効率</strong>が大幅に向上し運営コストが下がった。","o":["finance","virus","orbit","efficiency"],"a":3,"v":[["finance","財務状態","Day 35","名詞"],["virus","ウイルス","Day 7","名詞"],["orbit","軌道","Day 11","名詞"],["efficiency","効率","Day 27","名詞"]]}],[{"s":"Slow-cooking tough cuts of meat at low temperatures makes them remarkably ( ) and flavorful.","j":"硬い部位の肉を低温でじっくり煮込むと、驚くほど<strong>柔らかい</strong>食感になり風味豊かになる。","o":["illiterate","tender","nutritious","distinguished"],"a":1,"v":[["illiterate","読み書きのできない","Day 25","形容詞"],["tender","柔らかい","Day 23","形容詞"],["nutritious","栄養のある","Day 25","形容詞"],["distinguished","優れた","Day 22","形容詞"]]},{"s":"After narrowly missing qualification for the Olympic team, the runner felt deeply ( ) for several days.","j":"オリンピック代表選考を僅差で逃した後、そのランナーは数日間深く<strong>落胆した</strong>気持ちになった。","o":["obsolete","dejected","distinct","profound"],"a":1,"v":[["obsolete","時代遅れの","Day 20","形容詞"],["dejected","落胆した","Day 44","形容詞"],["distinct","はっきりした","Day 47","形容詞"],["profound","重大な","Day 44","形容詞"]]},{"s":"Whether to allow commercial fishing in protected marine zones remains a highly ( ) political issue.","j":"保護海域での商業漁業を許可するかどうかは、依然として非常に<strong>物議を醸す</strong>政治問題である。","o":["vivid","controversial","numb","illogical"],"a":1,"v":[["vivid","鮮明な","Day 46","形容詞"],["controversial","物議を醸す","Day 46","形容詞"],["numb","感覚のなくなった","Day 49","形容詞"],["illogical","非論理的な","Day 45","形容詞"]]},{"s":"Because the printed road atlas was ten years old, several highway exits shown on the map were completely ( ).","j":"その印刷された道路地図帳は10年前のものだったため、地図に載っているいくつかの高速道路出口は完全に<strong>時代遅れの</strong>ものになっていた。","o":["in terms of","over time","out of date","in the event of"],"a":2,"v":[["in terms of","～の点で","Day 70","形容詞句・副詞句・前置詞群"],["over time","長い期間をかけて","Day 69","形容詞句・副詞句・前置詞群"],["out of date","時代遅れの","Day 69","形容詞句・副詞句・前置詞群"],["in the event of","～の場合には","Day 70","形容詞句・副詞句・前置詞群"]]},{"s":"Detectives discovered a crucial ( ) at the crime scene when they found a muddy footprint near the window.","j":"刑事たちは窓の近くで泥だらけの足跡を見つけたとき、犯行現場で重要な<strong>手がかり</strong>を発見した。","o":["checkup","global warming","clue","finding"],"a":2,"v":[["checkup","健康診断","Day 34","名詞"],["global warming","地球温暖化","Day 27","名詞"],["clue","手がかり","Day 29","名詞"],["finding","結果","Day 32","名詞"]]},{"s":"With residents from over a hundred nations, Toronto is celebrated as one of the world's most ( ) cities.","j":"100ヶ国以上からの住民が暮らすトロントは、世界で最も<strong>国際色豊かな</strong>都市の一つとして称えられている。","o":["secure","cosmopolitan","equivalent","Arctic"],"a":1,"v":[["secure","安全な","Day 20","形容詞"],["cosmopolitan","国際色豊かな","Day 21","形容詞"],["equivalent","相当する","Day 47","形容詞"],["Arctic","北極の","Day 48","形容詞"]]},{"s":"Recent satellite measurements ( ) that Arctic sea ice is melting faster than earlier climate models predicted.","j":"最近の衛星測定は、北極の海氷が初期の気候モデルの予測よりも速く融解していること<strong>を示して</strong>いる。","o":["endure","demote","dominate","indicate"],"a":3,"v":[["endure","〜に耐える","Day 40","動詞"],["demote","〜を降格する","Day 17","動詞"],["dominate","〜を支配する","Day 17","動詞"],["indicate","〜を示す","Day 12","動詞"]]},{"s":"Global demand for clean drinking water ( ) rise sharply over the next thirty years as populations grow.","j":"人口増加に伴い、清潔な飲料水に対する世界需要は今後30年間で急増<strong>すると思われている（予想されている）</strong>。","o":["is expected to","is deprived of","is due to","is vulnerable to"],"a":0,"v":[["be expected to do","～すると思われている","Day 66","動詞句"],["be deprived of","～を奪われている","Day 64","動詞句"],["be due to do","～する予定である","Day 66","動詞句"],["be vulnerable to","～に弱い","Day 64","動詞句"]]},{"s":"Geologists use specialized drills to ( ) deep ice cores from Antarctic glaciers to study ancient climates.","j":"地質学者たちは、古代の気候を研究するために南極の氷河から深部氷床コア<strong>を引き抜く（採取する）</strong>特殊なドリルを使用している。","o":["impersonate","shatter","expand","extract"],"a":3,"v":[["impersonate","〜に成り済ます","Day 17","動詞"],["shatter","〜を粉々にする","Day 18","動詞"],["expand","〜を拡大する","Day 12","動詞"],["extract","〜を引き抜く","Day 40","動詞"]]},{"s":"Darkening skies and a sudden drop in barometric pressure warned sailors that a severe storm was ( ).","j":"空が暗くなり気圧が急低下したことで、船乗りたちは激しい嵐が<strong>差し迫った</strong>状態にあることを察知した。","o":["imminent","debatable","remarkable","cosmopolitan"],"a":0,"v":[["imminent","差し迫った","Day 47","形容詞"],["debatable","議論の余地のある","Day 44","形容詞"],["remarkable","注目すべき","Day 20","形容詞"],["cosmopolitan","国際色豊かな","Day 21","形容詞"]]},{"s":"Favorable autumn weather produced a massive grain ( ), allowing farmers to export wheat to neighboring countries.","j":"好天に恵まれた秋のおかげで穀物の大量の<strong>余り（余剰）</strong>が生まれ、農家は近隣諸国へ小麦を輸出することができた。","o":["species","commodity","surplus","budget"],"a":2,"v":[["species","種","Day 1","名詞"],["commodity","商品","Day 29","名詞"],["surplus","余り","Day 7","名詞"],["budget","予算","Day 1","名詞"]]},{"s":"The new international space telescope ( ) launch aboard a heavy-lift rocket early next spring.","j":"新しい国際宇宙望遠鏡は、来春初頭に大型ロケットに搭載されて打ち上げ<strong>られる予定である</strong>。","o":["is crammed with","is scheduled to","is curious about","is deprived of"],"a":1,"v":[["be crammed with","～でいっぱいである","Day 64","動詞句"],["be scheduled to do","～する予定である","Day 66","動詞句"],["be curious about","～に興味がある","Day 65","動詞句"],["be deprived of","～を奪われている","Day 64","動詞句"]]},{"s":"Wildlife photographers often wear camouflage netting to ( ) themselves while observing shy forest animals.","j":"野生動物写真家は、警戒心の強い森の動物を観察する際、自分の姿<strong>を変装させる（カモフラージュする）</strong>ために迷彩ネットを着用することが多い。","o":["exterminate","pose","conclude","disguise"],"a":3,"v":[["exterminate","〜を駆除する","Day 14","動詞"],["pose","〜をもたらす","Day 14","動詞"],["conclude","〜だと結論する","Day 16","動詞"],["disguise","〜を変装させる","Day 40","動詞"]]},{"s":"Effective hospital ( ) requires coordinating medical staff, patient schedules, and emergency supply chains.","j":"効果的な病院<strong>管理（運営）</strong>には、医療スタッフ、患者のスケジュール、および緊急サプライチェーンの調整が必要である。","o":["blow","vault","privilege","administration"],"a":3,"v":[["blow","打撃","Day 32","名詞"],["vault","金庫室","Day 29","名詞"],["privilege","特権","Day 11","名詞"],["administration","管理","Day 3","名詞"]]},{"s":"Despite already having a heavy workload, Sarah volunteered to ( ) the responsibility of organizing the charity gala.","j":"すでに業務量が多かったにもかかわらず、サラはチャリティ晩餐会を企画する責任<strong>を引き受ける</strong>ことを自ら申し出た。","o":["sail through","map out","take on","cut down"],"a":2,"v":[["sail through","～に楽々合格する","Day 55","動詞句"],["map out","～の計画を練る","Day 54","動詞句"],["take on","～を引き受ける","Day 60","動詞句"],["cut down","～を削減する","Day 53","動詞句"]]},{"s":"Long-term exposure to fine particulate air pollution ( ) an increased risk of respiratory and heart diseases.","j":"微小粒子状大気汚染への長期的な曝露は、呼吸器疾患や心疾患のリスク上昇<strong>と関連がある</strong>。","o":["is endowed with","is scheduled for","is apt to","is linked to"],"a":3,"v":[["be endowed with","～に恵まれている","Day 65","動詞句"],["be scheduled for","～に予定されている","Day 65","動詞句"],["be apt to do","～しがちである","Day 66","動詞句"],["be linked to","～と関連がある","Day 65","動詞句"]]},{"s":"The charity concert generated positive ( ) for local wildlife conservation efforts across national media.","j":"そのチャリティコンサートは、全国メディアを通じて地域の野生生物保護活動に対する好意的な<strong>評判（宣伝効果）</strong>を生み出した。","o":["architect","inquiry","publicity","consensus"],"a":2,"v":[["architect","建築家","Day 29","名詞"],["inquiry","問い合わせ","Day 5","名詞"],["publicity","評判","Day 6","名詞"],["consensus","合意","Day 4","名詞"]]},{"s":"Behind every successful Olympic athlete stands a team of ( ) coaches, trainers, and medical specialists.","j":"成功を収めたすべてのオリンピック選手の背後には、<strong>献身的な</strong>コーチ、トレーナー、医療専門家のチームが存在する。","o":["appropriate","massive","dedicated","chronological"],"a":2,"v":[["appropriate","適切な","Day 19","形容詞"],["massive","巨大な","Day 20","形容詞"],["dedicated","献身的な","Day 23","形容詞"],["chronological","年代順の","Day 20","形容詞"]]},{"s":"Investing early in artificial intelligence research gave the tech firm a decisive competitive ( ) over its rivals.","j":"人工知能研究に早期に投資したことで、そのIT企業は競合他社に対して決定的な競争上の<strong>優位</strong>を得た。","o":["contrast","divorce","edge","hospitality"],"a":2,"v":[["contrast","差異","Day 35","名詞"],["divorce","離婚","Day 7","名詞"],["edge","優位","Day 7","名詞"],["hospitality","温かいもてなし","Day 27","名詞"]]},{"s":"With heavy snow blocking the mountain pass, the rescue helicopter was ( ) able to land near the cabin.","j":"大雪が峠を塞いでいたため、救助ヘリコプターは山小屋の近くに<strong>辛うじて</strong>着陸することができた。","o":["permanently","annually","barely","furthermore"],"a":2,"v":[["permanently","永久に","Day 52","副詞"],["annually","毎年","Day 52","副詞"],["barely","辛うじて","Day 51","副詞"],["furthermore","その上","Day 51","副詞"]]}],[{"s":"The new management team introduced bold reforms to ( ) the company's three-year decline in market share.","j":"新しい経営陣は、同社の3年間にわたる市場シェアの低下<strong>を逆にする（好転させる）</strong>ために大胆な改革を導入した。","o":["crawl","betray","endure","reverse"],"a":3,"v":[["crawl","はう","Day 40","動詞"],["betray","〜を裏切る","Day 42","動詞"],["endure","〜に耐える","Day 40","動詞"],["reverse","〜を逆にする","Day 41","動詞"]]},{"s":"Renovating the century-old opera house required a ( ) amount of specialized craftsmanship and funding.","j":"100年の歴史を持つオペラハウスの改修には、<strong>かなりの</strong>量の専門的な職人技と資金が必要だった。","o":["complicated","considerable","gullible","decent"],"a":1,"v":[["complicated","複雑な","Day 48","形容詞"],["considerable","かなりの","Day 50","形容詞"],["gullible","だまされやすい","Day 45","形容詞"],["decent","まともな","Day 25","形容詞"]]},{"s":"During the Q&A session, the speaker took time to ( ) on how her research could be applied to clean water systems.","j":"質疑応答の時間中、講演者は自分の研究が浄水システムにどのように応用できるか<strong>を詳しく説明する</strong>時間を取った。","o":["devastate","amplify","accumulate","assemble"],"a":1,"v":[["devastate","〜を壊滅させる","Day 15","動詞"],["amplify","〜を詳しく説明する","Day 43","動詞"],["accumulate","〜をためる","Day 16","動詞"],["assemble","〜を組み立てる","Day 43","動詞"]]},{"s":"Receiving a full academic ( ) allowed David to attend engineering school without taking on student debt.","j":"全額の学術<strong>奨学金</strong>を受けたことで、デビッドは学生ローンを抱えることなく工学部に入学することができた。","o":["scholarship","surrounding","surplus","predecessor"],"a":0,"v":[["scholarship","奨学金","Day 11","名詞"],["surrounding","環境","Day 7","名詞"],["surplus","余り","Day 7","名詞"],["predecessor","前任者","Day 33","名詞"]]},{"s":"Low interest rates and urban population growth have driven up commercial ( ) prices in major cities.","j":"低金利と都市人口の増加により、主要都市の商業用<strong>不動産</strong>価格が押し上げられている。","o":["real estate","recognition","destruction","spending"],"a":0,"v":[["real estate","不動産","Day 33","名詞"],["recognition","認識","Day 8","名詞"],["destruction","破壊","Day 27","名詞"],["spending","支出","Day 31","名詞"]]},{"s":"The keynote panel on sustainable urban architecture ( ) Tuesday afternoon in the main auditorium.","j":"持続可能な都市建築に関する基調パネルディスカッションは、火曜日の午後に大講堂<strong>に予定されている</strong>。","o":["is committed to","is apt to","is essential to","is scheduled for"],"a":3,"v":[["be committed to","～に打ち込んでいる","Day 64","動詞句"],["be apt to do","～しがちである","Day 66","動詞句"],["be essential to","～にとって不可欠である","Day 65","動詞句"],["be scheduled for","～に予定されている","Day 65","動詞句"]]},{"s":"Older adults represent the fastest-growing demographic ( ) among smartphone and tablet users.","j":"高齢者は、スマートフォンやタブレットの利用者の中で最も急速に成長している人口統計学的<strong>部分（層）</strong>である。","o":["virtue","blow","recognition","segment"],"a":3,"v":[["virtue","美徳","Day 29","名詞"],["blow","打撃","Day 32","名詞"],["recognition","認識","Day 8","名詞"],["segment","部分","Day 36","名詞"]]},{"s":"Working in an international newsroom requires being highly ( ) in at least two foreign languages.","j":"国際的な報道室で働くには、少なくとも2つの外国語に高度に<strong>熟達した</strong>能力が求められる。","o":["contagious","brisk","stern","proficient"],"a":3,"v":[["contagious","伝染しやすい","Day 23","形容詞"],["brisk","きびきびした","Day 19","形容詞"],["stern","厳格な","Day 44","形容詞"],["proficient","熟達した","Day 23","形容詞"]]},{"s":"Biologists examined the plant leaf under a high-powered microscope to observe each individual ( ) wall.","j":"生物学者は、個々の<strong>細胞</strong>壁を観察するために高倍率の顕微鏡で植物の葉を調べた。","o":["uproar","cell","dispute","vault"],"a":1,"v":[["uproar","大騒ぎ","Day 33","名詞"],["cell","細胞","Day 3","名詞"],["dispute","紛争","Day 3","名詞"],["vault","金庫室","Day 29","名詞"]]},{"s":"Face-to-face ( ) among team members often sparks spontaneous ideas that are harder to generate online.","j":"チームメンバー間の対面での<strong>交流</strong>は、オンラインでは生まれにくい自発的なアイデアを引き出すことがよくある。","o":["interaction","heritage","exile","conservation"],"a":0,"v":[["interaction","交流","Day 27","名詞"],["heritage","遺産","Day 2","名詞"],["exile","亡命者","Day 27","名詞"],["conservation","保護","Day 26","名詞"]]},{"s":"Storing photographic film improperly can ( ) the sensitive emulsion ( ) light and ruin the images.","j":"写真フィルムを不適切に保管すると、感光乳剤が光<strong>にさらされ</strong>画像が台無しになることがある。","o":["expose / to","charge / with","view / as","assign / to"],"a":0,"v":[["expose A to B","AをBにさらす","Day 61","動詞句"],["charge A with B","AをBで告発する","Day 62","動詞句"],["view A as B","AをBと見なす","Day 62","動詞句"],["assign A to B","AをBに配属する","Day 61","動詞句"]]},{"s":"Please separate recyclable paper and glass rather than choosing to ( ) them with regular household waste.","j":"リサイクル可能な紙やガラスは、通常の家庭ごみと一緒に<strong>捨てる</strong>のではなく分別してください。","o":["discard","disguise","capsize","depict"],"a":0,"v":[["discard","〜を捨てる","Day 38","動詞"],["disguise","〜を変装させる","Day 40","動詞"],["capsize","転覆する","Day 18","動詞"],["depict","〜を描く","Day 42","動詞"]]},{"s":"To end the prolonged labor strike, management made a major ( ) by agreeing to full health insurance coverage.","j":"長引く労働ストライキを終わらせるため、経営陣は健康保険の全額負担に同意するという大きな<strong>譲歩</strong>を行った。","o":["adolescent","emergency","condolence","concession"],"a":3,"v":[["adolescent","十代の若者","Day 9","名詞"],["emergency","緊急時","Day 8","名詞"],["condolence","悔やみ","Day 26","名詞"],["concession","譲歩","Day 34","名詞"]]},{"s":"Every autumn, millions of monarch butterflies ( ) thousands of miles south to spend winter in central Mexico.","j":"毎年秋になると、何百万匹ものオオカバマダラが冬を過ごすためにメキシコ中部へと何千マイルも南へ<strong>移動する（渡りをする）</strong>。","o":["convene","activate","impersonate","migrate"],"a":3,"v":[["convene","〜を招集する","Day 42","動詞"],["activate","〜を作動させる","Day 41","動詞"],["impersonate","〜に成り済ます","Day 17","動詞"],["migrate","移動する","Day 15","動詞"]]},{"s":"The vice president accepted the international humanitarian award ( ) the entire volunteer organization.","j":"副会長は、ボランティア団体全体<strong>に代わって</strong>国際人道賞を受け取った。","o":["in response to","on behalf of","as follows","at their disposal"],"a":1,"v":[["in response to","～に応えて","Day 70","形容詞句・副詞句・前置詞群"],["on behalf of","～に代わって","Day 70","形容詞句・副詞句・前置詞群"],["as follows","次の通り","Day 69","形容詞句・副詞句・前置詞群"],["at one’s disposal","～が自由に使える","Day 68","形容詞句・副詞句・前置詞群"]]},{"s":"Several urban planners decided to ( ) a bold proposal to turn abandoned elevated railways into public parks.","j":"数人の都市計画家たちは、廃線となった高架鉄道を公共公園に変える大胆な提案<strong>を提出する（提示する）</strong>ことを決めた。","o":["put forward","drag on","pitch in","have trouble"],"a":0,"v":[["put forward","～を提出する","Day 56","動詞句"],["drag on","だらだらと続く","Day 56","動詞句"],["pitch in","協力する","Day 57","動詞句"],["have trouble doing","～するのに苦労する","Day 67","動詞句"]]},{"s":"Walking outside without gloves in subzero temperatures left his fingers completely ( ) within minutes.","j":"氷点下の気温の中で手袋をせずに外を歩いたため、数分以内に彼の指は完全に<strong>感覚のなくなった</strong>状態になった。","o":["irrelevant","cautious","extravagant","numb"],"a":3,"v":[["irrelevant","無関係の","Day 45","形容詞"],["cautious","慎重な","Day 24","形容詞"],["extravagant","金遣いの荒い","Day 49","形容詞"],["numb","感覚のなくなった","Day 49","形容詞"]]},{"s":"Over eighty percent of surveyed residents voted ( ) expanding protected bicycle lanes throughout the city.","j":"調査対象となった住民の80%以上が、市内全域で保護された自転車レーンを拡充すること<strong>を支持して</strong>投票した。","o":["on the verge of","in favor of","in person","in shape"],"a":1,"v":[["on the verge of","～の寸前で","Day 70","形容詞句・副詞句・前置詞群"],["in favor of","～を支持して","Day 70","形容詞句・副詞句・前置詞群"],["in person","自分で","Day 69","形容詞句・副詞句・前置詞群"],["in shape","体調がよくて","Day 68","形容詞句・副詞句・前置詞群"]]},{"s":"The community college offers practical ( ) training programs in carpentry, welding, and culinary arts.","j":"そのコミュニティカレッジは、大工仕事、溶接、調理技術などの実践的な<strong>職業の</strong>訓練プログラムを提供している。","o":["vocational","corrupt","hazardous","agricultural"],"a":0,"v":[["vocational","職業の","Day 50","形容詞"],["corrupt","堕落した","Day 46","形容詞"],["hazardous","有害な","Day 50","形容詞"],["agricultural","農業の","Day 19","形容詞"]]},{"s":"Switching an entire nation's power grid to renewable energy within ten years is a bold and ( ) plan.","j":"10年以内に国全体の電力網を再生可能エネルギーに切り替えることは、大胆で<strong>急進的な</strong>計画である。","o":["lenient","tender","relevant","radical"],"a":3,"v":[["lenient","寛大な","Day 24","形容詞"],["tender","柔らかい","Day 23","形容詞"],["relevant","関係のある","Day 19","形容詞"],["radical","急進的な","Day 20","形容詞"]]}],[{"s":"Many economists ( ) predictions that automation will eliminate all human jobs in the near future.","j":"多くの経済学者は、自動化によって近い将来すべての人間の仕事がなくなるという予測<strong>を疑っている（懐疑的である）</strong>。","o":["are skeptical about","are native to","are unlikely to","are credited with"],"a":0,"v":[["be skeptical about","～を疑っている","Day 64","動詞句"],["be native to","～の原産である","Day 65","動詞句"],["be unlikely to do","～しそうもない","Day 66","動詞句"],["be credited with","～の功績を認められている","Day 65","動詞句"]]},{"s":"Because the experimental drug lacked long-term safety data, doctors were ( ) prescribe it to children.","j":"その実験薬には長期的な安全性データが不足していたため、医師たちは子どもに処方<strong>したくない（処方することに消極的であった）</strong>。","o":["intrigued by","compatible with","scheduled to","reluctant to"],"a":3,"v":[["be intrigued by","～に興味を持つ","Day 65","動詞句"],["be compatible with","～と互換性がある","Day 64","動詞句"],["be scheduled to do","～する予定である","Day 66","動詞句"],["be reluctant to do","～したくない","Day 66","動詞句"]]},{"s":"Marine biologists sank decommissioned ships to create an ( ) reef that now attracts hundreds of fish species.","j":"海洋生物学者は、現在何百種もの魚を引き寄せる<strong>人工の</strong>サンゴ礁を作るために退役した船を沈めた。","o":["prominent","stale","vital","artificial"],"a":3,"v":[["prominent","著名な","Day 47","形容詞"],["stale","よどんだ","Day 50","形容詞"],["vital","極めて重要な","Day 48","形容詞"],["artificial","人工の","Day 22","形容詞"]]},{"s":"The professor pointed out that the student's conclusion was ( ) because it contradicted his own experimental data.","j":"教授は、その学生の結論が自身の実験データと矛盾しているため<strong>非論理的な</strong>ものであると指摘した。","o":["desperate","illogical","obsolete","clumsy"],"a":1,"v":[["desperate","欲しくてたまらない","Day 49","形容詞"],["illogical","非論理的な","Day 45","形容詞"],["obsolete","時代遅れの","Day 20","形容詞"],["clumsy","不器用な","Day 50","形容詞"]]},{"s":"Although we invited fifty guests to the outdoor reception, nearly eighty people managed to ( ).","j":"屋外レセプションに50人のゲストを招待したが、実際には80人近くが<strong>現れる（姿を見せる）</strong>結果となった。","o":["hand out","turn up","pass over","pass out"],"a":1,"v":[["hand out","～を配る","Day 58","動詞句"],["turn up","現れる","Day 60","動詞句"],["pass over","～を候補から外す","Day 58","動詞句"],["pass out","気絶する","Day 57","動詞句"]]},{"s":"With three undefeated victories in the preliminary rounds, our school debate team will ( ) advance to the finals.","j":"予選ラウンドで3戦全勝を収めたため、私たちの学校のディベートチームは<strong>間違いなく</strong>決勝に進出するだろう。","o":["nonetheless","approximately","definitely","voluntarily"],"a":2,"v":[["nonetheless","それにもかかわらず","Day 51","副詞"],["approximately","約","Day 52","副詞"],["definitely","間違いなく","Day 51","副詞"],["voluntarily","自発的に","Day 52","副詞"]]},{"s":"Upon turning twenty-one, she used a modest family ( ) to launch her own sustainable architecture studio.","j":"21歳になると同時に、彼女はささやかな家族の<strong>遺産</strong>を使って自身の持続可能な建築スタジオを立ち上げた。","o":["dependency","proportion","inheritance","powerhouse"],"a":2,"v":[["dependency","依存","Day 32","名詞"],["proportion","割合","Day 31","名詞"],["inheritance","遺産","Day 11","名詞"],["powerhouse","強大な国","Day 36","名詞"]]},{"s":"International law enforcement agencies cooperated to shut down an ( ) online network trading counterfeit medicines.","j":"国際法執行機関が協力し、偽造医薬品を取引する<strong>不法な</strong>オンラインネットワークを閉鎖した。","o":["indispensable","infamous","significant","illicit"],"a":3,"v":[["indispensable","不可欠な","Day 25","形容詞"],["infamous","悪名高い","Day 45","形容詞"],["significant","重要な","Day 19","形容詞"],["illicit","不法な","Day 45","形容詞"]]},{"s":"Astronomers around the world ( ) the mysterious radio signals detected from a distant galaxy.","j":"世界中の天文学者たちが、遠くの銀河から検出された謎の電波信号<strong>に興味を持って</strong>いる。","o":["are entitled to","are eager to","are reluctant to","are intrigued by"],"a":3,"v":[["be entitled to do","～する権利がある","Day 66","動詞句"],["be eager to do","～したいと思っている","Day 66","動詞句"],["be reluctant to do","～したくない","Day 66","動詞句"],["be intrigued by","～に興味を持つ","Day 65","動詞句"]]},{"s":"The atmosphere inside the mission control room grew ( ) during the final seconds before the rocket landed.","j":"ロケット着陸前の最後の数秒間、ミッション管制室内の雰囲気は<strong>緊迫した</strong>ものになった。","o":["commendable","elaborate","tranquil","tense"],"a":3,"v":[["commendable","称賛に値する","Day 44","形容詞"],["elaborate","手の込んだ","Day 47","形容詞"],["tranquil","穏やかな","Day 24","形容詞"],["tense","緊迫した","Day 24","形容詞"]]},{"s":"Open communication and mutual respect help resolve workplace ( ) before minor disagreements escalate.","j":"率直なコミュニケーションと相互尊重は、小さな意見の相違がエスカレートする前に職場の<strong>対立</strong>を解決するのに役立つ。","o":["outbreak","bid","therapy","conflict"],"a":3,"v":[["outbreak","勃発","Day 3","名詞"],["bid","試み","Day 34","名詞"],["therapy","治療","Day 7","名詞"],["conflict","対立","Day 1","名詞"]]},{"s":"Living in three different countries gave the sociologist deep cultural ( ) into how communities adapt to change.","j":"3つの異なる国で暮らした経験は、コミュニティが変化にどのように適応するかについての深い文化的<strong>洞察力</strong>をその社会学者に与えた。","o":["deforestation","refinement","insight","poll"],"a":2,"v":[["deforestation","森林破壊","Day 30","名詞"],["refinement","改良","Day 36","名詞"],["insight","洞察力","Day 30","名詞"],["poll","世論調査","Day 28","名詞"]]},{"s":"Investigative reporters must confirm every story with at least two independent and ( ) witnesses.","j":"調査報道記者は、少なくとも2人の独立した<strong>信用できる</strong>目撃者によってすべての記事を裏付けなければならない。","o":["legible","countless","credible","cautious"],"a":2,"v":[["legible","読みやすい","Day 22","形容詞"],["countless","数え切れない","Day 47","形容詞"],["credible","信用できる","Day 50","形容詞"],["cautious","慎重な","Day 24","形容詞"]]},{"s":"Although the CEO did not mention layoffs directly, his remarks seemed to ( ) that restructuring was coming.","j":"CEOは解雇について直接言及しなかったものの、彼の発言はリストラが近づいていること<strong>をほのめかす</strong>ように思われた。","o":["reverse","capsize","imply","dispatch"],"a":2,"v":[["reverse","〜を逆にする","Day 41","動詞"],["capsize","転覆する","Day 18","動詞"],["imply","〜をほのめかす","Day 15","動詞"],["dispatch","〜を派遣する","Day 38","動詞"]]},{"s":"Strict wildlife ( ) efforts have helped bring the bald eagle back from the brink of extinction.","j":"厳格な野生生物<strong>保護</strong>の取り組みにより、ハクトウワシを絶滅の瀬戸際から救い出すことができた。","o":["physician","flaw","conservation","obesity"],"a":2,"v":[["physician","医師","Day 31","名詞"],["flaw","欠陥","Day 10","名詞"],["conservation","保護","Day 26","名詞"],["obesity","肥満","Day 30","名詞"]]},{"s":"Centuries of overgrazing transformed the once-fertile valley into a dry, ( ) wasteland.","j":"何世紀にもわたる過放牧により、かつて肥沃だった谷は乾燥した<strong>不毛の</strong>荒れ地へと変わってしまった。","o":["barren","comprehensive","protective","conventional"],"a":0,"v":[["barren","不毛の","Day 22","形容詞"],["comprehensive","包括的な","Day 21","形容詞"],["protective","防護する","Day 46","形容詞"],["conventional","従来の","Day 46","形容詞"]]},{"s":"Cave paintings discovered in southern France vividly ( ) wild horses, bison, and ancient hunting scenes.","j":"南フランスで発見された洞窟壁画は、野生の馬やバイソン、古代の狩猟風景を鮮やかに<strong>描いて</strong>いる。","o":["foster","revolt","depict","distort"],"a":2,"v":[["foster","〜を促進する","Day 40","動詞"],["revolt","反乱を起こす","Day 41","動詞"],["depict","〜を描く","Day 42","動詞"],["distort","〜をゆがめる","Day 38","動詞"]]},{"s":"Security guards asked the group of teenagers not to ( ) near the emergency exit doors of the shopping mall.","j":"警備員たちは、ショッピングモールの非常口ドア付近で<strong>うろつく</strong>ことのないよう10代のグループに注意した。","o":["dictate","expel","loiter","combat"],"a":2,"v":[["dictate","〜を決定する","Day 38","動詞"],["expel","〜を除名する","Day 43","動詞"],["loiter","うろつく","Day 37","動詞"],["combat","〜と闘う","Day 14","動詞"]]},{"s":"Several ( ) economists were invited to advise the government on reducing inflation without slowing job growth.","j":"雇用の伸びを鈍化させることなくインフレを抑制する方法について政府に助言するため、数人の<strong>著名な</strong>経済学者が招かれた。","o":["neurological","prominent","minimal","peculiar"],"a":1,"v":[["neurological","神経の","Day 47","形容詞"],["prominent","著名な","Day 47","形容詞"],["minimal","最小限の","Day 47","形容詞"],["peculiar","奇妙な","Day 25","形容詞"]]},{"s":"Sudden spikes in bread prices sparked a widespread urban ( ) that forced the minister to resign.","j":"パン価格の急騰が広範な都市部の<strong>暴動</strong>を引き起こし、大臣は辞任を余儀なくされた。","o":["collision","riot","heritage","poverty"],"a":1,"v":[["collision","衝突","Day 4","名詞"],["riot","暴動","Day 36","名詞"],["heritage","遺産","Day 2","名詞"],["poverty","貧困","Day 28","名詞"]]}],[{"s":"Travelers often remember the warm ( ) of the mountain villagers who welcomed them with hot tea and homemade bread.","j":"旅行者は、温かいお茶と自家製パンで迎えてくれた山村の人々の温かい<strong>温かいもてなし（歓待）</strong>をよく覚えている。","o":["registration","hospitality","workout","participation"],"a":1,"v":[["registration","登録","Day 36","名詞"],["hospitality","温かいもてなし","Day 27","名詞"],["workout","トレーニング","Day 31","名詞"],["participation","参加","Day 28","名詞"]]},{"s":"While chatting excitedly about the upcoming awards ceremony, she accidentally let the winner's name ( ).","j":"今度の授賞式について興奮して話しているうちに、彼女はうっかり受賞者の名前を<strong>つい口から漏らす（漏らしてしまう）</strong>ことになった。","o":["tear down","come down with","slip out","hand down"],"a":2,"v":[["tear down","～を取り壊す","Day 53","動詞句"],["come down with","～にかかる","Day 54","動詞句"],["slip out","つい口から漏れる","Day 55","動詞句"],["hand down","～を言い渡す","Day 59","動詞句"]]},{"s":"The tax agency published a simple guide to ( ) the new deduction rules for self-employed workers.","j":"税務庁は、自営業者向けの新しい控除ルール<strong>をはっきりさせる（明確にする）</strong>ための分かりやすいガイドを公開した。","o":["devise","clarify","classify","monopolize"],"a":1,"v":[["devise","〜を考案する","Day 14","動詞"],["clarify","〜をはっきりさせる","Day 15","動詞"],["classify","〜を分類する","Day 18","動詞"],["monopolize","〜を独占する","Day 38","動詞"]]},{"s":"Her innovative use of recycled ocean plastic made her sculpture ( ) among hundreds of entries at the art fair.","j":"リサイクルされた海洋プラスチックの革新的な使用法により、彼女の彫刻はアートフェアの何百もの出品作の中で際立って<strong>目立っ</strong>た。","o":["catch a glimpse of","step down","turn to","stand out"],"a":3,"v":[["catch a glimpse of","～をちらりと見かける","Day 67","動詞句"],["step down","辞任する","Day 58","動詞句"],["turn to","～に求める","Day 55","動詞句"],["stand out","目立つ","Day 55","動詞句"]]},{"s":"Official labor ( ) show that unemployment has fallen to its lowest level in over two decades.","j":"公式の労働<strong>統計</strong>によると、失業率は20年以上ぶりの低水準に低下している。","o":["violation","hydrogen","emergency","statistics"],"a":3,"v":[["violation","違反","Day 36","名詞"],["hydrogen","水素","Day 35","名詞"],["emergency","緊急時","Day 8","名詞"],["statistics","統計","Day 2","名詞"]]},{"s":"Academic writers must accurately ( ) every external study and data source referenced in their papers.","j":"学術論文の執筆者は、論文中で言及したすべての外部研究やデータ出典を正確に<strong>引き合いに出す（引用する）</strong>必要がある。","o":["overtake","accumulate","cite","storm"],"a":2,"v":[["overtake","〜を追い越す","Day 13","動詞"],["accumulate","〜をためる","Day 16","動詞"],["cite","〜を引き合いに出す","Day 39","動詞"],["storm","〜を襲撃する","Day 14","動詞"]]},{"s":"Passing a rigorous background check is a mandatory ( ) for all applicants seeking security clearance.","j":"厳格な身元調査に合格することは、セキュリティクリアランスを求めるすべての応募者にとって必須の<strong>必要条件</strong>である。","o":["solitude","coverage","requirement","majority"],"a":2,"v":[["solitude","孤独","Day 11","名詞"],["coverage","報道","Day 26","名詞"],["requirement","必要条件","Day 6","名詞"],["majority","大多数","Day 4","名詞"]]},{"s":"Astronomers estimate that there are ( ) billions of stars scattered across the observable universe.","j":"天文学者たちは、観測可能な宇宙全体に<strong>数え切れない</strong>何十億もの星が散らばっていると推定している。","o":["countless","considerable","extravagant","obsolete"],"a":0,"v":[["countless","数え切れない","Day 47","形容詞"],["considerable","かなりの","Day 50","形容詞"],["extravagant","金遣いの荒い","Day 49","形容詞"],["obsolete","時代遅れの","Day 20","形容詞"]]},{"s":"Only authorized laboratory ( ) wearing protective badges are permitted inside the cleanroom facility.","j":"保護バッジを着用した許可された研究室<strong>職員</strong>のみが、クリーンルーム施設内への立ち入りを許可されている。","o":["registration","personnel","advertising","statistics"],"a":1,"v":[["registration","登録","Day 36","名詞"],["personnel","職員","Day 33","名詞"],["advertising","広告","Day 26","名詞"],["statistics","統計","Day 2","名詞"]]},{"s":"The ( ) government allocated billions of dollars to upgrade interstate highways and bridges nationwide.","j":"<strong>連邦の</strong>政府は、全国の州間高速道路と橋を改良するために何十億ドルもの予算を割り当てた。","o":["federal","debatable","irresistible","cosmopolitan"],"a":0,"v":[["federal","連邦の","Day 20","形容詞"],["debatable","議論の余地のある","Day 44","形容詞"],["irresistible","抑えきれない","Day 50","形容詞"],["cosmopolitan","国際色豊かな","Day 21","形容詞"]]},{"s":"Foragers must be carefully trained to distinguish ( ) wild mushrooms from poisonous look-alikes.","j":"山菜採りをする人は、<strong>食用の</strong>野生キノコと有毒なそっくりなキノコを見分けるための慎重な訓練を受けなければならない。","o":["feasible","prestigious","edible","majestic"],"a":2,"v":[["feasible","実現可能な","Day 22","形容詞"],["prestigious","一流の","Day 49","形容詞"],["edible","食用の","Day 49","形容詞"],["majestic","雄大な","Day 45","形容詞"]]},{"s":"The newly renovated convention center can comfortably ( ) up to five thousand international delegates.","j":"新しく改装されたコンベンションセンターは、最大5,000人の国際代表団を快適に<strong>収容する</strong>ことができる。","o":["accommodate","grasp","vary","threaten"],"a":0,"v":[["accommodate","〜を収容する","Day 13","動詞"],["grasp","〜を理解する","Day 17","動詞"],["vary","異なる","Day 43","動詞"],["threaten","〜を脅かす","Day 14","動詞"]]},{"s":"Despite intense pressure from developers, the city council refused to ( ) demands to rezone the protected wetlands.","j":"開発業者からの強い圧力にもかかわらず、市議会は保護された湿地の用途地域を変更する要求<strong>に屈する</strong>ことを拒んだ。","o":["drop out","live up to","give in to","stem from"],"a":2,"v":[["drop out","退学する","Day 53","動詞句"],["live up to","～に添う","Day 60","動詞句"],["give in to","～に屈する","Day 57","動詞句"],["stem from","～から生じる","Day 60","動詞句"]]},{"s":"Receiving a sincere ( ) from a respected mentor boosted the young violinist's confidence before her solo recital.","j":"尊敬する指導者から心からの<strong>褒め言葉</strong>を受け取ったことで、ソロリサイタルを控えた若いバイオリニストの自信が高まった。","o":["compliment","dismay","poll","warehouse"],"a":0,"v":[["compliment","褒め言葉","Day 6","名詞"],["dismay","失望","Day 30","名詞"],["poll","世論調査","Day 28","名詞"],["warehouse","倉庫","Day 34","名詞"]]},{"s":"Northern regions experienced record snowfall this winter; ( ), southern coastal towns enjoyed unusually mild weather.","j":"北部地域はこの冬記録的な大雪に見舞われたが、<strong>対照的に</strong>南部の沿岸の町は例年になく穏やかな天候に恵まれた。","o":["in short","in the vicinity of","in contrast","in no way"],"a":2,"v":[["in short","手短に言うと","Day 69","形容詞句・副詞句・前置詞群"],["in the vicinity of","～の近くに","Day 70","形容詞句・副詞句・前置詞群"],["in contrast","対照的に","Day 68","形容詞句・副詞句・前置詞群"],["in no way","決して～ない","Day 69","形容詞句・副詞句・前置詞群"]]},{"s":"More than ten thousand citizens signed a ( ) urging the mayor to preserve the historic waterfront library.","j":"1万人以上の市民が、歴史あるウォーターフロント図書館を保存するよう市長に求める<strong>請願書</strong>に署名した。","o":["petition","guideline","virus","interference"],"a":0,"v":[["petition","請願書","Day 2","名詞"],["guideline","指針","Day 6","名詞"],["virus","ウイルス","Day 7","名詞"],["interference","干渉","Day 35","名詞"]]},{"s":"Chameleons can rapidly change their skin color to blend into their natural forest ( ).","j":"カメレオンは、自然な森の<strong>環境（周囲の状況）</strong>に溶け込むために皮膚の色を素早く変えることができる。","o":["surrounding","poll","atmosphere","discretion"],"a":0,"v":[["surrounding","環境","Day 7","名詞"],["poll","世論調査","Day 28","名詞"],["atmosphere","雰囲気","Day 4","名詞"],["discretion","慎重さ","Day 27","名詞"]]},{"s":"Coffee beans are a vital agricultural ( ) exported by dozens of tropical nations around the world.","j":"コーヒー豆は、世界中の何十もの熱帯諸国によって輸出される重要な農産<strong>商品（一次産品）</strong>である。","o":["blunder","commodity","obesity","testimony"],"a":1,"v":[["blunder","大失敗","Day 34","名詞"],["commodity","商品","Day 29","名詞"],["obesity","肥満","Day 30","名詞"],["testimony","証言","Day 11","名詞"]]},{"s":"Project planners often ( ) how much time and testing are required to launch complex software systems.","j":"プロジェクト計画者は、複雑なソフトウェアシステムを立ち上げるのにどれだけの時間とテストが必要か<strong>を過小評価する</strong>ことがよくある。","o":["migrate","extinguish","underestimate","guarantee"],"a":2,"v":[["migrate","移動する","Day 15","動詞"],["extinguish","〜を消す","Day 17","動詞"],["underestimate","〜を過小評価する","Day 39","動詞"],["guarantee","〜を保証する","Day 13","動詞"]]},{"s":"Sudden surges in summer air-conditioning demand put heavy ( ) on aging regional electrical grids.","j":"夏の冷房需要の急増は、老朽化した地域の電力網に大きな<strong>重圧（負担）</strong>をかける。","o":["strain","blow","legislation","archaeologist"],"a":0,"v":[["strain","重圧","Day 9","名詞"],["blow","打撃","Day 32","名詞"],["legislation","法律","Day 11","名詞"],["archaeologist","考古学者","Day 4","名詞"]]}]]</script>
+
+<script>
+(function() {
+  const ORIGINAL_SETS = JSON.parse(document.getElementById('cloze-sets-data').textContent);
+  let SETS = JSON.parse(JSON.stringify(ORIGINAL_SETS));
+
+  const SET_OFFSET = 40;
+  let currentSetIndex = 0;
+  let currentZoom = 100;
+  let userAnswers = Array.from({ length: SETS.length }, () => Array(20).fill(null));
+
+  const STORAGE_KEY = 'eiken_pre1_cloze_41_56_v1';
+
+  function saveProgress() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        sets: SETS,
+        answers: userAnswers,
+        currentSet: currentSetIndex
+      }));
+    } catch (e) {}
+  }
+
+  function loadProgress() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      if (parsed && Array.isArray(parsed.sets) && parsed.sets.length === SETS.length) {
+        SETS = parsed.sets;
+      }
+      if (parsed && Array.isArray(parsed.answers) && parsed.answers.length === SETS.length) {
+        userAnswers = parsed.answers;
+      }
+      if (typeof parsed.currentSet === 'number' && parsed.currentSet >= 0 && parsed.currentSet < SETS.length) {
+        currentSetIndex = parsed.currentSet;
+      }
+    } catch (e) {}
+  }
+
+  window.changeZoom = function(delta) {
+    currentZoom = Math.min(Math.max(70, currentZoom + delta), 130);
+    document.getElementById('zoom-val').innerText = currentZoom + '%';
+    document.getElementById('main-container').style.transform = `scale(${currentZoom / 100})`;
+  };
+
+  function renderTabs() {
+    const grid = document.getElementById('tabs-grid');
+    grid.innerHTML = '';
+
+    let completedSets = 0;
+    let totalCorrect = 0;
+
+    for (let i = 0; i < SETS.length; i++) {
+      const ansList = userAnswers[i];
+      const answeredCount = ansList.filter(a => a !== null).length;
+      let setCorrect = 0;
+      for (let q = 0; q < 20; q++) {
+        if (ansList[q] !== null && ansList[q] === SETS[i][q].a) {
+          setCorrect++;
+        }
+      }
+      totalCorrect += setCorrect;
+      if (answeredCount === 20) completedSets++;
+
+      const btn = document.createElement('button');
+      btn.className = 'tab-btn';
+      if (i === currentSetIndex) btn.classList.add('active');
+      if (answeredCount === 20) btn.classList.add('completed');
+      btn.textContent = '#' + (i + 1 + SET_OFFSET);
+      btn.title = '#' + (i + 1 + SET_OFFSET) + ' (' + answeredCount + '/20問回答済み・正解' + setCorrect + '問)';
+      btn.onclick = function() { window.openSet(i); };
+      grid.appendChild(btn);
+    }
+
+    document.getElementById('overall-progress').textContent =
+      '完了: ' + completedSets + ' / ' + SETS.length + ' セット（累計正解: ' + totalCorrect + ' / ' + (SETS.length * 20) + ' 問）';
+  }
+
+  window.openSet = function(setIdx) {
+    currentSetIndex = setIdx;
+    saveProgress();
+    renderTabs();
+    renderCurrentSet();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  function escapeHTML(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function buildSetHTML(setIdx, isForAllPrint) {
+    const questions = SETS[setIdx];
+    const answers = userAnswers[setIdx];
+    const answeredCount = answers.filter(a => a !== null).length;
+    let correctCount = 0;
+    for (let q = 0; q < 20; q++) {
+      if (answers[q] !== null && answers[q] === questions[q].a) {
+        correctCount++;
+      }
+    }
+
+    let cardsHTML = '';
+    let answerKeyItems = [];
+
+    questions.forEach(function(qObj, qIdx) {
+      const correctPos = qObj.a;
+      const userChoice = answers[qIdx];
+      const isAnswered = userChoice !== null;
+
+      answerKeyItems.push('(' + (qIdx + 1) + ') ' + (correctPos + 1));
+
+      let optionsHTML = '';
+      qObj.o.forEach(function(optText, pos) {
+        let btnClass = 'option-btn';
+        if (!isForAllPrint && isAnswered) {
+          if (pos === correctPos) btnClass += ' correct';
+          else if (pos === userChoice) btnClass += ' incorrect';
+        }
+        const disabledAttr = (!isForAllPrint && isAnswered) ? 'disabled' : '';
+        const onclickAttr = isForAllPrint ? '' : 'onclick="selectAnswer(' + setIdx + ', ' + qIdx + ', ' + pos + ')"';
+
+        optionsHTML += '<button class="' + btnClass + '" ' + disabledAttr + ' ' + onclickAttr + '>' + (pos + 1) + ' ' + escapeHTML(optText) + '</button>';
+      });
+
+      let vocabDetailHTML = qObj.v.map(function(vItem, pos) {
+        return '・' + (pos + 1) + ' ' + escapeHTML(vItem[0]) + ': ' + escapeHTML(vItem[1]) + ' <span style="color:#718096;">(' + vItem[2] + ' / ' + vItem[3] + ')</span>';
+      }).join('<br>');
+
+      const expClass = (!isForAllPrint && isAnswered) ? 'explanation show' : 'explanation';
+
+      cardsHTML +=
+        '<div class="question-card" id="q' + (setIdx + 1) + '-' + (qIdx + 1) + '">' +
+          '<div class="question-title">(' + (qIdx + 1) + ') ' + escapeHTML(qObj.s) + '</div>' +
+          '<div class="options-grid">' + optionsHTML + '</div>' +
+          '<div class="' + expClass + '">' +
+            '<span class="label">正解: ' + (correctPos + 1) + ' ' + escapeHTML(qObj.o[correctPos]) + '</span><br>' +
+            '【文脈】' + qObj.j + '<br>' +
+            '<div class="vocab-list">' + vocabDetailHTML + '</div>' +
+          '</div>' +
+        '</div>';
+    });
+
+    const navRowHTML = isForAllPrint ? '' :
+      '<div class="set-nav-row">' +
+        '<button class="nav-arrow-btn" onclick="openSet(' + (setIdx - 1) + ')" ' + (setIdx === 0 ? 'disabled' : '') + '>◀ 前のセット (#' + (setIdx + SET_OFFSET) + ')</button>' +
+        '<span style="font-size:0.85rem; font-weight:bold; color:#4a5568;">セット #' + (setIdx + 1 + SET_OFFSET) + '（' + (setIdx + 1) + ' / ' + SETS.length + '）</span>' +
+        '<button class="nav-arrow-btn" onclick="openSet(' + (setIdx + 1) + ')" ' + (setIdx === SETS.length - 1 ? 'disabled' : '') + '>次のセット (#' + (setIdx + 2 + SET_OFFSET) + ') ▶</button>' +
+      '</div>';
+
+    const rate = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
+    const scoreBarHTML = isForAllPrint ? '' :
+      '<div class="score-bar">' +
+        '<div class="score-info">' +
+          '進捗: ' + answeredCount + ' / 20 問回答済み ｜ 正解数: ' + correctCount + ' / 20 問（正答率: ' + rate + '%）' +
+        '</div>' +
+        '<div class="score-actions">' +
+          '<button class="ctrl-btn" onclick="showAllExplanations()">💡 解説をすべて表示</button>' +
+          '<button class="ctrl-btn" onclick="resetCurrentSet(' + setIdx + ')">↺ このセットをリセット</button>' +
+        '</div>' +
+      '</div>';
+
+    return (
+      '<div class="worksheet-meta">' +
+        '<span><strong>英検準1級 大問1 語彙穴埋めワークシート #' + (setIdx + 1 + SET_OFFSET) + '</strong> (全20問)</span>' +
+        '<span>実施日: ____年____月____日　氏名: ______________________　得点: ____ / 20</span>' +
+      '</div>' +
+      '<div class="day-header">' +
+        navRowHTML +
+        '<h2>英検準1級 大問1 予想問題 #' + (setIdx + 1 + SET_OFFSET) + '</h2>' +
+        '<div class="subtitle">【短文の語句空所補充問題】 (1問〜20問)</div>' +
+      '</div>' +
+      scoreBarHTML +
+      cardsHTML +
+      '<div class="worksheet-answer-key">' +
+        '<strong>【#' + (setIdx + 1 + SET_OFFSET) + ' 解答】</strong> ' + answerKeyItems.join('　') +
+      '</div>'
+    );
+  }
+
+  function renderCurrentSet() {
+    const container = document.getElementById('active-set-view');
+    container.innerHTML = buildSetHTML(currentSetIndex, false);
+  }
+
+  window.selectAnswer = function(setIdx, qIdx, chosenPos) {
+    if (userAnswers[setIdx][qIdx] !== null) return;
+    userAnswers[setIdx][qIdx] = chosenPos;
+    saveProgress();
+    renderTabs();
+    renderCurrentSet();
+  };
+
+  window.resetCurrentSet = function(setIdx) {
+    userAnswers[setIdx] = Array(20).fill(null);
+    saveProgress();
+    renderTabs();
+    renderCurrentSet();
+  };
+
+  window.showAllExplanations = function() {
+    const cards = document.querySelectorAll('#active-set-view .explanation');
+    cards.forEach(function(el) { el.classList.add('show'); });
+  };
+
+  window.reshuffleAllSets = function() {
+    if (!confirm('全320問をシャッフルして16セットに再編成します。現在の解答履歴はリセットされますがよろしいですか？')) {
+      return;
+    }
+    const allQ = [];
+    SETS.forEach(function(s) {
+      s.forEach(function(q) { allQ.push(q); });
+    });
+    for (let i = allQ.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const tmp = allQ[i];
+      allQ[i] = allQ[j];
+      allQ[j] = tmp;
+    }
+    const newSets = [];
+    for (let s = 0; s < SETS.length; s++) {
+      newSets.push(allQ.slice(s * 20, (s + 1) * 20));
+    }
+    SETS = newSets;
+    userAnswers = Array.from({ length: SETS.length }, function() { return Array(20).fill(null); });
+    currentSetIndex = 0;
+    saveProgress();
+    renderTabs();
+    renderCurrentSet();
+  };
+
+  window.printCurrentSet = function() {
+    document.body.classList.remove('print-all-mode');
+    window.print();
+  };
+
+  window.printAllSets = function() {
+    const allContainer = document.getElementById('print-all-container');
+    let html = '';
+    for (let i = 0; i < SETS.length; i++) {
+      html += '<div class="print-page-block">' + buildSetHTML(i, true) + '</div>';
+    }
+    allContainer.innerHTML = html;
+    document.body.classList.add('print-all-mode');
+    window.print();
+    setTimeout(function() {
+      document.body.classList.remove('print-all-mode');
+      allContainer.innerHTML = '';
+    }, 500);
+  };
+
+  loadProgress();
+  renderTabs();
+  renderCurrentSet();
+})();
+</script>
+
+</body>
+</html>
